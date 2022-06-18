@@ -1,0 +1,14 @@
+$faker->numerify('+212'.'###-###-####')
+lexify('????'.'@gmail.com')
+$faker->randomElement(['BAC+2','Qualifier'])
+$faker->paragraph(mt_rand(0, 2))
+$faker->sentence(2)
+'username'=>$faker->text(10),
+'email'=>$faker->lexify('????'.'@gmail.com'),
+'password'=>$faker->password,
+'tele'=>$faker->numerify('+212-'.'###-###-###'),
+'ville'=>$faker->text(8),
+'nom'=>$faker->text(10),
+'prenom'=>$faker->text(10),
+'niveau_etude'=>$faker->randomElement(['BAC+2', 'BAC+3', 'BAC+5', 'Technicien', 'Qualifier']),
+'cv_candidat'=>$faker->lexify('?????????'.'.pdf'),
