@@ -35,8 +35,8 @@
                     <p>Not a member? <a>Register</a></p>
                 </router-link>
             </div>
-            <div v-if="message!==''" class="alert alert-secondary" role="alert">
-                {{message}}
+            <div v-if="Message!==''" class="alert alert-secondary" role="alert">
+                {{Message}}
             </div>
         </form>
     </div>
@@ -50,7 +50,8 @@ import useUsers from '../../../store/userStore.js'
     export default {
             setup() {
                 const User = ref({})
-                const {CurrentUsers,loginUser} = useUsers()
+                
+                const {CurrentUsers,loginUser,Message} = useUsers()
             
                 function login(User){
                      loginUser(User)
@@ -61,6 +62,7 @@ import useUsers from '../../../store/userStore.js'
                     CurrentUsers,
                     User,
                     login,
+                    Message,
                     
                 }
             },
@@ -68,6 +70,7 @@ import useUsers from '../../../store/userStore.js'
 
         data() {
             return {
+               // message: '',
                 // user: {
                 //     email: "",
                 //     password: "",
@@ -78,7 +81,6 @@ import useUsers from '../../../store/userStore.js'
                 //     ville: "",
                 //     secteur_activite: "",
                 // },
-                message: '',
                // token: ''
             }
         },

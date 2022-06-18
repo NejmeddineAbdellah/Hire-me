@@ -7,9 +7,11 @@ export default function useDemandes(){
 
         const Demandes = ref([])
 
+
         const getDemandes= async() => {
            let response = await axios.get('http://127.0.0.1:8000/api/demande')           
-           Demandes.value = response.data;
+           Demandes.value = response.data.data;
+           console.log(Demandes)
 
         }
 

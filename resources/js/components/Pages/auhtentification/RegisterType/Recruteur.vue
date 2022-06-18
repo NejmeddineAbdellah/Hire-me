@@ -4,26 +4,24 @@
             <h2>Recruteur</h2>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" id="emil" placeholder="Email" v-model="User.email" class="form-control"
-                        autofocus>
+                    <input type="text" id="emil" placeholder="Email" v-model="User.email" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" id="name" placeholder="Company name" v-model="User.name" class="form-control"
-                        autofocus>
+                    <input type="text" id="name" placeholder="Company name" v-model="User.name" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" id="username" placeholder="username" v-model="User.username" class="form-control"
-                        autofocus>
+                    <input type="text" id="username" placeholder="username" v-model="User.username"
+                        class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
                     <p>Choisir votre Logo</p>
-                    <input type="file" id="logo" placeholder="logo" class="form-control" autofocus>
+                    <input type="file" id="logo" placeholder="logo" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -64,7 +62,8 @@
             </div>
             <!-- /.form-group -->
             <button type="button" @click="createUser(User)" class="btn btn-primary">Register</button>
-        </form><!-- /form -->
+        </form>
+        <!-- /form -->
     </div>
 </template>
 

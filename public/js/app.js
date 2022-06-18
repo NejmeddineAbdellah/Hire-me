@@ -20018,60 +20018,107 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _store_secteurStore_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/secteurStore.js */ "./resources/js/store/secteurStore.js");
+/* harmony import */ var _store_annonceStore_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../store/annonceStore.js */ "./resources/js/store/annonceStore.js");
+/* harmony import */ var _store_userStore_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../store/userStore.js */ "./resources/js/store/userStore.js");
+/* harmony import */ var _store_demandeStore_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/demandeStore.js */ "./resources/js/store/demandeStore.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
+  setup: function setup() {
+    var _useUsers = (0,_store_userStore_js__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        UsersCandidat = _useUsers.UsersCandidat,
+        UsersRecruteur = _useUsers.UsersRecruteur,
+        getUsersRecruteur = _useUsers.getUsersRecruteur,
+        getUsersCandidat = _useUsers.getUsersCandidat;
+
+    var _useDemandes = (0,_store_demandeStore_js__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+        Demandes = _useDemandes.Demandes,
+        getDemandes = _useDemandes.getDemandes;
+
+    var _useAnnonces = (0,_store_annonceStore_js__WEBPACK_IMPORTED_MODULE_1__["default"])(),
+        Annonces = _useAnnonces.Annonces,
+        AnnonceCandidat = _useAnnonces.AnnonceCandidat,
+        AnnonceRecruteur = _useAnnonces.AnnonceRecruteur,
+        getAnnonces = _useAnnonces.getAnnonces,
+        getAnnoncesRecruteur = _useAnnonces.getAnnoncesRecruteur,
+        getAnnoncesCandidat = _useAnnonces.getAnnoncesCandidat;
+
+    var _useSecteurs = (0,_store_secteurStore_js__WEBPACK_IMPORTED_MODULE_0__["default"])(),
+        Secteurs = _useSecteurs.Secteurs,
+        getSecteurs = _useSecteurs.getSecteurs;
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(getSecteurs);
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(getDemandes);
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(getAnnoncesCandidat);
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(getUsersCandidat);
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(getAnnoncesRecruteur);
+    (0,vue__WEBPACK_IMPORTED_MODULE_4__.onMounted)(getUsersRecruteur);
     return {
-      usercandidat: [],
-      userrecruteur: [],
-      annoncecandidat: [],
-      annoncerecruteur: [],
-      demandes: []
+      UsersCandidat: UsersCandidat,
+      UsersRecruteur: UsersRecruteur,
+      Secteurs: Secteurs,
+      Demandes: Demandes,
+      Annonces: Annonces,
+      AnnonceCandidat: AnnonceCandidat,
+      AnnonceRecruteur: AnnonceRecruteur
     };
   },
-  methods: {
-    getUsersCandidat: function getUsersCandidat() {
-      var _this = this;
-
-      axios.get('http://127.0.0.1:8000/api/getUser/' + 'candidat').then(function (res) {
-        _this.usercandidat = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
-    getUsersRecruteur: function getUsersRecruteur() {
-      var _this2 = this;
-
-      axios.get('http://127.0.0.1:8000/api/getUser/' + 'recruteur').then(function (res) {
-        _this2.userrecruteur = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
-    getAnnoncescandidat: function getAnnoncescandidat() {
-      var _this3 = this;
-
-      axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'candidat').then(function (res) {
-        _this3.annoncecandidat = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    },
-    getAnnoncesrecruteur: function getAnnoncesrecruteur() {
-      var _this4 = this;
-
-      axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'recruteur').then(function (res) {
-        _this4.annoncerecruteur = res.data;
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    }
+  data: function data() {
+    return {// usercandidat: [],
+      // userrecruteur: [],
+      // annoncecandidat: [],
+      // annoncerecruteur: [],
+      // demandes: []
+    };
   },
-  mounted: function mounted() {
-    this.getUsersRecruteur();
-    this.getUsersCandidat();
-    this.getAnnoncesrecruteur();
-    this.getAnnoncescandidat();
-  }
+  methods: {// getUsersCandidat() {
+    //     axios.get('http://127.0.0.1:8000/api/getUser/' + 'candidat')
+    //         .then(res => {
+    //             this.usercandidat = res.data;
+    //         })
+    //         .catch(function (err) {
+    //             console.log(err);
+    //         })
+    // },
+    // getUsersRecruteur() {
+    //     axios.get('http://127.0.0.1:8000/api/getUser/' + 'recruteur')
+    //         .then(res => {
+    //             this.userrecruteur = res.data;
+    //         })
+    //         .catch(function (err) {
+    //             console.log(err);
+    //         })
+    // },
+    // getAnnoncescandidat() {
+    //     axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'candidat')
+    //         .then(res => {
+    //             this.annoncecandidat = res.data;
+    //         })
+    //         .catch(function (err) {
+    //             console.log(err);
+    //         })
+    // },
+    // getAnnoncesrecruteur() {
+    //     axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'recruteur')
+    //         .then(res => {
+    //             this.annoncerecruteur = res.data;
+    //         })
+    //         .catch(function (err) {
+    //             console.log(err);
+    //         })
+    // },
+  } // mounted() {
+  //     this.getUsersRecruteur();
+  //     this.getUsersCandidat();
+  //     this.getAnnoncesrecruteur();
+  //     this.getAnnoncescandidat();
+  // },
+
 });
 
 /***/ }),
@@ -20814,14 +20861,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       Annonces: Annonces,
       Secteurs: Secteurs,
-      getAnnoncesByTitre1: getAnnoncesByTitre1
+      getAnnoncesByTitre: getAnnoncesByTitre
     };
   },
   data: function data() {
     return {
-      an: {
-        titre_secteur: ""
-      }
+      an: ''
     };
   },
   components: {
@@ -21506,7 +21551,8 @@ __webpack_require__.r(__webpack_exports__);
 
     var _useUsers = (0,_store_userStore_js__WEBPACK_IMPORTED_MODULE_1__["default"])(),
         CurrentUsers = _useUsers.CurrentUsers,
-        loginUser = _useUsers.loginUser;
+        loginUser = _useUsers.loginUser,
+        Message = _useUsers.Message;
 
     function login(User) {
       loginUser(User);
@@ -21515,11 +21561,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       CurrentUsers: CurrentUsers,
       User: User,
-      login: login
+      login: login,
+      Message: Message
     };
   },
   data: function data() {
-    return {
+    return {// message: '',
       // user: {
       //     email: "",
       //     password: "",
@@ -21530,8 +21577,7 @@ __webpack_require__.r(__webpack_exports__);
       //     ville: "",
       //     secteur_activite: "",
       // },
-      message: '' // token: ''
-
+      // token: ''
     };
   },
   methods: {// loginuser() {
@@ -22163,7 +22209,7 @@ var _hoisted_1 = {
   "class": "row"
 };
 var _hoisted_2 = {
-  "class": "col-md-6 col-lg-3"
+  "class": "col-md-6 col-lg-4"
 };
 var _hoisted_3 = {
   "class": "widget-small primary coloured-icon"
@@ -22190,7 +22236,7 @@ var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_7 = {
-  "class": "col-md-6 col-lg-3"
+  "class": "col-md-6 col-lg-4"
 };
 var _hoisted_8 = {
   "class": "widget-small info coloured-icon"
@@ -22217,7 +22263,7 @@ var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_12 = {
-  "class": "col-md-6 col-lg-3"
+  "class": "col-md-6 col-lg-4"
 };
 var _hoisted_13 = {
   "class": "widget-small warning coloured-icon"
@@ -22244,7 +22290,7 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_17 = {
-  "class": "col-md-6 col-lg-3"
+  "class": "col-md-6 col-lg-4"
 };
 var _hoisted_18 = {
   "class": "widget-small danger coloured-icon"
@@ -22271,7 +22317,7 @@ var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_22 = {
-  "class": "col-md-6 col-lg-3"
+  "class": "col-md-6 col-lg-4"
 };
 var _hoisted_23 = {
   "class": "widget-small danger coloured-icon"
@@ -22297,16 +22343,45 @@ var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
+var _hoisted_27 = {
+  "class": "col-md-6 col-lg-4"
+};
+var _hoisted_28 = {
+  "class": "widget-small warning coloured-icon"
+};
+
+var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "javascript:void(0)"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "icon fa fa-th fa-3x"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_30 = {
+  "class": "info"
+};
+
+var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, "Total Secteurs d'activité", -1
+  /* HOISTED */
+  );
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.usercandidat.length), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.UsersCandidat.length), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.userrecruteur.length), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.UsersRecruteur.length), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.annoncecandidat.length), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.AnnonceCandidat.length), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.annoncerecruteur.length), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.AnnonceRecruteur.length), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.demandes.length), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.Demandes.length), 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.Secteurs.length), 1
   /* TEXT */
   )])])])])]);
 }
@@ -23873,14 +23948,12 @@ var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _this = this;
-
   var _component_Slider = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Slider");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Slider), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search Box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "selectpicker",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.an.titre_secteur = $event;
+      return $data.an = $event;
     })
   }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.Secteurs, function (secteur) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
@@ -23893,9 +23966,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.an.titre_secteur]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.an]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.getAnnoncesByTitre(_this.an.titre_secteur);
+      return $setup.getAnnoncesByTitre($data.an);
     })
   }, "Find job")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End search form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.Annonces.length), 1
   /* TEXT */
@@ -25788,7 +25861,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), $data.message !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
+  })]), $setup.Message !== '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.Message), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
@@ -26150,8 +26223,7 @@ var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
     type: "file",
     id: "logo",
     placeholder: "logo",
-    "class": "form-control",
-    autofocus: ""
+    "class": "form-control"
   })])], -1
   /* HOISTED */
   );
@@ -26215,8 +26287,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.User.email = $event;
     }),
-    "class": "form-control",
-    autofocus: ""
+    "class": "form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.User.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26226,8 +26297,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.User.name = $event;
     }),
-    "class": "form-control",
-    autofocus: ""
+    "class": "form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.User.name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26237,8 +26307,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.User.username = $event;
     }),
-    "class": "form-control",
-    autofocus: ""
+    "class": "form-control"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.User.username]])])]), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -26491,6 +26560,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 function useAnnonces() {
   var Annonces = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var Annonce = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+  var AnnonceCandidat = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+  var AnnonceRecruteur = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
 
   var getAnnoncesBySecteur = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(titre) {
@@ -26546,19 +26617,19 @@ function useAnnonces() {
     };
   }();
 
-  var getAnnonceById = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
+  var getAnnoncesCandidat = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var response;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/annonce/' + id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/annonceByType/' + 'candidat');
 
             case 2:
               response = _context3.sent;
-              Annonce.value = response.data;
+              AnnonceCandidat.value = response.data;
 
             case 4:
             case "end":
@@ -26568,24 +26639,24 @@ function useAnnonces() {
       }, _callee3);
     }));
 
-    return function getAnnonceById(_x2) {
+    return function getAnnoncesCandidat() {
       return _ref3.apply(this, arguments);
     };
   }();
 
-  var getAnnoncesByIdUser = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(user_id) {
+  var getAnnoncesRecruteur = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
       var response;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/getAnnonceByuserId/' + user_id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/annonceByType/' + 'recruteur');
 
             case 2:
               response = _context4.sent;
-              Annonces.value = response.data;
+              AnnonceRecruteur.value = response.data;
 
             case 4:
             case "end":
@@ -26595,20 +26666,20 @@ function useAnnonces() {
       }, _callee4);
     }));
 
-    return function getAnnoncesByIdUser(_x3) {
+    return function getAnnoncesRecruteur() {
       return _ref4.apply(this, arguments);
     };
   }();
 
-  var getAnnonceCandidat = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(annonce_id) {
+  var getAnnonceById = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
       var response;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/ancandidat/' + annonce_id);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/annonce/' + id);
 
             case 2:
               response = _context5.sent;
@@ -26622,21 +26693,26 @@ function useAnnonces() {
       }, _callee5);
     }));
 
-    return function getAnnonceCandidat(_x4) {
+    return function getAnnonceById(_x2) {
       return _ref5.apply(this, arguments);
     };
   }();
 
-  var storeAnnonce = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+  var getAnnoncesByIdUser = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(user_id) {
+      var response;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
               _context6.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/annonce', Annonce.value);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/getAnnonceByuserId/' + user_id);
 
             case 2:
+              response = _context6.sent;
+              Annonces.value = response.data;
+
+            case 4:
             case "end":
               return _context6.stop();
           }
@@ -26644,21 +26720,26 @@ function useAnnonces() {
       }, _callee6);
     }));
 
-    return function storeAnnonce() {
+    return function getAnnoncesByIdUser(_x3) {
       return _ref6.apply(this, arguments);
     };
   }();
 
-  var updateAnnonce = /*#__PURE__*/function () {
+  var getAnnonceCandidat = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(annonce_id) {
+      var response;
       return _regeneratorRuntime().wrap(function _callee7$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('http://127.0.0.1:8000/api/annonce/' + annonce_id, Annonce.value);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/ancandidat/' + annonce_id);
 
             case 2:
+              response = _context7.sent;
+              Annonce.value = response.data;
+
+            case 4:
             case "end":
               return _context7.stop();
           }
@@ -26666,20 +26747,21 @@ function useAnnonces() {
       }, _callee7);
     }));
 
-    return function updateAnnonce(_x5) {
+    return function getAnnonceCandidat(_x4) {
       return _ref7.apply(this, arguments);
     };
   }();
 
-  var destroyAnnonce = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(id) {
+  var storeAnnonce = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
       return _regeneratorRuntime().wrap(function _callee8$(_context8) {
         while (1) {
           switch (_context8.prev = _context8.next) {
             case 0:
-              axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('http://127.0.0.1:8000/api/annonce/' + id);
+              _context8.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/annonce', Annonce.value);
 
-            case 1:
+            case 2:
             case "end":
               return _context8.stop();
           }
@@ -26687,19 +26769,66 @@ function useAnnonces() {
       }, _callee8);
     }));
 
-    return function destroyAnnonce(_x6) {
+    return function storeAnnonce() {
       return _ref8.apply(this, arguments);
+    };
+  }();
+
+  var updateAnnonce = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(annonce_id) {
+      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+        while (1) {
+          switch (_context9.prev = _context9.next) {
+            case 0:
+              _context9.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put('http://127.0.0.1:8000/api/annonce/' + annonce_id, Annonce.value);
+
+            case 2:
+            case "end":
+              return _context9.stop();
+          }
+        }
+      }, _callee9);
+    }));
+
+    return function updateAnnonce(_x5) {
+      return _ref9.apply(this, arguments);
+    };
+  }();
+
+  var destroyAnnonce = /*#__PURE__*/function () {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(id) {
+      return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+        while (1) {
+          switch (_context10.prev = _context10.next) {
+            case 0:
+              axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]('http://127.0.0.1:8000/api/annonce/' + id);
+
+            case 1:
+            case "end":
+              return _context10.stop();
+          }
+        }
+      }, _callee10);
+    }));
+
+    return function destroyAnnonce(_x6) {
+      return _ref10.apply(this, arguments);
     };
   }();
 
   return {
     Annonces: Annonces,
     Annonce: Annonce,
+    AnnonceCandidat: AnnonceCandidat,
+    AnnonceRecruteur: AnnonceRecruteur,
     getAnnonces: getAnnonces,
     getAnnoncesBySecteur: getAnnoncesBySecteur,
     getAnnoncesByIdUser: getAnnoncesByIdUser,
     getAnnonceById: getAnnonceById,
     getAnnonceCandidat: getAnnonceCandidat,
+    getAnnoncesRecruteur: getAnnoncesRecruteur,
+    getAnnoncesCandidat: getAnnoncesCandidat,
     storeAnnonce: storeAnnonce,
     updateAnnonce: updateAnnonce,
     destroyAnnonce: destroyAnnonce
@@ -26747,9 +26876,10 @@ function useDemandes() {
 
             case 2:
               response = _context.sent;
-              Demandes.value = response.data;
+              Demandes.value = response.data.data;
+              console.log(Demandes);
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -26910,12 +27040,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 function useUsers() {
-  var _this = this;
-
   var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
   var Users = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
-  var User = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+  var UsersCandidat = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+  var UsersRecruteur = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
   var CurrentUsers = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+  var Message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
 
   var getUserByRole = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(role) {
@@ -26956,21 +27086,19 @@ function useUsers() {
 
             case 2:
               response = _context2.sent;
-              console.log(response.data[0]);
               localStorage.token = response.data.Token;
               localStorage.currentUser = JSON.stringify(response.data[0]);
+              Message.value = response.data.message;
 
               if (response.data[0].role == "recruteur") {
-                _this.router.push('/DashR');
-              }
-
-              if (response.data[0].role == "candidat") {
-                _this.router.push('/DashC');
+                router.push('/DashR');
+              } else if (response.data[0].role == "candidat") {
+                router.push('/DashC');
               } else {
                 window.location.href = '/admin';
               }
 
-            case 8:
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -26983,18 +27111,19 @@ function useUsers() {
     };
   }();
 
-  var storeUser = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(user) {
+  var getUsersCandidat = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var response;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/user/', user);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/getUser/' + 'Candidat');
 
             case 2:
-              _context3.next = 4;
-              return router.push('/login');
+              response = _context3.sent;
+              UsersCandidat.value = response.data;
 
             case 4:
             case "end":
@@ -27004,17 +27133,74 @@ function useUsers() {
       }, _callee3);
     }));
 
-    return function storeUser(_x3) {
+    return function getUsersCandidat() {
       return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var getUsersRecruteur = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/getUser/' + 'recruteur');
+
+            case 2:
+              response = _context4.sent;
+              UsersRecruteur.value = response.data;
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function getUsersRecruteur() {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var storeUser = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(user) {
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('http://127.0.0.1:8000/api/user/', user);
+
+            case 2:
+              _context5.next = 4;
+              return router.push('/login');
+
+            case 4:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }));
+
+    return function storeUser(_x3) {
+      return _ref5.apply(this, arguments);
     };
   }();
 
   return {
     Users: Users,
-    User: User,
+    UsersCandidat: UsersCandidat,
+    UsersRecruteur: UsersRecruteur,
+    Message: Message,
     CurrentUsers: CurrentUsers,
     getUserByRole: getUserByRole,
     storeUser: storeUser,
+    getUsersRecruteur: getUsersRecruteur,
+    getUsersCandidat: getUsersCandidat,
     loginUser: loginUser
   };
 }
@@ -27062,7 +27248,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.row[data-v-5d194e19] {\r\n        margin-top: 30px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.row[data-v-5d194e19] {\r\n        margin-top: 30px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

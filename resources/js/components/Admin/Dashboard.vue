@@ -1,48 +1,57 @@
 <template>
 
     <div class="row">
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-4">
             <div class="widget-small primary coloured-icon"><a href="javascript:void(0)"><i
                         class="icon fa fa-users fa-3x"></i></a>
                 <div class="info">
                     <h5>Total Candidats</h5>
-                    <p><b>{{usercandidat.length}}</b></p>
+                    <p><b>{{UsersCandidat.length}}</b></p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-4">
             <div class="widget-small info coloured-icon"><a href="javascript:void(0)"><i
                         class="icon fa fa-briefcase fa-3x"></i></a>
                 <div class="info">
                     <h5>Total Recruteurs</h5>
-                    <p><b>{{userrecruteur.length}}</b></p>
+                    <p><b>{{UsersRecruteur.length}}</b></p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-4">
             <div class="widget-small warning coloured-icon"><a href="javascript:void(0)"><i
                         class="icon fa fa-newspaper-o fa-3x"></i></a>
                 <div class="info">
                     <h5>Total annonces Candidat</h5>
-                    <p><b>{{annoncecandidat.length}}</b></p>
+                    <p><b>{{AnnonceCandidat.length}}</b></p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-4">
             <div class="widget-small danger coloured-icon"><a href="javascript:void(0)"><i
                         class="icon fa fa-bullhorn fa-3x"></i></a>
                 <div class="info">
                     <h5>Total annonces Recruteur</h5>
-                    <p><b>{{annoncerecruteur.length}}</b></p>
+                    <p><b>{{AnnonceRecruteur.length}}</b></p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-3">
+        <div class="col-md-6 col-lg-4">
             <div class="widget-small danger coloured-icon"><a href="javascript:void(0)"><i
                         class="icon fa fa-envelope fa-3x"></i></a>
                 <div class="info">
                     <h5>Total Des Demandes</h5>
-                    <p><b>{{demandes.length}}</b></p>
+                    <p><b>{{Demandes.length}}</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="widget-small warning coloured-icon"><a href="javascript:void(0)"><i
+                        class="icon fa fa-th  fa-3x"></i></a>
+                <div class="info">
+                    <h5>Total Secteurs d'activité</h5>
+                    <p><b>{{Secteurs.length}}</b></p>
                 </div>
             </div>
         </div>
@@ -51,72 +60,123 @@
 </template>
 
 <script>
+    import useSecteurs from '../../store/secteurStore.js'
+    import useAnnonces from '../../store/annonceStore.js'
+    import useUsers from '../../store/userStore.js'
+    import useDemandes from '../../store/demandeStore.js'
+    import {
+        onMounted
+    } from 'vue'
+
     export default {
 
+        setup() {
+            const {
+                UsersCandidat,
+                UsersRecruteur,
+                getUsersRecruteur,
+                getUsersCandidat
+            } = useUsers()
+            const {
+                Demandes,
+                getDemandes
+            } = useDemandes()
+            const {
+                Annonces,
+                AnnonceCandidat,
+                AnnonceRecruteur,
+                getAnnonces,
+                getAnnoncesRecruteur,
+                getAnnoncesCandidat
+            } = useAnnonces()
+            const {
+                Secteurs,
+                getSecteurs,
+            } = useSecteurs()
+
+            onMounted(getSecteurs)
+            onMounted(getDemandes)
+            onMounted(getAnnoncesCandidat)
+            onMounted(getUsersCandidat)
+            onMounted(getAnnoncesRecruteur)
+            onMounted(getUsersRecruteur)
+
+
+
+            return {
+
+                UsersCandidat,
+                UsersRecruteur,
+                Secteurs,
+                Demandes,
+                Annonces,
+                AnnonceCandidat,
+                AnnonceRecruteur
+
+            }
+        },
         data() {
             return {
-                usercandidat:[],
-                userrecruteur:[],
-                annoncecandidat:[],
-                annoncerecruteur:[],
-                demandes:[]
+                // usercandidat: [],
+                // userrecruteur: [],
+                // annoncecandidat: [],
+                // annoncerecruteur: [],
+                // demandes: []
             }
         },
         methods: {
-            getUsersCandidat() {
-                axios.get('http://127.0.0.1:8000/api/getUser/' + 'candidat')
-                    .then(res => {
-                        this.usercandidat = res.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
+            // getUsersCandidat() {
+            //     axios.get('http://127.0.0.1:8000/api/getUser/' + 'candidat')
+            //         .then(res => {
+            //             this.usercandidat = res.data;
+            //         })
+            //         .catch(function (err) {
+            //             console.log(err);
+            //         })
 
-            },
-            getUsersRecruteur() {
-                axios.get('http://127.0.0.1:8000/api/getUser/' + 'recruteur')
-                    .then(res => {
-                        this.userrecruteur = res.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
+            // },
+            // getUsersRecruteur() {
+            //     axios.get('http://127.0.0.1:8000/api/getUser/' + 'recruteur')
+            //         .then(res => {
+            //             this.userrecruteur = res.data;
+            //         })
+            //         .catch(function (err) {
+            //             console.log(err);
+            //         })
 
-            },
-            getAnnoncescandidat() {
-                axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'candidat')
-                    .then(res => {
-                        this.annoncecandidat = res.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
+            // },
+            // getAnnoncescandidat() {
+            //     axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'candidat')
+            //         .then(res => {
+            //             this.annoncecandidat = res.data;
+            //         })
+            //         .catch(function (err) {
+            //             console.log(err);
+            //         })
 
-            },
-            getAnnoncesrecruteur() {
-                axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'recruteur')
-                    .then(res => {
-                        this.annoncerecruteur = res.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
+            // },
+            // getAnnoncesrecruteur() {
+            //     axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'recruteur')
+            //         .then(res => {
+            //             this.annoncerecruteur = res.data;
+            //         })
+            //         .catch(function (err) {
+            //             console.log(err);
+            //         })
 
-            },
+            // },
         },
-        mounted() {
-          this.getUsersRecruteur();
-          this.getUsersCandidat();
-          this.getAnnoncesrecruteur();
-          this.getAnnoncescandidat();
-        },
+        // mounted() {
+        //     this.getUsersRecruteur();
+        //     this.getUsersCandidat();
+        //     this.getAnnoncesrecruteur();
+        //     this.getAnnoncescandidat();
+        // },
     }
-
 </script>
 
 <style scoped>
     .row {
         margin-top: 30px;
     }
-
 </style>

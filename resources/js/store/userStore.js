@@ -2,17 +2,17 @@ import {
     ref
 } from 'vue'
 import axios from "axios";
-import {
-    useRouter
-} from 'vue-router'
+import { useRouter } from 'vue-router'
 
 
 export default function useUsers() {
 
     const router = useRouter()
     const Users = ref([])
-    const User = ref([])
+    const UsersCandidat = ref([])
+    const UsersRecruteur = ref([])
     const CurrentUsers = ref([])
+    const Message = ref('')
 
     const getUserByRole = async (role) => {
         let response = await axios.get('http://127.0.0.1:8000/api/getUser/' + role)
@@ -21,22 +21,34 @@ export default function useUsers() {
 
     const loginUser = async (user) => {
        let response = await axios.post('http://127.0.0.1:8000/api/login', user)
-        console.log(response.data[0])
-            localStorage.token = response.data.Token;
-            localStorage.currentUser = JSON.stringify(response.data[0]);
-            
+
+        
+        localStorage.token = response.data.Token;
+        localStorage.currentUser = JSON.stringify(response.data[0]);
+        Message.value = response.data.message;
+        
 
         if (response.data[0].role == "recruteur") {
-            this.router.push('/DashR')
-        }if (response.data[0].role == "candidat") {
+            router.push('/DashR')
+        }else if (response.data[0].role == "candidat") {
             
-            this.router.push('/DashC')
+            router.push('/DashC')
         }
         else {
             window.location.href = '/admin'
         }
 
 
+    }
+
+    const getUsersCandidat = async () => {
+        let response = await axios.get('http://127.0.0.1:8000/api/getUser/'+'Candidat')
+        UsersCandidat.value = response.data
+    }
+
+    const getUsersRecruteur = async () => {
+        let response = await axios.get('http://127.0.0.1:8000/api/getUser/'+'recruteur')
+        UsersRecruteur.value = response.data
     }
 
     const storeUser = async (user) => {
@@ -53,10 +65,14 @@ export default function useUsers() {
 
     return {
         Users,
-        User,
+        UsersCandidat,
+        UsersRecruteur,
+        Message,
         CurrentUsers,
         getUserByRole,
         storeUser,
+        getUsersRecruteur,
+        getUsersCandidat,
         loginUser,
 
 

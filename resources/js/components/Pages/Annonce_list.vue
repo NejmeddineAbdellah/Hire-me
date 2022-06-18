@@ -11,7 +11,7 @@
                         <input type="text" placeholder="Choisir le secteur d'activite">
                     </div>
                     <div class="select-form"  >
-                        <select class="selectpicker" v-model="an.titre_secteur" >
+                        <select class="selectpicker" v-model="an" >
                             <option>All</option>
                             <option v-for="secteur in Secteurs" :key="secteur.id" v-bind:value="secteur.titre_secteur">{{secteur.titre_secteur}}</option>
                         </select>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="search-form">
                  
-                        <a v-on:click="getAnnoncesByTitre(this.an.titre_secteur)">Find job</a>
+                        <a v-on:click="getAnnoncesByTitre(an)">Find job</a>
                     </div>
                 </form>
             </div>
@@ -77,14 +77,12 @@
             return {
                 Annonces,
                 Secteurs,
-                getAnnoncesByTitre1,
+                getAnnoncesByTitre,
             }
         },
         data() {
             return { 
-                an:{
-                    titre_secteur:""
-                }
+                an:'',
             }
         },
         components: {
