@@ -28,23 +28,28 @@
                                         <router-link to="/contact">
                                             <li><a>Contact</a></li>
                                         </router-link>
+                                        <div v-if="connectedUser">
+                                            <router-link to="/DashC" v-if="logged && connectedUser.role=='candidat'">
+                                                <li><a>Mon Espace</a></li>
+                                            </router-link>
+                                            <router-link to="/DashR" v-if="logged && connectedUser.role=='recruteur'">
+                                                <li><a>Mon Espace</a></li>
+                                            </router-link>
+                                        </div>
 
-                                        <router-link to="/DashC" v-if="logged && User.role=='candidat'">
-                                            <li><a>Mon Espace</a></li>
-                                        </router-link>
-                                        <router-link to="/DashR" v-if="logged && User.role=='recruteur'">
-                                            <li><a>Mon Espace</a></li>
-                                        </router-link>
 
                                     </ul>
                                 </nav>
                             </div>
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
-                                <router-link v-if="!logged" to="/Registre"><a class="btn head-btn1"
+                            <div v-if="!connectedUser">
+                             <router-link  to="/Registre"><a class="btn head-btn1"
                                         style="color:#FFF !important;">Register</a></router-link>
-                                <router-link v-if="!logged" to="/Login"><a class="btn head-btn2"
+                                <router-link to="/Login"><a class="btn head-btn2"
                                         style="color:#FB246A !important;">Login</a></router-link>
+                            </div>
+                               
                                 <router-link v-else to="/login"><a @click="logout" class="btn head-btn2"
                                         style="color:#FB246A !important;">Logout</a></router-link>
 
@@ -74,41 +79,40 @@
 
     export default {
         setup() {
+            let logged = localStorage.logged
+            console.log(logged)
+            const connectedUser = localStorage.currentUser
             const {
                 CurrentUsers,
                 User,
                 loginUser
             } = useUsers()
-
+                if(localStorage.currentUser)
+                {
+                    localStorage.logged=true
+                }
             function login() {
                 loginUser(User)
             }
             return {
                 CurrentUsers,
                 User,
-                login
+                login,
+                connectedUser,
+                logged
             }
         },
         data() {
             return {
-                logged: '',
                 token: null,
             }
         },
-        mounted() {
 
-            if (localStorage.token) {
-                this.logged = true
-                this.token = localStorage.token
-            } else {
-                this.logged = false
-            }
-
-        },
         methods: {
 
             logout() {
-                this.logged = false
+              
+               localStorage.logged=false
                 axios.post('http://127.0.0.1:8000/api/logout')
                     .then((res) => {
                         localStorage.removeItem('token')
@@ -122,5 +126,4 @@
         },
 
     }
-
 </script>

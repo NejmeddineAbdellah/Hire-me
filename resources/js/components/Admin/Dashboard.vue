@@ -114,64 +114,7 @@
                 AnnonceRecruteur
 
             }
-        },
-        data() {
-            return {
-                // usercandidat: [],
-                // userrecruteur: [],
-                // annoncecandidat: [],
-                // annoncerecruteur: [],
-                // demandes: []
-            }
-        },
-        methods: {
-            // getUsersCandidat() {
-            //     axios.get('http://127.0.0.1:8000/api/getUser/' + 'candidat')
-            //         .then(res => {
-            //             this.usercandidat = res.data;
-            //         })
-            //         .catch(function (err) {
-            //             console.log(err);
-            //         })
-
-            // },
-            // getUsersRecruteur() {
-            //     axios.get('http://127.0.0.1:8000/api/getUser/' + 'recruteur')
-            //         .then(res => {
-            //             this.userrecruteur = res.data;
-            //         })
-            //         .catch(function (err) {
-            //             console.log(err);
-            //         })
-
-            // },
-            // getAnnoncescandidat() {
-            //     axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'candidat')
-            //         .then(res => {
-            //             this.annoncecandidat = res.data;
-            //         })
-            //         .catch(function (err) {
-            //             console.log(err);
-            //         })
-
-            // },
-            // getAnnoncesrecruteur() {
-            //     axios.get('http://127.0.0.1:8000/api/annonceByType/' + 'recruteur')
-            //         .then(res => {
-            //             this.annoncerecruteur = res.data;
-            //         })
-            //         .catch(function (err) {
-            //             console.log(err);
-            //         })
-
-            // },
-        },
-        // mounted() {
-        //     this.getUsersRecruteur();
-        //     this.getUsersCandidat();
-        //     this.getAnnoncesrecruteur();
-        //     this.getAnnoncescandidat();
-        // },
+        }
     }
 </script>
 

@@ -4,7 +4,7 @@
     <div class="Table_data">
 
 
-        <vue-good-table :columns="columns" :rows="demandes" :select-options="{ enabled: false }" :pagination-options="{
+        <vue-good-table :columns="columns" :rows="Demandes" :select-options="{ enabled: false }" :pagination-options="{
     enabled: true,
     mode: 'records',
     perPage: 10,
@@ -35,69 +35,43 @@
 </template>
 
 <script>
+    import { onMounted, ref, reactive } from 'vue'
+    import useDemandes from '../../store/demandeStore.js'
     // import the styles
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     import {
         VueGoodTable
     } from 'vue-good-table-next';
     export default {
+
+        setup() {
+
+                const{Demandes,destroyDemande,getDemandes}=useDemandes()
+
+                function deleteDemande(id){
+                    destroyDemande(id)
+                    getDemandes()
+                }
+                onMounted(getDemandes)
+
+
+            return{
+                Demandes,
+                deleteDemande,
+
+            }
+        },
+
         components: {
             VueGoodTable,
 
         },
-        methods: {
-            selectionChanged(params) {
-                //params.selectedRows - all rows that are selected (this page)
-                console.log(params.selectedRows)
-            },
-            getDemandes() {
-                axios.get('http://127.0.0.1:8000/api/demande')
-                    .then(res => {
-                        this.demandes = res.data.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
 
-            },
-            deleteDemande(id) {
-                axios.delete('http://127.0.0.1:8000/api/demande/' + id)
-                    .then(res => {
-                        this.getDemandes();
-                    })
-            },
-            updateDemande(id) {
-                this.updating = true;
-                console.log(this.demande.id)
-                axios.put('http://127.0.0.1:8000/api/demande/'+id, this.demande)
-                    .then(res => {
-                        this.getDemandes();
-                        this.demande = {
-                             
-                            nom_candidat:'',
-                            lettre_motivation:'',
-                            id_annonce:'',
-                            cv_candidat:''
-                        }
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            },
-
-        },
         data() {
             return {
-                demande:{
-                    nom_candidat:'',
-                    id_annonce:'',
-                    lettre_motivation:'',
-                    cv_candidat:''
-                },
-                demandes: [],
                 columns: [{
                         label: 'Nom candidat',
-                        field: 'id_candidat',
+                        field: 'user_id',
                         type: 'text',
                     },
                     {
@@ -111,20 +85,12 @@
                         type: 'text',
                     },
                     {
-                        label: 'cv_candidat',
-                        field: 'cv_candidat',
-                        type: 'text',
-                    },
-                    {
                         label: 'Action',
                         field: 'action',
                         type: 'input'
                     }
                 ],
             }
-        },
-        mounted() {
-            this.getDemandes();
         },
     }
 

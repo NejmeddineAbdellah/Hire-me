@@ -15,16 +15,16 @@
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">titre secteur</label>
-                            <input type="text" v-model="secteur.titre_secteur" class="form-control" id="titre_secteur"
+                            <input type="text" v-model="Secteur.titre_secteur" class="form-control" id="titre_secteur"
                                 aria-describedby="text" placeholder="Entrer Votre le titre secteur">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" v-if="!updating" @click="addSecteur"
+                    <button type="button" v-if="!updating" @click="createSecteur"
                         class="btn btn-primary">Enregistrer</button>
-                    <button type="button" v-else @click="updateSecteur(this.secteur.id)"
-                        class="btn btn-warning">Modifier</button>
+                    <button type="button" v-else @click="modifierSecteur(Secteur.id),updating=true"
+                        class="btn btn-warning" data-dismiss="modal">Modifier</button>
                     <button type="button" @click="cleardata" class="btn btn-secondary"
                         data-dismiss="modal">Close</button>
                 </div>
@@ -37,7 +37,7 @@
     <div class="Table_data">
 
 
-        <vue-good-table :columns="columns" :rows="secteurs" :select-options="{ enabled: false }" :pagination-options="{
+        <vue-good-table :columns="columns" :rows="Secteurs" :select-options="{ enabled: false }" :pagination-options="{
     enabled: true,
     mode: 'records',
     perPage: 10,
@@ -54,17 +54,17 @@
     infoFn: (params) => `page ${params.firstRecordOnPage}`, 
   }">
             <template #table-actions>
-                <button type="button" class="btn-success !important" data-toggle="modal"
+                <button type="button" class="btn-success !important" data-toggle="modal" @click="clear"
                     data-target="#addSecteurModal">Add New Secteur d'activite</button>
             </template>
             <template #table-row="props">
 
                 <span v-if="props.column.field == 'action'">
-                    <button type="button" @click="getSecteurSelected(props.row.id),updating=true" data-toggle="modal"
-                        data-target="#addSecteurModal" class="btn-warning !important"><i class="fa fa-pencil-square"
-                            aria-hidden="true"></i>
+                    <button type="button" @click="getSecteurBy(props.row.id)" data-toggle="modal"
+                        data-target="#addSecteurModal" class="btn-warning !important ml-3"><i
+                            class="fa fa-pencil-square" aria-hidden="true"></i>
                     </button>
-                    <button type="button" @click="deleteSecteur(props.row.id)" class="btn-danger !important"><i
+                    <button type="button" @click="deleteSecteur(props.row.id)" class="btn-danger !important ml-3"><i
                             class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </span>
@@ -76,80 +76,79 @@
 
 <script>
     // import the styles
+    import useSecteurs from '../../store/secteurStore.js'
+    import {
+        onMounted,
+        ref
+    } from 'vue'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     import {
         VueGoodTable
     } from 'vue-good-table-next';
     export default {
+        setup() {
+
+            let updating = ref(false);
+
+            const {
+                Secteurs,
+                Secteur,
+                getSecteurs,
+                getSecteurById,
+                storeSecteur,
+                destroySecteur,
+                updateSecteur
+            } = useSecteurs()
+
+            function getSecteurBy(id) {
+                updating.value = true;
+                getSecteurById(id)
+            }
+
+            function deleteSecteur(id) {
+                destroySecteur(id)
+                getSecteurs()
+            }
+
+            function createSecteur() {
+                storeSecteur()
+                getSecteurs()
+                clear
+            }
+
+            function modifierSecteur(id) {
+                updateSecteur(id)
+                getSecteurs()
+            }
+            function clear() {
+                updating.value = false;
+                Secteur.value = {
+                    titre_secteur: '',
+                    }   
+            }
+
+
+            onMounted(getSecteurs)
+
+
+            return {
+                Secteur,
+                updating,
+                Secteurs,
+                createSecteur,
+                modifierSecteur,
+                deleteSecteur,
+                getSecteurBy,
+                clear,
+            }
+        },
+
         components: {
             VueGoodTable,
 
         },
-        methods: {
-
-            getSecteurs() {
-                axios.get('http://127.0.0.1:8000/api/secteur')
-                    .then(res => {
-                        this.secteurs = res.data.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-
-            },
-            addSecteur() {
-                axios.post('http://127.0.0.1:8000/api/secteur', this.secteur)
-                    .then(res => {
-                        this.getSecteurs()
-                        this.secteur = {
-                            titre_secteur: "",
-                        }
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            },
-            deleteSecteur(id) {
-                axios.delete('http://127.0.0.1:8000/api/secteur/' + id)
-                    .then(res => {
-                        this.getSecteurs();
-                    })
-            },
-            updateSecteur(id) {
-                this.updating = true;
-                console.log(this.secteur.id)
-                axios.put('http://127.0.0.1:8000/api/secteur/'+id, this.secteur)
-                    .then(res => {
-                        this.getSecteurs();
-                        this.secteur = {
-                            titre_secteur: "",
-                        }
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            },
-            getSecteurSelected(id) {
-                axios.get('http://127.0.0.1:8000/api/secteur/' + id)
-                    .then(res => {
-                        this.secteur.titre_secteur = res.data.titre_secteur
-                        this.secteur.id = res.data.id
-                        console.log(res.data.titre_secteur)
-
-
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            },
-
-        },
         data() {
             return {
-                secteur: {
-                    titre_secteur: ''
-                },
-                secteurs: [],
                 columns: [{
                         label: 'id secteur',
                         field: 'id',
@@ -168,11 +167,8 @@
                 ],
             }
         },
-        mounted() {
-            this.getSecteurs();
-        },
-    }
 
+    }
 </script>
 
 <style scoped>

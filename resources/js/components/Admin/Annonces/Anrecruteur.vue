@@ -4,7 +4,7 @@
     <div class="Table_data">
 
 
-        <vue-good-table :columns="columns" :rows="annonces" :select-options="{enabled: false }" :pagination-options="{
+        <vue-good-table :columns="columns" :rows="AnnonceRecruteur" :select-options="{enabled: false }" :pagination-options="{
     enabled: true,
     mode: 'records',
     perPage: 5,
@@ -22,7 +22,7 @@
   }">
             <template #table-row="props">
                 <span v-if="props.column.field == 'action'">
-                    <button type="button" @click="deleteAnnonces(props.row.id)" class="btn-danger !important"><i
+                    <button type="button" @click="deleteAnnonce(props.row.id)" class="btn-danger !important"><i
                             class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </span>
@@ -34,44 +34,43 @@
 </template>
 
 <script>
-  // import the styles
+    import useAnnonces from '../../../store/annonceStore.js'
+    import {
+        onMounted
+    } from 'vue'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     import {
         VueGoodTable
     } from 'vue-good-table-next';
     export default {
+        setup() {
+
+                const {
+                    AnnonceRecruteur,
+                    getAnnoncesRecruteur,
+                    destroyAnnonce
+                } = useAnnonces()
+
+                onMounted(getAnnoncesRecruteur())
+
+             function deleteAnnonce(id){
+                    destroyAnnonce(id)
+                    getAnnoncesRecruteur()
+                }
+
+            return {
+                AnnonceRecruteur,
+                deleteAnnonce,
+
+            }
+        },
         components:{
          VueGoodTable,
 
         },
-        methods: {
-              selectionChanged(params) {
-                //params.selectedRows - all rows that are selected (this page)
-             
-            },
-           getAnnonces() {
-                axios.get('http://127.0.0.1:8000/api/annonceByType/' + this.type_annonce)
-                    .then(res => {
-                        this.annonces = res.data;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            },
-              deleteAnnonces(id) {
-                axios.delete('http://127.0.0.1:8000/api/annonce/'+ id)
-                    .then(res => {
-                        this.getAnnonces()
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            }
-        },
+        
         data() {
-            return {
-                annonces:[],
-                type_annonce:'recruteur',
+            return { 
                  columns: [{
                         label: 'Titre annonce',
                         field: 'titre_annonce',
@@ -99,7 +98,7 @@
                     },
                     {
                         label: 'Contrat',
-                        field: 'annonces.contrat',
+                        field: 'contrat',
                         type: 'text',
                     },
                     {
@@ -115,9 +114,7 @@
                 ],
             }
         },
-        mounted() {
-            this.getAnnonces();
-        },
+
     }
 
 </script>

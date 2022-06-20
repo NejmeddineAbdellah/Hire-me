@@ -59,18 +59,27 @@ export default function useUsers() {
 
     }
 
+    const destoryUser = async(id) => {
+        let response = await axios.delete('http://127.0.0.1:8000/api/user/'+id)
+        Message.value = response.data.message;
+
+
+
+    }
+
 
 
 
 
     return {
+        Message,
         Users,
         UsersCandidat,
         UsersRecruteur,
-        Message,
         CurrentUsers,
         getUserByRole,
         storeUser,
+        destoryUser,
         getUsersRecruteur,
         getUsersCandidat,
         loginUser,

@@ -10,6 +10,7 @@ use App\Models\Annoncecandidat;
 use App\Models\Annoncerecruteur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class AnnonceController extends Controller
 {
@@ -94,10 +95,17 @@ class AnnonceController extends Controller
     }
     public function showByType($type){
 
-        $annonce=Annonce::where('type_annonce','=',$type)->get();
+            if($type == 'candidat')
+            {
+                $annonce=Annonce::leftJoin('annoncecandidats','annonces.id',"annoncecandidats.annonce_id")->leftjoin('users','users.id',"annoncecandidats.user_id")->where('type_annonce','=',$type)->get();
+            }
+            elseif ($type == 'recruteur') {
+                $annonce=Annonce::leftJoin('annoncerecruteurs','annonces.id',"annoncerecruteurs.annonce_id")->leftjoin('users','users.id',"annoncerecruteurs.user_id")->where('type_annonce','=',$type)->get();
+            }
         return $annonce;
 
     }
+
 
     /**
      * Show the form for editing the specified resource.

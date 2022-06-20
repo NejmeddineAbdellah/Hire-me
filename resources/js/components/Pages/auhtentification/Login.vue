@@ -55,7 +55,11 @@ import useUsers from '../../../store/userStore.js'
             
                 function login(User){
                      loginUser(User)
+                      if(localStorage.currentUser){
+                    localStorage.logged=true
+                     }    
                 }
+               
 
 
                 return {
@@ -65,79 +69,7 @@ import useUsers from '../../../store/userStore.js'
                     Message,
                     
                 }
-            },
-
-
-        data() {
-            return {
-               // message: '',
-                // user: {
-                //     email: "",
-                //     password: "",
-                //     name: "",
-                //     logo: "",
-                //     username: "",
-                //     tele: "",
-                //     ville: "",
-                //     secteur_activite: "",
-                // },
-               // token: ''
-            }
-        },
-        methods: {
-            // loginuser() {
-            //     axios.post('http://127.0.0.1:8000/api/login', this.user)
-            //         .then((res) => {
-            //             localStorage.token = JSON.stringify(res.data.Token);
-
-            //             if (res.data.Token) {
-            //                 this.message = res.data.message;
-            //                 this.user = {
-            //                     email: "",
-            //                     password: "",
-            //                     name: "",
-            //                     logo: "",
-            //                     username: "",
-            //                     tele: "",
-            //                     ville: "",
-            //                     secteur_activite: "",
-            //                 }
-
-
-            //             } else {
-            //                 this.message = res.data.message
-            //                 this.user = {
-            //                     email: "",
-            //                     password: "",
-            //                     name: "",
-            //                     logo: "",
-            //                     username: "",
-            //                     tele: "",
-            //                     ville: "",
-            //                     secteur_activite: "",
-            //                 }
-            //             }
-
-            //             if (res.data[0].role == "recruteur") {
-            //                 localStorage.currentUser = JSON.stringify(res.data[0])
-            //                 this.$router.push('/DashR')
-            //             }
-            //             if (res.data[0].role == "candidat") {
-            //                 localStorage.currentUser = JSON.stringify(res.data[0])
-            //                 this.$router.push('/DashC')
-            //             }
-            //             if(res.data[0].role=="admin"){
-            //                window.location.href = '/admin'
-            //             }
-
-
-            //         })
-            //         .catch(function (err) {
-            //             console.log(err);
-            //         })
-            // },
-
-        },
+            },    
     }
 
 </script>

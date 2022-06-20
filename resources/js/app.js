@@ -12,4 +12,4 @@ import router from './router'
 const app = createApp(App);
 const admin = createApp(Adm)
 app.use(router).mount('#app')
-admin.mount('#admin')
+admin.use(router).mount('#admin')

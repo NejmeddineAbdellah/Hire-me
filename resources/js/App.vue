@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    
     import Header from './components/Header.vue'
     import Details_Annonce from './components/Pages/Details_Annonce.vue'
     import Footer from './components/Footer.vue'
