@@ -4,7 +4,7 @@
             <!-- Sidebar -->
             <div id="sidebar">
                 <header>
-                    <a href="#">{{usr.username}}</a>
+                    <a href="#">{{connectedUser.username}}</a>
                 </header>
                 <ul class="nav">
                     <li>
@@ -18,13 +18,13 @@
                         </a>
                     </li>
                     <li>
-                        <a  href="javascript:void(0)">
+                        <a href="javascript:void(0)">
                             <i class="zmdi zmdi-view-dashboard"  @click="actform = 'Demande'" >Mes Demandes</i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-calendar"></i> Logout
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="logout" >Logout</i> 
                         </a>
                     </li>
 
@@ -52,11 +52,26 @@
 </template>
 
 <script>
+    import useUsers from '../../../store/userStore.js'
+    import {ref} from 'vue'
      import Annonce from './Candidat/Addannonce'
      import Profile from './Candidat/Profile.vue'
      import Demande from './Candidat/Demande'
     export default {
- 
+        
+        setup() {
+            const {logoutUser}=useUsers()
+            const connectedUser = ref(JSON.parse(localStorage.currentUser))
+
+            function logout(){
+                logoutUser()
+            }
+
+            return {
+                logout,
+                connectedUser
+            }
+        },
         name: 'Dashboard',
         components: {
              Annonce,
@@ -65,12 +80,8 @@
         },
         data() {
             return {
-                usr:[],
                 actform:'Profile'
             }
-        },
-        mounted() {
-            this.usr = JSON.parse(localStorage.currentUser);
         },
 
     }

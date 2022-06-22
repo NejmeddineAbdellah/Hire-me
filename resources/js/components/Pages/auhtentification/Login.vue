@@ -1,6 +1,6 @@
 <template>
     <div calss="container">
-        <form class="login_form">
+        <form class="login_form ">
             <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example1">Email address</label>
@@ -10,10 +10,15 @@
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="form2Example2">Password</label>
-                <input type="password" v-model="User.password" id="form2Example2" class="form-control" autocomplete="on"
-                    required />
-            </div>
+                <input :type="visibility" name="password" v-model="User.password" id="form2Example2"
+                    class="form-control" autocomplete="on" required />
 
+
+            </div>
+            <label class="switch"><input type="checkbox" @click="isVisible" />
+                <div></div>
+            </label>
+            <p>Show password</p>
             <!-- 2 column grid layout for inline styling -->
             <div class="row mb-4">
                 <div class="col d-flex justify-content-center">
@@ -43,43 +48,71 @@
 </template>
 
 <script>
-
-//import hd from '../../Header.vue'
-import { onMounted, ref, reactive } from 'vue'
-import useUsers from '../../../store/userStore.js'
+    import {
+        ref,
+        reactive
+    } from 'vue'
+    import useUsers from '../../../store/userStore.js'
     export default {
-            setup() {
-                const User = ref({})
-                
-                const {CurrentUsers,loginUser,Message} = useUsers()
-            
-                function login(User){
-                     loginUser(User)
-                      if(localStorage.currentUser){
-                    localStorage.logged=true
-                     }    
+        setup() {
+            const User = ref({})
+            let visibility = ref("password");
+            const passwordField = document.querySelector('#password')
+
+            const {
+                CurrentUsers,
+                loginUser,
+                Message
+            } = useUsers()
+
+            function login(User) {
+                loginUser(User)
+                if (localStorage.currentUser) {
+                    localStorage.isloggedIn = true
                 }
-               
+            }
+
+            function show() {
+                visibility.value = "text"
+            }
+
+            function hide() {
+                visibility.value = "password"
+            }
+
+            function isVisible() {
+                if (visibility.value == "text") {
+                    hide()
+                } else {
+                    show()
+                }
+            }
 
 
-                return {
-                    CurrentUsers,
-                    User,
-                    login,
-                    Message,
-                    
-                }
-            },    
+
+
+            return {
+                CurrentUsers,
+                User,
+                login,
+                Message,
+                isVisible,
+                visibility
+
+
+            }
+        },
+
     }
-
 </script>
 
 <style scoped>
     .login_form {
         margin: auto;
-        padding: 10px;
+        padding: 30px;
         justify-content: space-evenly;
         width: 40%;
+
 
     }
 
@@ -90,9 +123,44 @@ import useUsers from '../../../store/userStore.js'
     input,
     label,
     button {
-        font-size: 20px;
+        font-size: 15px;
         margin: auto;
         height: auto;
     }
 
+    .switch input {
+        position: absolute;
+        opacity: 0;
+    }
+
+    /**
+ * 1. Adjust this to size
+ */
+
+    .switch {
+        display: inline-block;
+        font-size: 20px;
+        /* 1 */
+        height: 1em;
+        width: 2em;
+        background: #BDB9A6;
+        border-radius: 1em;
+    }
+
+    .switch div {
+        height: 1em;
+        width: 1em;
+        border-radius: 1em;
+        background: #FFF;
+        box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
+        -webkit-transition: all 300ms;
+        -moz-transition: all 300ms;
+        transition: all 300ms;
+    }
+
+    .switch input:checked+div {
+        -webkit-transform: translate3d(100%, 0, 0);
+        -moz-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
 </style>

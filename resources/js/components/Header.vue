@@ -6,8 +6,9 @@
                 <div class="row align-items-center col-lg-11">
                     <div class="col-lg-3 col-md-2">
                         <!-- Logo -->
-                        <div class="logo">
-                            <a href="index.html"><img src="/img/logo/logo.png" alt=""></a>
+                        <div class="logo ">
+                            <a href="/"><img src="/img/logo/Hire-Me4.png" alt="Hire-me Logo"
+                                    style="width:130px;height:120px;"></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9">
@@ -29,28 +30,26 @@
                                             <li><a>Contact</a></li>
                                         </router-link>
                                         <div v-if="connectedUser">
-                                            <router-link to="/DashC" v-if="logged && connectedUser.role=='candidat'">
+                                            <router-link to="/DashC" v-if="connectedUser.role=='candidat'">
                                                 <li><a>Mon Espace</a></li>
                                             </router-link>
-                                            <router-link to="/DashR" v-if="logged && connectedUser.role=='recruteur'">
+                                            <router-link to="/DashR" v-else>
                                                 <li><a>Mon Espace</a></li>
                                             </router-link>
                                         </div>
-
-
                                     </ul>
                                 </nav>
                             </div>
                             <!-- Header-btn -->
                             <div class="header-btn d-none f-right d-lg-block">
-                            <div v-if="!connectedUser">
-                             <router-link  to="/Registre"><a class="btn head-btn1"
+
+                                <router-link to="/Registre" v-if="!islogged"><a class="btn head-btn1"
                                         style="color:#FFF !important;">Register</a></router-link>
-                                <router-link to="/Login"><a class="btn head-btn2"
+
+                                <router-link to="/Login" v-else-if="!islogged"><a class="btn head-btn2"
                                         style="color:#FB246A !important;">Login</a></router-link>
-                            </div>
-                               
-                                <router-link v-else to="/login"><a @click="logout" class="btn head-btn2"
+
+                                <router-link to="/login" v-else><a @click="Logout" class="btn head-btn2"
                                         style="color:#FB246A !important;">Logout</a></router-link>
 
                             </div>
@@ -77,53 +76,36 @@
     import useUsers from '../store/userStore.js'
 
 
+
     export default {
+
         setup() {
-            let logged = localStorage.logged
-            console.log(logged)
-            const connectedUser = localStorage.currentUser
+
+            let connectedUser = ref(localStorage.currentUser)
+            let islogged = ref(JSON.parse(localStorage.isloggedIn))
+           
             const {
                 CurrentUsers,
                 User,
-                loginUser
+                loginUser,
+                logoutUser,
             } = useUsers()
-                if(localStorage.currentUser)
-                {
-                    localStorage.logged=true
-                }
-            function login() {
-                loginUser(User)
+            
+            function Logout() {
+                logoutUser()
+                islogged.value = ref(false)
+
             }
+
             return {
-                CurrentUsers,
                 User,
-                login,
+                islogged,
+                CurrentUsers,
                 connectedUser,
-                logged
+                Logout,
+
+
             }
         },
-        data() {
-            return {
-                token: null,
-            }
-        },
-
-        methods: {
-
-            logout() {
-              
-               localStorage.logged=false
-                axios.post('http://127.0.0.1:8000/api/logout')
-                    .then((res) => {
-                        localStorage.removeItem('token')
-                        localStorage.removeItem('currentUser')
-
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    })
-            },
-        },
-
     }
 </script>

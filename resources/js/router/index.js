@@ -1,4 +1,7 @@
-import { createRouter, createWebHistory } from "vue-router"
+import {
+    createRouter,
+    createWebHistory
+} from "vue-router"
 import Contact from '../components/Pages/Contact.vue'
 import Home from '../components/Pages/Home.vue'
 import Annonce_list from '../components/Pages/Annonce_list.vue'
@@ -10,52 +13,21 @@ import DashR from '../components/Pages/Users/DashboardRecruteur.vue'
 
 
 const routes = [
-    {
-      path:'/',
-      name:'Home',
-      component: Home,
-    },
-    {
-      path:'/contact',
-      name:'Contact',
-      component: Contact,
-     },
-     {
-       path:'/dashC',
-       name:'DashC',
-       component: DashC,
-     },
-     {
-       path:'/dashR',
-       name:'DashR',
-       component: DashR,
-     },
-    {
-      path:'/Annonce_list',
-      name:'Annonce_list',
-      component: Annonce_list,
-    },
-    {
-      path:'/Apropos',
-      name:'Apropos',
-      component: Apropos,
-    },
-    {
-      path:'/Login',
-      name:'Login',
-      component: Login,
-    },
-    {
-      path:'/Registre',
-      name:'Registre',
-      component:Registre,
-    }
-  ];
+        {path: "/", name: 'Home', component: Home},
+        {path: "/contact", name: "Contact", component: Contact},
+        {path: "/dashC", name: "DashC", component: DashC},
+        {path: "/dashR", name: "DashR", component: DashR},
+        {path: "/annonce_list", name: "Annonce_list", component: Annonce_list},
+        {path: "/apropos", name: "Apropos", component: Apropos},
+        {path: "/login", name: "Login", component: Login},
+        {path: "/registre", name: "Registre", component: Registre}
+];
 
-  const router = createRouter({
-    history:createWebHistory(),
+const router = createRouter({
+    history: createWebHistory(),
     routes,
-  })
+
+})
 
 
 export default router;

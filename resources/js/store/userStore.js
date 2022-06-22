@@ -21,22 +21,42 @@ export default function useUsers() {
 
     const loginUser = async (user) => {
        let response = await axios.post('http://127.0.0.1:8000/api/login', user)
-
-        
-        localStorage.token = response.data.Token;
-        localStorage.currentUser = JSON.stringify(response.data[0]);
+        localStorage.isloggedIn = false
         Message.value = response.data.message;
-        
-
+    
         if (response.data[0].role == "recruteur") {
-            router.push('/DashR')
+            await router.push('/DashR')
+            localStorage.token = response.data.Token;
+            localStorage.currentUser = JSON.stringify(response.data[0]);
+            localStorage.isloggedIn = true;
         }else if (response.data[0].role == "candidat") {
-            
-            router.push('/DashC')
+            localStorage.token = response.data.Token;
+            localStorage.currentUser = JSON.stringify(response.data[0]);
+            localStorage.isloggedIn = true;
+         
+            await router.push('/DashC')
         }
         else {
+            localStorage.token = response.data.Token;
+            localStorage.currentUser = JSON.stringify(response.data[0]);
+            localStorage.isloggedIn = true;
+         
             window.location.href = '/admin'
         }
+    
+        
+    
+    
+}
+
+    const logoutUser = async() => {
+
+            
+            await axios.post('http://127.0.0.1:8000/api/logout')
+            localStorage.removeItem('token')
+            localStorage.removeItem('currentUser')
+            localStorage.isloggedIn=false
+            await router.push('/login')
 
 
     }
@@ -83,6 +103,7 @@ export default function useUsers() {
         getUsersRecruteur,
         getUsersCandidat,
         loginUser,
+        logoutUser,
 
 
     }
