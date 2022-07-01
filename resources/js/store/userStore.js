@@ -12,7 +12,12 @@ export default function useUsers() {
     const UsersCandidat = ref([])
     const UsersRecruteur = ref([])
     const CurrentUsers = ref([])
-    const Message = ref('')
+    const Message = ref("")
+    const islog = ref(localStorage.isloggedIn)
+    const token = ref(localStorage.token)
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    }
 
     const getUserByRole = async (role) => {
         let response = await axios.get('http://127.0.0.1:8000/api/getUser/' + role)
@@ -20,21 +25,22 @@ export default function useUsers() {
     }
 
     const loginUser = async (user) => {
-       let response = await axios.post('http://127.0.0.1:8000/api/login', user)
-        localStorage.isloggedIn = false
+       let response = await axios.post('http://127.0.0.1:8000/api/login', user,config)
         Message.value = response.data.message;
     
         if (response.data[0].role == "recruteur") {
-            await router.push('/DashR')
+            
             localStorage.token = response.data.Token;
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
+            await router.push('/DashboardRecruteur')
+            
         }else if (response.data[0].role == "candidat") {
+
             localStorage.token = response.data.Token;
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
-         
-            await router.push('/DashC')
+            await router.push('/DashboardCandidat')
         }
         else {
             localStorage.token = response.data.Token;
@@ -43,52 +49,41 @@ export default function useUsers() {
          
             window.location.href = '/admin'
         }
-    
-        
-    
-    
-}
+    }
 
     const logoutUser = async() => {
 
-            
+  
             await axios.post('http://127.0.0.1:8000/api/logout')
-            localStorage.removeItem('token')
-            localStorage.removeItem('currentUser')
-            localStorage.isloggedIn=false
+            localStorage.clear()
             await router.push('/login')
-
 
     }
 
     const getUsersCandidat = async () => {
-        let response = await axios.get('http://127.0.0.1:8000/api/getUser/'+'Candidat')
+        let response = await axios.get('http://127.0.0.1:8000/api/getUser/'+'Candidat',config)
         UsersCandidat.value = response.data
     }
 
     const getUsersRecruteur = async () => {
-        let response = await axios.get('http://127.0.0.1:8000/api/getUser/'+'recruteur')
+        let response = await axios.get('http://127.0.0.1:8000/api/getUser/'+'recruteur',config)
         UsersRecruteur.value = response.data
     }
 
     const storeUser = async (user) => {
 
-        await axios.post('http://127.0.0.1:8000/api/user/', user)
+        await axios.post('http://127.0.0.1:8000/api/user/', user,config)
         await router.push('/login')
-
 
     }
 
     const destoryUser = async(id) => {
-        let response = await axios.delete('http://127.0.0.1:8000/api/user/'+id)
+        let response = await axios.delete('http://127.0.0.1:8000/api/user/'+id,config)
         Message.value = response.data.message;
 
 
 
     }
-
-
-
 
 
     return {
@@ -97,6 +92,7 @@ export default function useUsers() {
         UsersCandidat,
         UsersRecruteur,
         CurrentUsers,
+        islog,
         getUserByRole,
         storeUser,
         destoryUser,

@@ -66,10 +66,11 @@
             } = useUsers()
 
             function login(User) {
-                loginUser(User)
-                if (localStorage.currentUser) {
-                    localStorage.isloggedIn = true
+                if(localStorage){
+                    loginUser(User)
+                  
                 }
+                
             }
 
             function show() {
@@ -92,7 +93,7 @@
 
 
             return {
-                CurrentUsers,
+                
                 User,
                 login,
                 Message,

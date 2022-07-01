@@ -83,7 +83,17 @@ class AnnonceController extends Controller
      */
     public function show($id)
     { 
-        $annonce = Annonce::leftJoin('annoncecandidats','annonces.id',"annoncecandidats.annonce_id")->where('annonces.id', $id)->first();
+        $an= Annonce::find($id);
+        if($an->type_annonce == 'recruteur')
+        {
+        $annonce = Annonce::leftJoin('annoncerecruteurs','annonces.id',"annoncerecruteurs.annonce_id")->where('annonces.id', $an->id)->first();
+        }else 
+        {
+        $annonce = Annonce::leftJoin('annoncecandidats','annonces.id',"annoncecandidats.annonce_id")->where('annonces.id', $an->id)->first();
+        }
+                
+
+
         return $annonce;
     }
 
@@ -104,6 +114,17 @@ class AnnonceController extends Controller
             }
         return $annonce;
 
+    }
+
+    public function getAnnonceCandidatBySecteur($titre)
+    {
+        $annonce = Annonce::where('type_annonce','=',"candidat")->where('secteur_activite','LIKE',$titre)->get();
+        return $annonce;
+    }
+    public function getAnnonceRecruteurBySecteur($titre)
+    {
+        $annonce = Annonce::where('type_annonce','=',"recruteur")->where('secteur_activite','LIKE',$titre)->get();
+        return $annonce;
     }
 
 

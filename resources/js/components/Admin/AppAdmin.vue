@@ -40,32 +40,32 @@
                    <ul class="sidebar-menu">
                        <li class="menu-header">Pages</li>
                        <li class="dropdown">
-                           <a href="javascript:void(0)" @click="dataform = 'dashboard'"><i class="fas fa-bicycle"></i>
+                           <a href="javascript:void(0)" @click="dataform = 'PageDashboard'"><i class="fa fa-tachometer"></i>
                                <span>Dashboard</span></a>
                        </li>
                        <li class="dropdown">
                            <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Users</span></a>
                            <ul class="dropdown-menu">
-                               <li><a href="javascript:void(0)" @click="dataform = 'uscandidat'">Candidats</a></li>
-                               <li><a href="javascript:void(0)" @click="dataform = 'usrecruteur'">Recruteurs </a></li>
+                               <li><a href="javascript:void(0)" @click="dataform = 'UserCandidat'">Candidats</a></li>
+                               <li><a href="javascript:void(0)" @click="dataform = 'UserRecruteur'">Recruteurs </a></li>
                            </ul>
                        </li>
                        <li class="dropdown">
-                           <a href="#" class="nav-link has-dropdown"><i class="fas fa-exclamation"></i>
+                           <a href="#" class="nav-link has-dropdown"><i class="fa fa-bullhorn"></i>
                                <span>Annonces</span></a>
                            <ul class="dropdown-menu">
-                               <li><a href="javascript:void(0)" @click="dataform = 'ancandidat'">Annonces Candidat</a>
+                               <li><a href="javascript:void(0)" @click="dataform = 'AnnonceCandidat'">Annonces Candidat</a>
                                </li>
-                               <li><a href="javascript:void(0)" @click="dataform = 'anrecruteur'">Annonces Recruteur</a>
+                               <li><a href="javascript:void(0)" @click="dataform = 'AnnonceRecruteur'">Annonces Recruteur</a>
                                </li>
                            </ul>
                        </li>
                        <li class="dropdown">
-                           <a href="javascript:void(0)" @click="dataform = 'demande'"><i class="fas fa-bicycle"></i>
+                           <a href="javascript:void(0)" @click="dataform = 'PageDemande'"><i class="fa fa-envelope"></i>
                                <span>Demandes</span></a>
                        </li>
                        <li class="dropdown">
-                           <a href="javascript:void(0)" @click="dataform = 'secteur'"><i class="fas fa-bicycle"></i>
+                           <a href="javascript:void(0)" @click="dataform = 'PageSecteur'"><i class="fa fa-graduation-cap"></i>
                                <span>Secteurs
                                    d'activite</span></a>
                        </li>
@@ -74,7 +74,7 @@
                    <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                        <a href="/" class="btn btn-primary btn-lg btn-block btn-icon-split"
                            style="background-color: #DA2461;">
-                           <i class="fas fa-rocket"></i> Hire-me
+                           <i class="fa fa-handshake-o"></i> Hire-me
                        </a>
                    </div>
                </div>
@@ -104,14 +104,14 @@
    </template>
 
    <script>
-       import uscandidat from './Users/Uscandidat.vue'
+       import UserCandidat from './Users/UserCandidat.vue'
        import router from '../../router'
-       import usrecruteur from './Users/Usrecruteur.vue'
-       import ancandidat from './Annonces/Ancandidat.vue'
-       import anrecruteur from './Annonces/Anrecruteur.vue'
-       import demande from './Demande.vue'
-       import secteur from './Secteur.vue'
-       import dashboard from './Dashboard.vue'
+       import UserRecruteur from './Users/UserRecruteur.vue'
+       import AnnonceCandidat from './Annonces/AnnonceCandidat.vue'
+       import AnnonceRecruteur from './Annonces/AnnonceRecruteur.vue'
+       import PageDemande from './PageDemande.vue'
+       import PageSecteur from './PageSecteur.vue'
+       import PageDashboard from './PageDashboard.vue'
 
        var headers = {
            'Accept': 'application/json',
@@ -119,19 +119,19 @@
        };
        export default {
 
-           name: 'Admin',
+           name: 'AppAdmin',
            components: {
-               uscandidat,
-               usrecruteur,
-               ancandidat,
-               anrecruteur,
-               demande,
-               secteur,
-               dashboard,
+               UserCandidat,
+               UserRecruteur,
+               AnnonceCandidat,
+               AnnonceRecruteur,
+               PageDemande,
+               PageSecteur,
+               PageDashboard,
            },
            data() {
                return {
-                   dataform: 'dashboard',
+                   dataform: 'PageDashboard',
 
                }
            },

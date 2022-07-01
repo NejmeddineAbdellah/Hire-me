@@ -1,23 +1,24 @@
 <template>
-    <Header/>
+    <TheHeader/>
     <router-view/>
-
+    <TheFooter/>
 </template>
 
 <script>
     
-    import Header from './components/Header.vue'
-    import Details_Annonce from './components/Pages/Details_Annonce.vue'
-    import Footer from './components/Footer.vue'
+    import TheHeader from './components/TheHeader.vue'
+    import AnnonceDetails from './components/Pages/AnnonceDetails.vue'
+    import TheFooter from './components/TheFooter.vue'
     import Login from './components/Pages/auhtentification/Login.vue'
     import Register from './components/Pages/auhtentification/Register.vue'
-    import Home from './components/Pages/Home.vue'
-    import Contact from './components/Pages/Contact.vue'
-    import Form_annonce from './components/Pages/Form_annonce.vue'
-    import About from './components/Pages/About.vue'
-    import Annonce_list from './components/Pages/Annonce_list.vue'
-    import DashC from './components/Pages/Users/DashboardCandidat.vue'
-    import DashR from './components/Pages/Users/DashboardRecruteur.vue'
+    import Home from './components/Pages/PageHome.vue'
+    import Contact from './components/Pages/PageContact.vue'
+    import FormAnnonce from './components/Pages/AnnonceForm.vue'
+    import About from './components/Pages/PageAbout.vue'
+    import Page404 from './components/Pages/Page404.vue'
+    import AnnonceList from './components/Pages/AnnonceList.vue'
+    import DashboardCandidat from './components/Pages/Users/DashboardCandidat.vue'
+    import DashboardRecruteur from './components/Pages/Users/DashboardRecruteur.vue'
 
 
 
@@ -29,18 +30,19 @@ var headers = {
 
         name: 'App',
         components: {
-            Header,
+            TheHeader,
             Login,
+            Page404,
             Register,
             Home,
-            Form_annonce,
-            Details_Annonce,
-            Annonce_list,
-            Footer,
+            FormAnnonce,
+            AnnonceDetails,
+            AnnonceList,
+            TheFooter,
             Contact,
             About,
-            DashC,
-            DashR,
+            DashboardCandidat,
+            DashboardRecruteur,
 
         },
 
@@ -54,5 +56,4 @@ var headers = {
 
 
 <style scoped>
-
 </style>

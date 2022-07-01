@@ -20,7 +20,6 @@ Route::get('/{any}', function () {
     return view('index');
 })->where('any', '^(?!admin).*$');
 
-
 Route::get('/admin', function(){
     return view('admin');
-});    
+}); 

@@ -20,7 +20,7 @@ class CreateDemandesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('id_annonce');
             $table->foreign('id_annonce')->references('id')->on('annonces')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('cv_candidat');
+  
             $table->timestamps();
         });
     }

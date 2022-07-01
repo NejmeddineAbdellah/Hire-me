@@ -4,27 +4,27 @@
             <!-- Sidebar -->
             <div id="sidebar">
                 <header>
-                    <a href="#">{{usr.username}}</a>
+                    <a href="#">{{connectedUser.username}}</a>
                 </header>
                 <ul class="nav">
                     <li>
-                        <a>
-                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'Profile'">Profile</i>
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'RecruteurProfile'">Profile</i>
                         </a>
                     </li>
                     <li>
-                        <a>
-                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'Annonce'">Mes Annonces</i>
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'RecruteurAnnonce'">Mes Annonces</i>
                         </a>
                     </li>
                     <li>
-                        <a>
-                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'Demande'">Demandes Reçu</i>
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'RecruteurDemande'">Mes Demandes</i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-calendar"></i> Logout
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="logout">Logout</i>
                         </a>
                     </li>
 
@@ -32,18 +32,8 @@
             </div>
             <!-- Content -->
             <div id="content">
-                <nav class="navbar navbar-default mt-100">
-                    <div class="container-fluid">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
-                                </a>
-                            </li>
-                            <h1>Bienvenue</h1>
-                        </ul>
-                    </div>
-                </nav>
                 <div class="container">
+
                     <component :is="actform"></component>
                 </div>
             </div>
@@ -52,28 +42,44 @@
 </template>
 
 <script>
-    import Annonce from './Recruteur/Addannonce.vue'
-    import Demande from './Recruteur/Demande.vue'
-    import Profile from './Recruteur/Profile.vue'
+    import useUsers from '../../../store/userStore.js'
+    import {
+        ref,
+        onMounted
+    } from 'vue'
+    import RecruteurAnnonce from './Recruteur/RecruteurAnnonce.vue'
+    import RecruteurDemande from './Recruteur/RecruteurDemande.vue'
+    import RecruteurProfile from './Recruteur/RecruteurProfile.vue'
     export default {
-        watch: {},
+        setup() {
+            const connectedUser = ref(JSON.parse(localStorage.currentUser))
+            const {
+                logoutUser
+            } = useUsers()
+
+            function logout() {
+                logoutUser()
+            }
+
+            return {
+                logout,
+                connectedUser
+            }
+            onMounted()
+
+        },
         name: 'Dashboard',
         components: {
-            Annonce,
-            Profile,
-            Demande,
+            RecruteurAnnonce,
+            RecruteurProfile,
+            RecruteurDemande,
         },
-       data() {
+        data() {
             return {
-                usr:[],
-                actform:'Profile'
+                actform: 'RecruteurProfile'
             }
         },
-        mounted() {
-            this.usr = JSON.parse(localStorage.currentUser);
-        },
     }
-
 </script>
 
 <style scoped>
@@ -83,6 +89,8 @@
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
         transition: all 0.5s ease;
+        padding-bottom: 20%;
+
     }
 
     #content {
@@ -106,6 +114,7 @@
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
         transition: all 0.5s ease;
+        position:absolute;
     }
 
     #sidebar header {
@@ -143,5 +152,4 @@
     #sidebar .nav a i {
         margin-right: 16px;
     }
-
 </style>

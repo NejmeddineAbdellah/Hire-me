@@ -7,6 +7,8 @@ use App\Models\Demande;
 use App\Http\Requests\StoreDemandeRequest;
 use App\Http\Requests\UpdateDemandeRequest;
 use App\Http\Resources\DemandeResource;
+use App\Models\Annonce;
+use App\Models\User;
 
 class DemandeController extends Controller
 {
@@ -41,7 +43,7 @@ class DemandeController extends Controller
         Demande::create($request->all());
         
         return response()->json([
-            'message'=>'Demande a été Ajouter'
+            'message'=>'Votre Demande a été envoyer'
         ]);
     }
 
@@ -53,12 +55,18 @@ class DemandeController extends Controller
      */
     public function show($id)
     {
-        //return Demande::find($id);
+        
         return Demande::where('user_id','=',$id)->get();
     }
 
-    
 
+    public function getDemandesByAnnonceRecruteur($user_id){
+
+        $demandes = Demande::leftJoin('annonces','demandes.id_annonce','annonces.id')->leftJoin('users','annonces.user_id','users.id')->where('annonces.user_id',$user_id)->get();
+
+        return $demandes;
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *

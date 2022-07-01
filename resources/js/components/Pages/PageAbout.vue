@@ -8,7 +8,7 @@
                         <div class="right-caption">
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2">
-                                <span>What we are doing</span>
+                                <span>CE QUE NOUS FAISONS</span>
                                 <h2>Hire Me</h2>
                             </div>
                             <div class="support-caption">
@@ -27,8 +27,8 @@
                         <div class="support-location-img">
                             <img src="/img/service/support-img.jpg" alt="">
                             <div class="support-img-cap text-center">
-                                <p>Since</p>
-                                <span>1994</span>
+                                <p>Depuis</p>
+                                <span>2022</span>
                             </div>
                         </div>
                     </div>
@@ -36,15 +36,16 @@
             </div>
         </div>
         <!-- Support Company End-->
+
         <!-- How  Apply Process Start-->
-        <div class="apply-process-area apply-bg pt-150 pb-150" data-background="/img/gallery/how-applybg.png">
+        <div class="apply-process-area apply-bg pt-150 pb-150 " data-background="/img/gallery/how-applybg.png">
             <div class="container">
                 <!-- Section Tittle -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle white-text text-center">
-                            <span>Apply process</span>
-                            <h2> How it works</h2>
+                            <span>Processus de candidature</span>
+                            <h2>Comment ça march</h2>
                         </div>
                     </div>
                 </div>
@@ -56,10 +57,8 @@
                                 <span class="flaticon-search"></span>
                             </div>
                             <div class="process-cap">
-                                <h5>1. Search a job</h5>
-                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
-                                    laborea.
-                                </p>
+                                <h5>1. Rechercher une annonce</h5>
+                                <p>Vouez devez chercher une annonce dans votre specifique secteur d'activité</p>
                             </div>
                         </div>
                     </div>
@@ -69,10 +68,8 @@
                                 <span class="flaticon-curriculum-vitae"></span>
                             </div>
                             <div class="process-cap">
-                                <h5>2. Apply for job</h5>
-                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
-                                    laborea.
-                                </p>
+                                <h5>2. Postuler une annonce</h5>
+                                <p>Si vous avez trouvé une annonce qui vous intéresse, vous devez postuler . </p>
                             </div>
                         </div>
                     </div>
@@ -82,10 +79,8 @@
                                 <span class="flaticon-tour"></span>
                             </div>
                             <div class="process-cap">
-                                <h5>3. Get your job</h5>
-                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
-                                    laborea.
-                                </p>
+                                <h5>3. Obtenez votre travail</h5>
+                                <p>Et voila </p>
                             </div>
                         </div>
                     </div>
@@ -93,6 +88,7 @@
             </div>
         </div>
         <!-- How  Apply Process End-->
+
         <!-- Testimonial Start -->
         <div class="testimonial-area testimonial-padding">
             <div class="container">
@@ -162,20 +158,18 @@
                 </div>
             </div>
         </div>
+        <!-- Testimonial End -->
     </div>
-    <!-- Testimonial End -->
 </template>
 
 <script>
     export default {
 
     }
-
 </script>
 
 <style scoped>
     template {
         overflow: auto;
     }
-
 </style>

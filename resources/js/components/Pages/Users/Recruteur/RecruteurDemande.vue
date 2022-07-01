@@ -1,5 +1,5 @@
 <template>
-    <h1>List des Demande</h1>
+    <h1>List de Vos Demandes</h1>
 
     <div class="Table_data">
         <vue-good-table :columns="columns" :rows="Demandes" :select-options="{ enabled: false }" :pagination-options="{
@@ -56,21 +56,23 @@
                 getDemandes,
                 getDemandesByUser,
                 destroyDemande,
+                getDemandesByAnnonceOfRecruteur,
             } = useDemandes()
             const userConnecter = JSON.parse(localStorage.currentUser)
 
             function deleteDemande(id) {
                 destroyDemande(id);
-                getDemandesByUser(userConnecter.id)
+                getDemandesByUser(userConnecter.user_id)
             }
 
-            onMounted(getDemandesByUser(userConnecter.id))
+            onMounted(getDemandesByAnnonceOfRecruteur(userConnecter.user_id))
 
             return {
                 getDemandes,
                 Demandes,
                 getDemandesByUser,
                 deleteDemande,
+                getDemandesByAnnonceOfRecruteur,
             }
         },
 
@@ -82,13 +84,13 @@
             return {
 
                 columns: [{
-                        label: 'lettre_motivation',
+                        label: 'Lettre motivation',
                         field: 'lettre_motivation',
                         type: 'text',
                     },
                     {
-                        label: 'id annonce',
-                        field: 'id_annonce',
+                        label: 'Titre annonce',
+                        field: 'titre_annonce',
                         type: 'text',
                     },
                     {

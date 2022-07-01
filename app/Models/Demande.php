@@ -13,12 +13,14 @@ class Demande extends Model
         'lettre_motivation',
         'user_id',
         'id_annonce',
-        'cv_candidat'
+     
 
     ]);
     protected $hidden=([
         'created_at',
         'updated_at'
     ]);
-
+    public function users(){
+        return $this->belongsTo(Demande::class,'user_id');
+    }
 }

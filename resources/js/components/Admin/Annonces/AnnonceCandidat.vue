@@ -1,10 +1,10 @@
 <template>
-<h1>List des Annonces de recrutement</h1>
+    <h1>List des Annonces candidat</h1>
 
     <div class="Table_data">
 
 
-        <vue-good-table :columns="columns" :rows="AnnonceRecruteur" :select-options="{enabled: false }" :pagination-options="{
+        <vue-good-table :columns="columns" :rows="AnnonceCandidat" :select-options="{enabled: false }" :pagination-options="{
     enabled: true,
     mode: 'records',
     perPage: 5,
@@ -22,7 +22,7 @@
   }">
             <template #table-row="props">
                 <span v-if="props.column.field == 'action'">
-                    <button type="button" @click="deleteAnnonce(props.row.id)" class="btn-danger !important"><i
+                    <button type="button" @click="deleteAnnonce(props.row.annonce_id)" class="btn-danger !important"><i
                             class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </span>
@@ -46,32 +46,33 @@
         setup() {
 
                 const {
-                    AnnonceRecruteur,
-                    getAnnoncesRecruteur,
+                    AnnonceCandidat,
+                    getAnnoncesCandidat,
                     destroyAnnonce
                 } = useAnnonces()
 
-                onMounted(getAnnoncesRecruteur())
-
-             function deleteAnnonce(id){
+                function deleteAnnonce(id){
                     destroyAnnonce(id)
-                    getAnnoncesRecruteur()
+                    getAnnoncesCandidat()
                 }
+                onMounted(getAnnoncesCandidat())
+
 
             return {
-                AnnonceRecruteur,
+                AnnonceCandidat,
                 deleteAnnonce,
 
             }
         },
-        components:{
-         VueGoodTable,
+
+        components: {
+            VueGoodTable,
 
         },
-        
+
         data() {
-            return { 
-                 columns: [{
+            return {
+                columns: [{
                         label: 'Titre annonce',
                         field: 'titre_annonce',
                         type: 'text',
@@ -92,13 +93,8 @@
                         type: 'text',
                     },
                     {
-                        label: 'Salaire',
-                        field: 'salaire',
-                        type: 'text',
-                    },
-                    {
-                        label: 'Contrat',
-                        field: 'contrat',
+                        label: 'username',
+                        field: 'username',
                         type: 'text',
                     },
                     {
@@ -113,8 +109,7 @@
                     }
                 ],
             }
-        },
-
+        }
     }
 
 </script>

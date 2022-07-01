@@ -1,11 +1,11 @@
 <template>
 
-    <div id="AnnonceCandidatModal" class="modal" tabindex="-1" data-backdrop="false">
+    <div id="AnnonceRecruteurModal" class="modal" tabindex="-1" data-backdrop="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" v-if="!updating">Ajouter Annonce</h5>
-                    <h5 class="modal-title" v-else>Modifier Annonce</h5>
+                    <h5 class="modal-title" v-if="!updating">Ajouter Candidat</h5>
+                    <h5 class="modal-title" v-else>Modifier Candidat</h5>
                     <button type="button" @click="cleardata" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,26 +13,26 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">titre_annonce</label>
+                            <label for="exampleInputEmail1">Titre d'annonce</label>
                             <input type="text" v-model="Annonce.titre_annonce" class="form-control" id="titre_annonce"
-                                aria-describedby="text" placeholder="Entrer titre annonce">
+                                aria-describedby="text" placeholder="Entrer titre annonce" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">description_annonce</label>
+                            <label for="exampleInputEmail1">Description d'annonce</label>
                             <input type="text" v-model="Annonce.description_annonce" class="form-control"
                                 id="description_annonce" aria-describedby="text"
-                                placeholder="Entrer description annonce">
+                                placeholder="Entrer description annonce" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">niveau_etude</label>
+                            <label for="exampleInputEmail1">Niveau D'etude</label>
                             <input type="text" v-model="Annonce.niveau_etude" class="form-control" id="niveau_etude"
-                                aria-describedby="text" placeholder="Entrer Votre profile">
+                                aria-describedby="text" placeholder="Entrer Votre profile" required>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="select-form">
-                                    <p>Choisir votre secteur d'activite</p>
-                                    <select class="selectpicker" v-model="Annonce.secteur_activite">
+                                    <p>Choisir le secteur d'activite</p>
+                                    <select class="selectpicker form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" v-model="Annonce.secteur_activite">
                                         <option value="All" selected>All</option>
                                         <option v-for="secteur in Secteurs" :key="secteur.id"
                                             v-bind:value="secteur.titre_secteur">
@@ -42,31 +42,35 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">type_annonce_candidat</label>
-                            <input type="text" v-model="Annonce.type_annonce_candidat" class="form-control"
-                                id="type_annonce_candidat" aria-describedby="text" placeholder="Entrer Votre profile">
+                            <label for="exampleInputEmail1">Type contrat</label>
+                            <input type="text" v-model="Annonce.contrat" class="form-control"
+                                id="contrat" aria-describedby="text" placeholder="Entrer Type du Contrat" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">cv_candidat</label>
-                            <input type="text" v-model="Annonce.cv_candidat" class="form-control"
-                                id="cv_candidat" aria-describedby="text" placeholder="Entrer Votre cv_candidat">
+                            <label for="exampleInputEmail1">Salaire</label>
+                            <input type="number" step="0.1" v-model="Annonce.salaire" class="form-control"
+                                id="Salaire" aria-describedby="text" placeholder="Entrer Salaire" required>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
+                
                     <button type="button" v-if="!updating" @click="createAnnonce"
                         class="btn btn-primary">Enregistrer</button>
                     <button type="button" v-else @click="modifierAnnonce(Annonce.annonce_id)"
                         class="btn btn-warning" data-dismiss="modal">Modifier</button>
                     <button type="button" @click="clear" class="btn btn-secondary"
                         data-dismiss="modal">Close</button>
+                        <div v-if="createAnnonce && Message!==''" class="alert alert-secondary">
+                {{Message}}
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <h1>List des Candidat</h1>
+    <h1>List de Vos Annonces</h1>
 
     <div class="Table_data">
         <vue-good-table :columns="columns" :rows="Annonces" 
@@ -90,19 +94,18 @@
 
             <template #table-actions>
                 <button type="button" class="btn-success mr-3 !important" @click="clear" data-toggle="modal"
-                    data-target="#AnnonceCandidatModal">Add New Annonce</button>
+                    data-target="#AnnonceRecruteurModal">Add New Annonce</button>
             </template>
 
             <template #table-row="props">
                 <span v-if="props.column.field == 'action'">
-                    <button type="button" data-toggle="modal" data-target="#AnnonceCandidatModal"
+                    <button type="button" data-toggle="modal" data-target="#AnnonceRecruteurModal"
                             @click="getSelectedAnnonce(props.row.id)" class="btn-warning mr-3 !important"><i
                             class="fa fa-pencil-square" aria-hidden="true"></i>
                     </button>
                     <button type="button" @click="deleteAnnonce(props.row.id)" class="btn-danger !important"><i
                             class="fa fa-trash" aria-hidden="true"></i>
                     </button>
-
                 </span>
             </template>
         </vue-good-table>
@@ -119,30 +122,41 @@
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     import { VueGoodTable } from 'vue-good-table-next';
 
-    // add to component
     export default {
         
         setup() {
+            const userConnecter = JSON.parse(localStorage.currentUser)
             let updating = ref(false);
+            // let Annonce=reactive({
+            //         titre_annonce: '',
+            //         description_annonce: '',
+            //         niveau_etude: '',
+            //         secteur_activite: '',
+            //         type_annonce: 'recruteur',
+            //         user_id: userConnecter.user_id,
+            //         contrat: '',
+            //         salaire: ''
+                
+            // })
 
             const {
                 Annonces,
                 Annonce,
+                AnnonceRecruteur,
+                Message,
                 getAnnonces,
                 getAnnoncesBySecteur,
                 getAnnoncesByIdUser,
                 getAnnonceById,
-                getAnnonceCandidat,
+                getAnnoncesRecruteur,
                 storeAnnonce,
                 destroyAnnonce,
-                updateAnnonce
-                } = useAnnonces()
+                updateAnnonce} = useAnnonces()
             
             const {Secteurs,getSecteurs} = useSecteurs()
             const {CurrentUsers} = useUsers()
-            const userConnecter = JSON.parse(localStorage.currentUser)
             const token= localStorage.token
-            
+
             function clear() {
                 updating.value = false;
                 Annonce.value = {
@@ -150,56 +164,51 @@
                     description_annonce: '',
                     niveau_etude: '',
                     secteur_activite: '',
-                    type_annonce: 'candidat',
-                    user_id: userConnecter.id,
-                    type_annonce_candidat: ''
-                    }   
-            }
-
-            function getAnnoncesByTitre(titre) {
-                if (titre == "All") {
-
-                    getAnnonces();
-                } else {
-
-                    getAnnoncesBySecteur(titre);
-                }
+                    contrat:'',
+                    salaire: '',
+                    type_annonce: 'recruteur',
+                    user_id: userConnecter.user_id,
+                    }  
+                    Message.value="" 
             }
             
             function getSelectedAnnonce(id) {
                 updating.value = true;
-                getAnnonceCandidat(id)
-                getAnnonceById(id) 
+            
+               getAnnonceById(id) 
+               getAnnoncesByIdUser(userConnecter.user_id)
             }
 
             function createAnnonce(){
-                storeAnnonce();
-                getAnnoncesByIdUser(userConnecter.id)
-             
+
+                storeAnnonce({...Annonce.value});
+                getAnnoncesByIdUser(userConnecter.user_id)
+                clear()
             }
 
             function modifierAnnonce(id) {
                 updateAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
+                
             }
 
             function deleteAnnonce(id) {
                 destroyAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
+                
 
-            }
-            
-           
-            onMounted(getAnnoncesByIdUser(userConnecter.id))
+            }           
+            onMounted(getAnnoncesByIdUser(userConnecter.user_id))
             onMounted(getSecteurs)
+ 
 
 
             return {
                 Annonces,
                 Secteurs,
                 Annonce,
+                Message,
                 CurrentUsers,
-                getAnnoncesByTitre,
                 getAnnoncesByIdUser,
                 getSelectedAnnonce,
                 createAnnonce,
@@ -208,6 +217,8 @@
                 updating,
                 clear,
                 token,
+                
+              
             }
         },
         components: {

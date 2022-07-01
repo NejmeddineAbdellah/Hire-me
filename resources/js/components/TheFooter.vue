@@ -8,7 +8,7 @@
                         <div class="single-footer-caption mb-50">
                             <div class="single-footer-caption mb-30">
                                 <div class="footer-tittle">
-                                    <h4>About Us</h4>
+                                    <h4>A propos</h4>
                                     <div class="footer-pera">
                                         <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so
                                             behold.</p>
@@ -23,12 +23,9 @@
                             <div class="footer-tittle">
                                 <h4>Contact Info</h4>
                                 <ul>
-                                    <li>
-                                        <p>Address :Your address goes
-                                            here, your demo address.</p>
-                                    </li>
-                                    <li><a href="#">Phone : +8880 44338899</a></li>
-                                    <li><a href="#">Email : info@colorlib.com</a></li>
+                                    <li><p>Address : UPM </p></li>
+                                    <li><a><p>Phone : +8880 44338899</p></a></li>
+                                    <li><a><p>Email : info@colorlib.com</p></a></li>
                                 </ul>
                             </div>
 
@@ -37,13 +34,12 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Important Link</h4>
+                                <h4>Lien rapide</h4>
                                 <ul>
-                                    <li><a href="#"> View Project</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Testimonial</a></li>
-                                    <li><a href="#">Proparties</a></li>
-                                    <li><a href="#">Support</a></li>
+                                    <router-link to="/"><p><li><a>Home</a></li></p></router-link>
+                                    <router-link to="/contact"><p><li><a>Contact</a></li></p></router-link>
+                                    <router-link to="/Apropos"><p><li><a>About</a></li></p></router-link>
+                                    <router-link to="/AnnonceList"><p><li><a>Trouver Annonce</a></li></p></router-link>
                                 </ul>
                             </div>
                         </div>
@@ -53,7 +49,7 @@
                             <div class="footer-tittle">
                                 <h4>Newsletter</h4>
                                 <div class="footer-pera footer-pera2">
-                                    <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
+                                    <p>Entrez votre adresse mail pour recevoir les mises à jours</p>
                                 </div>
                                 <!-- Form -->
                                 <div class="footer-form">
@@ -79,33 +75,7 @@
                     </div>
                 </div>
                 <!--  -->
-                <div class="row footer-wejed justify-content-between">
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <!-- logo -->
-                        <div class="footer-logo mb-20">
-                            <a href="index.html"><img src="/img/logo/logo2_footer.png" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="footer-tittle-bottom">
-                            <span>5000+</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="footer-tittle-bottom">
-                            <span>451</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <!-- Footer Bottom Tittle -->
-                        <div class="footer-tittle-bottom">
-                            <span>568</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
         <!-- footer-bottom area -->
@@ -117,14 +87,7 @@
                             <div class="footer-copy-right">
                             </div>
                         </div>
-                        <div class="col-xl-2 col-lg-2">
-                            <div class="footer-social f-right">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-behance"></i></a>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
@@ -142,5 +105,11 @@
 </script>
 
 <style>
-
+footer{
+    padding-top:10%;
+}
+.footer-padding {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
 </style>

@@ -2,6 +2,11 @@
     <div class="container">
         <section style="background-color: #eee;">
             <div class="container py-5">
+                <div class="container welcome">
+                    <a><i class="zmdi zmdi-notifications text-danger">
+                            <h1>Bienvenue</h1>
+                        </i></a>
+                </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card mb-4">
@@ -9,7 +14,7 @@
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                     alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3">{{userConnecter.nom_candidat}}</h5>
-                                <p class="text-muted mb-4">{{userConnecter.username}}</p>
+                                <p class="text-muted mb-4">{{userConnecter.us}}</p>
                                 <p class="text-muted mb-1">{{userConnecter.secteur_activite}}</p>
 
                             </div>
@@ -94,30 +99,30 @@
     export default {
 
         setup() {
+            const userConnecter = JSON.parse(localStorage.currentUser)
+
             const {
                 Annonces,
                 getAnnoncesByIdUser
             } = useAnnonces()
             const {
                 Demandes,
-                getDemandesByUser    
+                getDemandesByUser
             } = useDemandes()
-            const userConnecter = JSON.parse(localStorage.currentUser)
 
-          onMounted(getAnnoncesByIdUser(userConnecter.id),getDemandesByUser(userConnecter.id))
+            onMounted(getAnnoncesByIdUser(userConnecter.user_id), getDemandesByUser(userConnecter.user_id))
 
             return {
                 Annonces,
                 Demandes,
                 userConnecter,
                 getAnnoncesByIdUser,
-           
+
             }
 
 
         },
     }
-
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-    <Slider/>
+    <TheSlider/>
     <!-- Our Services Start -->
     <div class="our-services section-pad-t30">
         <div class="container">
@@ -7,107 +7,32 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>FEATURED TOURS Packages</span>
-                        <h2>Browse Top Categories </h2>
+                        <span></span>
+                        <h2>Secteur d'activité</h2>
                     </div>
                 </div>
             </div>
             <div class="row d-flex justify-contnet-center">
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-tour"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Design & Creative</a></h5>
-                            <span>(653)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-cms"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Design & Development</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-report"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Sales & Marketing</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-app"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Mobile Application</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                <!-- ////////////////// -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" v-for="(Secteur, index) in Secteurs" :key="index">
                     <div class="single-services text-center mb-30">
                         <div class="services-ion">
                             <span class="flaticon-helmet"></span>
                         </div>
                         <div class="services-cap">
-                            <h5><a href="job_listing.html">Construction</a></h5>
-                            <span>(658)</span>
+                            <h5><a href="javascript:void(0)">{{Secteur.titre_secteur}}</a></h5>
+                            <span></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-high-tech"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Information Technology</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-real-estate"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Real Estate</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-content"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="job_listing.html">Content Writer</a></h5>
-                            <span>(658)</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- ///////////////// -->
             </div>
             <!-- More Btn -->
             <!-- Section Button -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="browse-btn2 text-center mt-50">
-                        <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
+                       <router-link to="/AnnonceList"><a href="java" class="border-btn2">Parcourir tous les secteurs</a></router-link> 
                     </div>
                 </div>
             </div>
@@ -121,9 +46,9 @@
             <div class="row justify-content-center">
                 <div class="col-xl-10">
                     <div class="cv-caption text-center">
-                        <p class="pera1">FEATURED TOURS Packages</p>
-                        <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                        <a href="#" class="border-btn2 border-btn4">Upload your cv</a>
+                        <p class="pera1"></p>
+                        <p class="pera2">Faites la différence avec votre CV en ligne !</p>
+                        <a href="#" class="border-btn2 border-btn4">Upload votre cv</a>
                     </div>
                 </div>
             </div>
@@ -138,8 +63,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle white-text text-center">
-                        <span>Apply process</span>
-                        <h2> How it works</h2>
+                        <span>Processus de candidature</span>
+                        <h2>Comment ça march</h2>
                     </div>
                 </div>
             </div>
@@ -151,9 +76,8 @@
                             <span class="flaticon-search"></span>
                         </div>
                         <div class="process-cap">
-                            <h5>1. Search a job</h5>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.
-                            </p>
+                            <h5>1. Rechercher une annonce</h5>
+                            <p>Vouez devez chercher une annonce dans votre specifique secteur d'activité</p>
                         </div>
                     </div>
                 </div>
@@ -163,9 +87,8 @@
                             <span class="flaticon-curriculum-vitae"></span>
                         </div>
                         <div class="process-cap">
-                            <h5>2. Apply for job</h5>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.
-                            </p>
+                            <h5>2. Postuler une annonce</h5>
+                            <p>Si vous avez trouvé une annonce qui vous intéresse, vous devez postuler . </p>
                         </div>
                     </div>
                 </div>
@@ -175,9 +98,8 @@
                             <span class="flaticon-tour"></span>
                         </div>
                         <div class="process-cap">
-                            <h5>3. Get your job</h5>
-                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.
-                            </p>
+                            <h5>3. Obtenez votre travail</h5>
+                            <p>Et voila </p>
                         </div>
                     </div>
                 </div>
@@ -193,8 +115,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-tittle text-center">
-                        <span>Our latest blog</span>
-                        <h2>Our recent news</h2>
+                        <span>Nos annonces récentes</span>
+                        <h2>Nos annonces récentes</h2>
                     </div>
                 </div>
             </div>
@@ -245,12 +167,24 @@
 </template>
 
 <script>
-  import Slider from '../Slider.vue'
+import useSecteurs from '../../store/secteurStore.js'
+import {onMounted} from 'vue'
+  import TheSlider from '../TheSlider.vue'
 
     export default {
         name:'Home',
         components:{
-            Slider,
+            TheSlider,
+        },
+        setup() {
+            const {Secteurs,getSecteurs}=useSecteurs()
+
+
+            onMounted(getSecteurs)
+            return {
+            Secteurs,
+            
+            }
         }
     }
 

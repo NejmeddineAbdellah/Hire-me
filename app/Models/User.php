@@ -58,6 +58,9 @@ class User extends Authenticatable
     public function annonces(){
         return $this->hasMany(Annonce::class);
     }
+    public function demandes(){
+        return $this->hasMany(Demandes::class);
+    }
     /**
      * The attributes that should be cast.
      *

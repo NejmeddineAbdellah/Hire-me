@@ -48,7 +48,7 @@
         </div>
         <div class="col-md-6 col-lg-4">
             <div class="widget-small warning coloured-icon"><a href="javascript:void(0)"><i
-                        class="icon fa fa-th  fa-3x"></i></a>
+                        class="icon fa fa-graduation-cap  fa-3x"></i></a>
                 <div class="info">
                     <h5>Total Secteurs d'activité</h5>
                     <p><b>{{Secteurs.length}}</b></p>

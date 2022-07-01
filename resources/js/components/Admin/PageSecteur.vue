@@ -1,6 +1,4 @@
 <template>
-
-
     <div id="addSecteurModal" class="modal" tabindex="-1" data-backdrop="false">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -75,7 +73,6 @@
 </template>
 
 <script>
-    // import the styles
     import useSecteurs from '../../store/secteurStore.js'
     import {
         onMounted,

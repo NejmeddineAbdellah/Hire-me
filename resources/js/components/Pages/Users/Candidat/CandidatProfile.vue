@@ -2,6 +2,11 @@
     <div class="container">
         <section style="background-color: #eee;">
             <div class="container py-5">
+                <div class="container welcome">
+                    <a><i class="zmdi zmdi-notifications text-danger">
+                            <h1>Bienvenue</h1>
+                        </i></a>
+                </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card mb-4">
@@ -94,30 +99,29 @@
     export default {
 
         setup() {
+            const userConnecter = JSON.parse(localStorage.currentUser)
             const {
                 Annonces,
                 getAnnoncesByIdUser
             } = useAnnonces()
             const {
                 Demandes,
-                getDemandesByUser    
+                getDemandesByUser
             } = useDemandes()
-            const userConnecter = JSON.parse(localStorage.currentUser)
 
-          onMounted(getAnnoncesByIdUser(userConnecter.id),getDemandesByUser(userConnecter.id))
+            onMounted(getAnnoncesByIdUser(userConnecter.user_id), getDemandesByUser(userConnecter.user_id))
 
             return {
                 Annonces,
                 Demandes,
                 userConnecter,
                 getAnnoncesByIdUser,
-           
+
             }
 
 
         },
     }
-
 </script>
 
 <style scoped>

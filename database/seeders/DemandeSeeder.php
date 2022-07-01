@@ -24,7 +24,7 @@ class DemandeSeeder extends Seeder
                 'lettre_motivation'=>$faker->paragraph(mt_rand(1, 2)),
                 'user_id'=>User::all('id')->random()->id,
                 'id_annonce'=>Annonce::all('id')->random()->id,
-                'cv_candidat'=>$faker->lexify('????'.'.pdf')
+               
             ]);
         }
 

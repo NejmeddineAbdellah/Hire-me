@@ -1,5 +1,4 @@
 <template>
-
   
     <h1>List des Candidat</h1>
 

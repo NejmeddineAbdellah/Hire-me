@@ -8,23 +8,23 @@
                 </header>
                 <ul class="nav">
                     <li>
-                        <a  href="javascript:void(0)">
-                            <i class="zmdi zmdi-view-dashboard"  @click="actform = 'Profile'">Profile</i> 
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="javascript:void(0)">
-                            <i class="zmdi zmdi-view-dashboard"  @click="actform = 'Annonce'" >Mes Annonces</i>
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'CandidatProfile'">Profile</i>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="zmdi zmdi-view-dashboard"  @click="actform = 'Demande'" >Mes Demandes</i>
+                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'CandidatAnnonce'">Mes Annonces</i>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="zmdi zmdi-view-dashboard" @click="logout" >Logout</i> 
+                            <i class="zmdi zmdi-view-dashboard" @click="actform = 'candidatDemande'">Mes Demandes</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="zmdi zmdi-view-dashboard" @click="logout">Logout</i>
                         </a>
                     </li>
 
@@ -32,18 +32,9 @@
             </div>
             <!-- Content -->
             <div id="content">
-                <nav class="navbar navbar-default mt-100">
-                    <div class="container-fluid">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
-                                </a>
-                            </li>
-                               <h1>Bienvenue</h1>
-                        </ul>
-                    </div>
-                </nav>
+
                 <div class="container">
+
                     <component :is="actform"></component>
                 </div>
             </div>
@@ -53,17 +44,22 @@
 
 <script>
     import useUsers from '../../../store/userStore.js'
-    import {ref} from 'vue'
-     import Annonce from './Candidat/Addannonce'
-     import Profile from './Candidat/Profile.vue'
-     import Demande from './Candidat/Demande'
+
+    import {
+        ref
+    } from 'vue'
+    import CandidatAnnonce from './Candidat/CandidatAnnonce'
+    import CandidatProfile from './Candidat/CandidatProfile.vue'
+    import candidatDemande from './Candidat/candidatDemande'
     export default {
-        
+
         setup() {
-            const {logoutUser}=useUsers()
+            const {
+                logoutUser
+            } = useUsers()
             const connectedUser = ref(JSON.parse(localStorage.currentUser))
 
-            function logout(){
+            function logout() {
                 logoutUser()
             }
 
@@ -74,27 +70,33 @@
         },
         name: 'Dashboard',
         components: {
-             Annonce,
-             Profile,
-             Demande,
+            CandidatAnnonce,
+            CandidatProfile,
+            candidatDemande,
         },
         data() {
             return {
-                actform:'Profile'
+                actform: 'CandidatProfile'
             }
         },
 
     }
-
 </script>
 
 <style scoped>
+    .welcome {
+        width: max-content;
+
+    }
+
     #viewport {
+      
         padding-left: 250px;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
         transition: all 0.5s ease;
+        padding-bottom: 20%;
     }
 
     #content {
@@ -106,18 +108,19 @@
     /* Sidebar Styles */
 
     #sidebar {
+        
         z-index: 1000;
         position: fixed;
         left: 250px;
         width: 250px;
         height: 100%;
         margin-left: -250px;
-        
         background: #37474F;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
         -o-transition: all 0.5s ease;
         transition: all 0.5s ease;
+        position:absolute;
     }
 
     #sidebar header {
@@ -155,5 +158,4 @@
     #sidebar .nav a i {
         margin-right: 16px;
     }
-
 </style>

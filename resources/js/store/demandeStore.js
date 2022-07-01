@@ -1,36 +1,58 @@
-import { ref } from 'vue'
+import {
+    ref,
+    reactive
+} from 'vue'
 import axios from "axios";
 
 
-export default function useDemandes(){
+export default function useDemandes() {
 
 
-        const Demandes = ref([])
+    const Demandes = ref([])
+    const Message = ref("")
+    const token = ref(localStorage.token)
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    }
 
 
-        const getDemandes= async() => {
-           let response = await axios.get('http://127.0.0.1:8000/api/demande')           
-           Demandes.value = response.data.data;
-  
+    const getDemandes = async () => {
+        let response = await axios.get('http://127.0.0.1:8000/api/demande',config)
+        Demandes.value = response.data.data;
 
-        }
+    }
 
-        const getDemandesByUser = async(id) => {
-          let response = await axios.get('http://127.0.0.1:8000/api/demande/'+id)           
-          Demandes.value = response.data;
-        }
+    const getDemandesByAnnonceOfRecruteur = async (id) => {
+        let response = await axios.get('http://127.0.0.1:8000/api/getdemanderecruteur/' + id,config)
+        Demandes.value = response.data;
+    }
 
-        const destroyDemande = async(id) => {
+    const getDemandesByUser = async (id) => {
+        let response = await axios.get('http://127.0.0.1:8000/api/demande/' + id,config)
+        Demandes.value = response.data;
+    }
 
-          await axios.delete('http://127.0.0.1:8000/api/demande/'+id)
+    const destroyDemande = async (id) => {
 
-        }
+      let response = await axios.delete('http://127.0.0.1:8000/api/demande/' + id,config)
+        Message.value = response.data.message;
+    }
 
-        return {
-          Demandes,
-          getDemandes,
-          getDemandesByUser,
-          destroyDemande,
 
-        }
+    const storeDemande = async (demande) => {
+        let response = await axios.post('http://127.0.0.1:8000/api/demande', demande,config)
+        Message.value = response.data.message;
+
+    }
+
+    return {
+        Demandes,
+        Message,
+        getDemandes,
+        getDemandesByUser,
+        storeDemande,
+        destroyDemande,
+        getDemandesByAnnonceOfRecruteur,
+
+    }
 }

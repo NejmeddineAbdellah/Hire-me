@@ -27,7 +27,7 @@ class StoreDemandeRequest extends FormRequest
             'lettre_motivation'=>'required',
             'user_id'=>'required|exists:candidats',
             'id_annonce'=>'required',
-            'cv_candidat'=>'nullable',
+            
         ];
     }
 }

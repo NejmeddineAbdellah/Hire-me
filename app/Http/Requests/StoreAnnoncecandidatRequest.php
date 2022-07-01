@@ -25,7 +25,7 @@ class StoreAnnoncecandidatRequest extends FormRequest
     {
             return [
                 'type_annonce_candidat'=>'required',
-                'cv_candidat'=>'required',
+                'cv_candidat'=>'nullable',
                 'annonce_id'=>'required'
             ];
     }

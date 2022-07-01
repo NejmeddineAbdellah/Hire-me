@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('secteur',SecteurController::class, ['only' => ['index','show']]);
 Route::resource('annonce',AnnonceController::class, ['only' => ['index','show','showByTitre','showByType']]);
-Route::resource('user',UserController::class, ['only' => ['store','index','show']]);
+Route::resource('user',UserController::class, ['only' => ['store']]);
 Route::resource('recruteur',RecruteurController::class,['only' => ['index','show']]);
 Route::resource('candidat',CandidatController::class,['only' => ['index','show']]);
 Route::resource('demande',DemandeController::class,['only' => ['index','show']]);
@@ -35,10 +35,15 @@ Route::get('getUser/{role}',[UserController::class,'getUserByRole']);
 Route::post('/login',[UserController::class,'login']);
 Route::post('/logout',[UserController::class,'logout']);
 
+Route::get('/getdemanderecruteur/{id}',[DemandeController::class,'getDemandesByAnnonceRecruteur']);
 
 
-//Route::group(['middleware'=>['auth:sanctum']],function(){
-  
+
+Route::group(['middleware'=>['auth:sanctum']],function(){
+      
+      Route::get('/getAnnonceCandidatBySecteur/{titre}',[AnnonceController::class,'getAnnonceCandidatBySecteur']);
+      Route::get('/getAnnonceRecruteurBySecteur/{titre}',[AnnonceController::class,'getAnnonceRecruteurBySecteur']);
+      Route::resource('user',UserController::class, ['only' => ['index','show']]);
       Route::resource('secteur',SecteurController::class, ['only' => ['store','update','destroy']]);
       Route::resource('annonce',AnnonceController::class, ['only' => ['store','update','destroy']]);
       Route::resource('user',UserController::class, ['only' => ['update','destroy']]);
@@ -49,5 +54,5 @@ Route::post('/logout',[UserController::class,'logout']);
       Route::resource('anrecruteur',AnnoncerecruteurController::class,['only' => ['store','update','destroy']]);
       Route::get('getAnnonceByuserId/{id}',[UserController::class,'getAnnonceByuserId']);
 
-//});
+});
 

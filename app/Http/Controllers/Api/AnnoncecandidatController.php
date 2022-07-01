@@ -49,10 +49,10 @@ class AnnoncecandidatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($annoncecandidat)
-    {        
- 
-        return Annonce::find($annoncecandidat)->ancandidats;
-
+    {        $an= Annonce::find($annoncecandidat);
+        $annonce = Annonce::leftJoin('annoncecandidats','annonces.id',"annoncecandidats.annonce_id")->where('annonces.id', $an->id)->first();
+        return $annonce;
+       // Annonce::find($annoncecandidat)->ancandidats
     }
 
     /**

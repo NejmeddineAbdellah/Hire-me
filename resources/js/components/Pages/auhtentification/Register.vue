@@ -2,9 +2,9 @@
     <div class="container">
         <div class="Radiocheck" style="padding-top:15rem;">
 
-            <input type="radio" id="role" name="role" checked @click="activeform = 'Candidat'" value="Candidat">
+            <input type="radio" id="role" name="role" checked @click="activeform = 'RegistreCandidat'" value="Candidat">
             Candidat
-            <input type="radio" id="role" name="role" @click="activeform = 'Recruteur'" value="Recruteur"
+            <input type="radio" id="role" name="role" @click="activeform = 'RegistreRecruteur'" value="Recruteur"
                 style="margin-left:20px;"> Recruteur
 
         </div>
@@ -13,17 +13,17 @@
 </template>
 
 <script>
-    import Candidat from './RegisterType/Candidat.vue'
-    import Recruteur from './RegisterType/Recruteur.vue'
+    import RegistreCandidat from './RegisterType/RegistreCandidat.vue'
+    import RegistreRecruteur from './RegisterType/RegistreRecruteur.vue'
     export default {
         name: 'Register',
         components: {
-            Candidat,
-            Recruteur,
+            RegistreCandidat,
+            RegistreRecruteur,
         },
         data() {
             return {
-                activeform: 'Candidat',
+                activeform: 'RegistreCandidat',
             };
         },
 

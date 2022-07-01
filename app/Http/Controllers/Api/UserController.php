@@ -94,13 +94,26 @@ class UserController extends Controller
     public function login(Request $request){
 
         $user = User::whereEmail($request->email)->first();
-        if (isset($user->id)) {
-            if (Hash::check($request->password,$user->password)) {
-                $token = $user->createToken('auth_token')->plainTextToken;
+        
+        
+
+        if($user->role == 'candidat')
+        {
+           $userlogged=User::leftJoin('candidats','users.id',"candidats.user_id")->whereEmail($request->email)->first();
+
+        }elseif($user->role == 'recruteur'){
+
+            $userlogged=User::leftJoin('recruteurs','users.id',"recruteurs.user_id")->whereEmail($request->email)->first();
+        }else{
+            $userlogged=$user;
+        }
+        if (isset($userlogged->id)) {
+            if (Hash::check($request->password,$userlogged->password)) {
+                $token = $userlogged->createToken('auth_token')->plainTextToken;
                 
                 return response()->json([
                     'message' => 'bienvenue',
-                    $user,
+                    $userlogged,
                     'Token' => $token
                 ]);
             } else {
