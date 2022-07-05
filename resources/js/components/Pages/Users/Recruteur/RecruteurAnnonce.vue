@@ -114,9 +114,8 @@
 </template>
 
 <script>
-    import { onMounted, ref, reactive } from 'vue'
+    import { onMounted, ref, } from 'vue'
     import useAnnonces from '../../../../store/annonceStore.js'
-    import useDemandes from '../../../../store/demandeStore.js'
     import useSecteurs from '../../../../store/secteurStore.js'
     import useUsers from '../../../../store/userStore.js'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
@@ -167,7 +166,7 @@
                     contrat:'',
                     salaire: '',
                     type_annonce: 'recruteur',
-                    user_id: userConnecter.user_id,
+                    user_id: userConnecter.id,
                     }  
                     Message.value="" 
             }
@@ -176,29 +175,29 @@
                 updating.value = true;
             
                getAnnonceById(id) 
-               getAnnoncesByIdUser(userConnecter.user_id)
+               getAnnoncesByIdUser(userConnecter.id)
             }
 
             function createAnnonce(){
 
                 storeAnnonce({...Annonce.value});
-                getAnnoncesByIdUser(userConnecter.user_id)
+                getAnnoncesByIdUser(userConnecter.id)
                 clear()
             }
 
             function modifierAnnonce(id) {
                 updateAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.user_id)
+                getAnnoncesByIdUser(userConnecter.id)
                 
             }
 
             function deleteAnnonce(id) {
                 destroyAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.user_id)
+                getAnnoncesByIdUser(userConnecter.id)
                 
 
             }           
-            onMounted(getAnnoncesByIdUser(userConnecter.user_id))
+            onMounted(getAnnoncesByIdUser(userConnecter.id))
             onMounted(getSecteurs)
  
 

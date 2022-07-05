@@ -14,32 +14,17 @@ use PhpParser\Node\Stmt\ElseIf_;
 
 class AnnonceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {   
         return Annonce::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreAnnonceRequest $request)
     {
         $annonce = Annonce::create($request->all());
@@ -75,12 +60,6 @@ class AnnonceController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     { 
         $an= Annonce::find($id);
@@ -97,12 +76,25 @@ class AnnonceController extends Controller
         return $annonce;
     }
 
+    public function getLatestAnnonceCandidat(){
+        $annonce = Annonce::where('type_annonce','=','candidat')->orderBy('created_at','DESC')->take(1)->get();
+        return $annonce;
+            
+        
+    }
+
+    public function getLatestAnnonceRecruteur(){
+        $annonce = Annonce::where('type_annonce','=','recruteur')->orderBy('created_at','DESC')->take(1)->get();
+        return $annonce;
+    }
+
     public function showByTitre($titre){
     
             $annonce=Annonce::where('secteur_activite','=',$titre)->get();
             return $annonce;
 
     }
+
     public function showByType($type){
 
             if($type == 'candidat')
@@ -127,58 +119,38 @@ class AnnonceController extends Controller
         return $annonce;
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateAnnonceRequest $request, $id)
     {
         $annonce = Annonce::find($id);
         $annonce->update($request->all());
 
-    if ($annonce->type_annonce == 'candidat') {
+        if ($annonce->type_annonce == 'candidat') {
 
-        $annoncecandidat=Annoncecandidat::where('annonce_id',$id);
-        $annoncecandidat->cv_candidat = $request->cv_candidat;
-        $annoncecandidat->user_id = $annonce->user_id;
-        $annoncecandidat->update($request->only(['cv_candidat', 'type_annonce_candidat']));
-    } 
-    elseif ($annonce->type_annonce == 'recruteur') {
-      
-        $annoncerecruteur=Annoncerecruteur::where('annonce_id',$id);
-        $annoncerecruteur->salaire = $request->salaire;
-        $annoncerecruteur->contrat = $request->contrat;
-        $annoncerecruteur->user_id = $annonce->user_id;
-        $annoncerecruteur->update($request->only(['contrat','salaire',]));
-      
-    }
-    return response()->json([
-        'message'=>"L'annonce a été modifier !"
-    ]);
-            
+            $annoncecandidat=Annoncecandidat::where('annonce_id',$id);
+            $annoncecandidat->cv_candidat = $request->cv_candidat;
+            $annoncecandidat->user_id = $annonce->user_id;
+            $annoncecandidat->update($request->only(['cv_candidat', 'type_annonce_candidat']));
+        } 
+        elseif ($annonce->type_annonce == 'recruteur') {
+        
+            $annoncerecruteur=Annoncerecruteur::where('annonce_id',$id);
+            $annoncerecruteur->salaire = $request->salaire;
+            $annoncerecruteur->contrat = $request->contrat;
+            $annoncerecruteur->user_id = $annonce->user_id;
+            $annoncerecruteur->update($request->only(['contrat','salaire',]));
+        
+        }
+        return response()->json([
+            'message'=>"L'annonce a été modifier !"
+        ]);
+                
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $annonce = Annonce::find($id);

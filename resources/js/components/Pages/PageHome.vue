@@ -128,13 +128,13 @@
                                 <img src="/img/blog/home-blog1.jpg" alt="">
                                 <!-- Blog date -->
                                 <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
+                                    <p>récemment</p>
                                 </div>
                             </div>
                             <div class="blog-cap">
-                                <p>| Properties</p>
-                                <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                <p>| Recrutement</p>
+                                <h3><a href="single-blog.html">{{AnnonceR.titre_annonce}}</a></h3>
+                                <p>{{AnnonceR.description_annonce}}</p>
                                 <a href="#" class="more-btn">Read more »</a>
                             </div>
                         </div>
@@ -147,13 +147,14 @@
                                 <img src="/img/blog/home-blog2.jpg" alt="">
                                 <!-- Blog date -->
                                 <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
+                                    <span></span>
+                                    <p>récemment</p>
                                 </div>
                             </div>
                             <div class="blog-cap">
-                                <p>| Properties</p>
-                                <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                <p>| Candidat</p>
+                                <h3><a href="single-blog.html">{{AnnonceC.titre_annonce}}</a></h3>
+                                <p>{{AnnonceC.description_annonce}}</p>
                                 <a href="#" class="more-btn">Read more »</a>
                             </div>
                         </div>
@@ -168,6 +169,7 @@
 
 <script>
 import useSecteurs from '../../store/secteurStore.js'
+import useAnnonces from '../../store/annonceStore.js'
 import {onMounted} from 'vue'
   import TheSlider from '../TheSlider.vue'
 
@@ -178,11 +180,20 @@ import {onMounted} from 'vue'
         },
         setup() {
             const {Secteurs,getSecteurs}=useSecteurs()
-
+            const {
+                getLatestAnnonceRecruteur,
+                getLatestAnnonceCandidat,
+                AnnonceC,
+                AnnonceR,
+            }=useAnnonces()
 
             onMounted(getSecteurs)
+            onMounted(getLatestAnnonceRecruteur)
+            onMounted(getLatestAnnonceCandidat)
             return {
             Secteurs,
+            AnnonceC,
+            AnnonceR,
             
             }
         }

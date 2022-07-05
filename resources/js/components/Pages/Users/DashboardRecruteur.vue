@@ -134,8 +134,6 @@
         color: #fff;
     }
 
-    #sidebar .nav {}
-
     #sidebar .nav a {
         background: none;
         border-bottom: 1px solid #455A64;

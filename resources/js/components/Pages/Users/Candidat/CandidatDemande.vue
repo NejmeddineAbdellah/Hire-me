@@ -61,10 +61,10 @@
 
             function deleteDemande(id) {
                 destroyDemande(id);
-                getDemandesByUser(userConnecter.user_id)
+                getDemandesByUser(userConnecter.id)
             }
 
-            onMounted(getDemandesByUser(userConnecter.user_id))
+            onMounted(getDemandesByUser(userConnecter.id))
 
             return {
                 getDemandes,

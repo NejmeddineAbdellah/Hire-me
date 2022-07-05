@@ -14,9 +14,12 @@ export default function useUsers() {
     const CurrentUsers = ref([])
     const Message = ref("")
     const islog = ref(localStorage.isloggedIn)
-    const token = ref(localStorage.token)
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
+    const token = ref()
+    let config = {
+        headers: { 
+            'Authorization': `Bearer ${localStorage.token}`,
+            'Accept' : 'appliction/json'
+         }
     }
 
     const getUserByRole = async (role) => {
@@ -41,8 +44,7 @@ export default function useUsers() {
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
             await router.push('/DashboardCandidat')
-        }
-        else {
+        }else {
             localStorage.token = response.data.Token;
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
@@ -53,11 +55,9 @@ export default function useUsers() {
 
     const logoutUser = async() => {
 
-  
             await axios.post('http://127.0.0.1:8000/api/logout')
             localStorage.clear()
             await router.push('/login')
-
     }
 
     const getUsersCandidat = async () => {
@@ -81,10 +81,7 @@ export default function useUsers() {
         let response = await axios.delete('http://127.0.0.1:8000/api/user/'+id,config)
         Message.value = response.data.message;
 
-
-
     }
-
 
     return {
         Message,

@@ -22,7 +22,10 @@
                                                 <li><a>Home</a></li>
                                             </router-link>
                                             <router-link to="/AnnonceList">
-                                                <li><a>Trouver Annonce</a></li>
+                                                <li><a>Trouver Emploi</a></li>
+                                            </router-link>
+                                             <router-link to="/CandidatList" v-if="connectedUser && connectedUser.role=='recruteur'">
+                                                <li><a>Trouver Candidat</a></li>
                                             </router-link>
                                             <router-link to="/Apropos">
                                                 <li><a>About</a></li>
@@ -80,13 +83,18 @@
         watchEffect,
         reactive
     } from 'vue'
+
     import useUsers from '../store/userStore.js'
+    import { useRouter } from 'vue-router'
+
 
 
 
     export default {
         setup() {
             const connectedUser = ref()
+            const router = useRouter()
+
             const islogged = ref(localStorage.isloggedIn)
             if (localStorage.getItem("isloggedIn") === null) {
                 islogged.value = false
@@ -112,7 +120,7 @@
             function Logout() {
                 islogged.value = ref(false)
                 logoutUser()
-
+               
             }
 
             return {

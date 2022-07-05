@@ -11,7 +11,8 @@
                         <input type="text" placeholder="Choisir le secteur d'activite">
                     </div>
                     <div class="select-form">
-                        <select v-model="titre_secteur_selecter" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <select v-model="titre_secteur_selecter" class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example">
                             <option>All</option>
                             <option v-for="secteur in Secteurs" :key="secteur.id" v-bind:value="secteur.titre_secteur">
                                 {{secteur.titre_secteur}}</option>
@@ -20,7 +21,8 @@
                     </div>
                     <div class="search-form">
 
-                        <a v-on:click="getAnnoncesByTitre(titre_secteur_selecter)">Find job</a>
+                        <a href="javascript:void(0)" @click="getAnnoncesByTitre(titre_secteur_selecter)">Trouver un
+                            emploi</a>
                     </div>
                 </form>
             </div>
@@ -37,15 +39,18 @@
                         <span>{{annonce.secteur_activite}}</span>
                     </div>
                     <p class="mb-1">{{annonce.description_annonce}}</p>
-                    <small>Contract :{{annonce.contrat}}</small><br />
+                    <small>Contrat :{{annonce.contrat}}</small><br />
                     <small>Salaire :{{annonce.salaire}}</small>
 
 
                 </div>
                 <div class="col-md mt-20">
                     <router-link v-bind:to="/Postuler/+annonce.annonce_id">
-                        <button type="button" @click="" class="btn btn-sm">Postuler</button>
                     </router-link>
+                    <button type="button" @click="postuler_annonce(annonce.annonce_id)"
+                        class="btn btn-sm">Postuler</button>
+
+
                 </div>
             </a>
         </div>
@@ -55,6 +60,9 @@
 
 <script>
     import useAnnonces from '../../store/annonceStore.js'
+    import {
+        useRouter
+    } from 'vue-router'
     import useSecteurs from '../../store/secteurStore.js'
     import {
         onMounted,
@@ -67,12 +75,15 @@
 
         setup() {
             const titre_secteur_selecter = ref('')
-            const connectedUser = localStorage.currentUser
+            const router = useRouter()
+            let connectedUser = ref()
             const {
                 Annonces,
                 getAnnonces,
                 getAnnoncesBySecteur,
                 getAnnoncebyConnectedUser,
+                getAnnoncesCandidat,
+                getAnnoncesRecruteur,
                 getAnnoncesRecruteurByTitre,
                 getAnnoncesCandidatByTitre
             } = useAnnonces()
@@ -81,28 +92,53 @@
                 getSecteurs
             } = useSecteurs()
 
-            function getAnnoncesByTitre(titre) {
-                if (connectedUser.role == 'recruteur') {
-                    if (titre == "All") {
-                        getAnnoncesCandidat();
-                    } else {
-                        getAnnoncesCandidatByTitre(titre);
-                    }
-                } else if (connectedUser.role == 'candidat') {
-                    if (titre == "All") {
-                        getAnnoncesRecruteur();
-                    } else {
-                        getAnnoncesRecruteurByTitre(titre);
-                    }
+            function postuler_annonce(annonce_id) {
+                let connectedUser = localStorage.currentUser
+                if (!connectedUser) {
+
+                    router.push('/login')
                 } else {
+
+                    router.push('/Postuler/' + annonce_id)
+
+                }
+            }
+
+            function getAnnoncesByTitre(titre) {
+
+                if (!localStorage.currentUser) {
 
                     if (titre == "All") {
                         getAnnonces();
+
                     } else {
                         getAnnoncesBySecteur(titre);
+
+                    }
+
+                } else {
+                    let connectedUser = JSON.parse(localStorage.currentUser)
+
+                    if (connectedUser.role == 'recruteur') {
+                        if (titre == "All") {
+                            getAnnoncesCandidat();
+
+                        } else {
+                            getAnnoncesCandidatByTitre(titre);
+
+                        }
+                    } else if (connectedUser.role == 'candidat') {
+                        if (titre == "All") {
+                            getAnnoncesRecruteur();
+
+                        } else {
+                            getAnnoncesRecruteurByTitre(titre);
+
+                        }
                     }
 
                 }
+
             }
             onMounted(getSecteurs)
             onMounted(getAnnoncebyConnectedUser)
@@ -114,7 +150,8 @@
                 getAnnoncesByTitre,
                 titre_secteur_selecter,
                 getAnnoncebyConnectedUser,
-               
+                postuler_annonce,
+
             }
         },
         components: {

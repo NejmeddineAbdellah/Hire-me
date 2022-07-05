@@ -5,45 +5,51 @@ import axios from "axios";
 
 
 
+
 export default function useAnnonces() {
 
 
     const Annonces = ref([])
     const Annonce = ref([])
+    const AnnonceC = ref([])
+    const AnnonceR = ref([])
     const Message = ref([])
     const AnnonceCandidat = ref([])
     const AnnonceRecruteur = ref([])
-    const token = ref(localStorage.token)
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
+  
+    let config = {
+        headers: { 
+            'Authorization': `Bearer ${localStorage.token}`,
+            'Accept' : 'appliction/json'
+         }
     }
 
     const getAnnoncesBySecteur = async (titre) => {
 
-        let response = await axios.get('http://127.0.0.1:8000/api/annoncebysecteur/' + titre,config)
+        let response = await axios.get('http://127.0.0.1:8000/api/annoncebysecteur/' + titre)
         Annonces.value = response.data;
 
     }
     const getAnnonces = async () => {
 
-        let response = await axios.get('http://127.0.0.1:8000/api/annonce',config)
+        let response = await axios.get('http://127.0.0.1:8000/api/annonce', config)
         Annonces.value = response.data;
     }
     const getAnnoncesCandidat = async () => {
-        let response = await axios.get('http://127.0.0.1:8000/api/annonceByType/' +'candidat',config)
+        let response = await axios.get('http://127.0.0.1:8000/api/annonceByType/candidat', config)
         AnnonceCandidat.value = response.data;
         Annonces.value = response.data;
 
         
     }
     const getAnnoncesRecruteur = async () => {
-        let response = await axios.get('http://127.0.0.1:8000/api/annonceByType/' +'recruteur',config)
+        let response = await axios.get('http://127.0.0.1:8000/api/annonceByType/recruteur', config)
         AnnonceRecruteur.value = response.data;
         Annonces.value = response.data;
         
     }
     const getAnnoncesRecruteurByTitre = async (titre) => {
-        let response = await axios.get('http://127.0.0.1:8000/api/getAnnonceRecruteurBySecteur/' + titre,config)
+        let response = await axios.get('http://127.0.0.1:8000/api/getAnnonceRecruteurBySecteur/' + titre, config)
         Annonces.value = response.data;
         
     }
@@ -58,9 +64,9 @@ export default function useAnnonces() {
         Annonce.value = response.data;
 
     }
-    const getAnnoncesByIdUser = async (user_id) => {
-
-        let response = await axios.get('http://127.0.0.1:8000/api/getAnnonceByuserId/' + user_id,config)
+    const getAnnoncesByIdUser = async (id) => {
+      
+        let response = await axios.get('http://127.0.0.1:8000/api/getAnnonceByuserId/' + id, config)
         Annonces.value = response.data;
 
     }
@@ -79,9 +85,7 @@ export default function useAnnonces() {
     }
     const destroyAnnonce = async (id) => {
         axios.delete('http://127.0.0.1:8000/api/annonce/' + id,config)
-    }
-    
-
+    } 
     const getAnnoncebyConnectedUser = async () => {
         if(localStorage.currentUser)
         {
@@ -98,12 +102,22 @@ export default function useAnnonces() {
         }
         
     }
+    const getLatestAnnonceCandidat = async () => {
+        let response = await axios.get('http://127.0.0.1:8000/api/getlatestcandidatannonce')
+        AnnonceC.value = response.data[0];
+    }
+    const getLatestAnnonceRecruteur = async () => {
+        let response = await axios.get('http://127.0.0.1:8000/api/getlatestrecruteurannonce')
+        AnnonceR.value = response.data[0];
+    }
 
 
 
     return {
         Annonces,
         Annonce,
+        AnnonceC,
+        AnnonceR,
         Message,
         AnnonceCandidat,
         AnnonceRecruteur,
@@ -117,6 +131,8 @@ export default function useAnnonces() {
         getAnnoncebyConnectedUser,
         getAnnoncesRecruteurByTitre,
         getAnnoncesCandidatByTitre,
+        getLatestAnnonceCandidat,
+        getLatestAnnonceRecruteur,
         storeAnnonce,
         updateAnnonce,
         destroyAnnonce,

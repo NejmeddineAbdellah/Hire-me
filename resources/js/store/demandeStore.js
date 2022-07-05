@@ -11,9 +11,13 @@ export default function useDemandes() {
     const Demandes = ref([])
     const Message = ref("")
     const token = ref(localStorage.token)
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
+    let config = {
+        headers: { 
+            'Authorization': `Bearer ${localStorage.token}`,
+            'Accept' : 'appliction/json'
+         }
     }
+
 
 
     const getDemandes = async () => {
@@ -40,7 +44,7 @@ export default function useDemandes() {
 
 
     const storeDemande = async (demande) => {
-        let response = await axios.post('http://127.0.0.1:8000/api/demande', demande,config)
+        let response = await axios.post('http://127.0.0.1:8000/api/demande', demande , config)
         Message.value = response.data.message;
 
     }

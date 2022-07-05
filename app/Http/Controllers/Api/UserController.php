@@ -95,25 +95,25 @@ class UserController extends Controller
 
         $user = User::whereEmail($request->email)->first();
         
-        
 
-        if($user->role == 'candidat')
-        {
-           $userlogged=User::leftJoin('candidats','users.id',"candidats.user_id")->whereEmail($request->email)->first();
+        // if($user->role == 'candidat')
+        // {
+        //    $userlogged=User::rightJoin('candidats','users.id',"candidats.user_id")->whereEmail($request->email)->first();
 
-        }elseif($user->role == 'recruteur'){
+        // }elseif($user->role == 'recruteur'){
 
-            $userlogged=User::leftJoin('recruteurs','users.id',"recruteurs.user_id")->whereEmail($request->email)->first();
-        }else{
-            $userlogged=$user;
-        }
-        if (isset($userlogged->id)) {
-            if (Hash::check($request->password,$userlogged->password)) {
-                $token = $userlogged->createToken('auth_token')->plainTextToken;
+        //     $userlogged=User::rightJoin('recruteurs','users.id',"recruteurs.user_id")->whereEmail($request->email)->first();
+        // }else{
+        //     $userlogged=$user;
+        // }
+
+        if (isset($user->id)) {
+            if (Hash::check($request->password,$user->password)) {
+                $token = $user->createToken('auth_token')->plainTextToken;
                 
                 return response()->json([
                     'message' => 'bienvenue',
-                    $userlogged,
+                    $user,
                     'Token' => $token
                 ]);
             } else {

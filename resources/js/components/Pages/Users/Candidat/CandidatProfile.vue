@@ -109,7 +109,7 @@
                 getDemandesByUser
             } = useDemandes()
 
-            onMounted(getAnnoncesByIdUser(userConnecter.user_id), getDemandesByUser(userConnecter.user_id))
+            onMounted(getAnnoncesByIdUser(userConnecter.id), getDemandesByUser(userConnecter.id))
 
             return {
                 Annonces,

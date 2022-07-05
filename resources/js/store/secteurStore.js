@@ -8,9 +8,13 @@ export default function useSecteurs(){
         const Secteurs = ref([])
         const Secteur = ref([])
         const token = ref(localStorage.token)
-        const config = {
-            headers: { Authorization: `Bearer ${token}` }
-        }
+        let config = {
+          headers: { 
+              'Authorization': `Bearer ${localStorage.token}`,
+              'Accept' : 'appliction/json'
+           }
+      }
+  
         
         const getSecteurs= async() => {
            let response = await axios.get('http://127.0.0.1:8000/api/secteur',config)           

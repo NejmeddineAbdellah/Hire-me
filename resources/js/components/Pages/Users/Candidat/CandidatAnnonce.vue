@@ -167,7 +167,7 @@
                     niveau_etude: "",
                     secteur_activite: "",
                     type_annonce: "candidat",
-                    user_id: userConnecter.user_id,
+                    user_id: userConnecter.id,
                     type_annonce_candidat: ""
                 }
             }
@@ -176,32 +176,32 @@
             function getSelectedAnnonce(id) {
                 updating.value = true;
                getAnnonceCandidat(id)
-               getAnnoncesByIdUser(userConnecter.user_id)
+               getAnnoncesByIdUser(userConnecter.id)
 
             }
 
             function createAnnonce() {
                 storeAnnonce({...Annonce.value});
-                getAnnoncesByIdUser(userConnecter.user_id)
+                getAnnoncesByIdUser(userConnecter.id)
                 clear()
 
             }
 
             function modifierAnnonce(id) {
                 updateAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.user_id)
+                getAnnoncesByIdUser(userConnecter.id)
                 clear()
             }
 
             function deleteAnnonce(id) {
                 destroyAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.user_id)
+                getAnnoncesByIdUser(userConnecter.id)
                 clear()
 
             }
 
 
-            onMounted(getAnnoncesByIdUser(userConnecter.user_id))
+            onMounted(getAnnoncesByIdUser(userConnecter.id))
             onMounted(getSecteurs)
 
 

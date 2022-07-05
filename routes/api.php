@@ -34,15 +34,17 @@ Route::get('annonceByType/{type}',[AnnonceController::class,'showByType']);
 Route::get('getUser/{role}',[UserController::class,'getUserByRole']);
 Route::post('/login',[UserController::class,'login']);
 Route::post('/logout',[UserController::class,'logout']);
+Route::get('getlatestcandidatannonce',[AnnonceController::class,'getLatestAnnonceCandidat']);
+Route::get('getlatestrecruteurannonce',[AnnonceController::class,'getLatestAnnonceRecruteur']);
 
 Route::get('/getdemanderecruteur/{id}',[DemandeController::class,'getDemandesByAnnonceRecruteur']);
+Route::get('/getAnnonceCandidatBySecteur/{titre}',[AnnonceController::class,'getAnnonceCandidatBySecteur']);
+Route::get('/getAnnonceRecruteurBySecteur/{titre}',[AnnonceController::class,'getAnnonceRecruteurBySecteur']);
 
 
 
 Route::group(['middleware'=>['auth:sanctum']],function(){
       
-      Route::get('/getAnnonceCandidatBySecteur/{titre}',[AnnonceController::class,'getAnnonceCandidatBySecteur']);
-      Route::get('/getAnnonceRecruteurBySecteur/{titre}',[AnnonceController::class,'getAnnonceRecruteurBySecteur']);
       Route::resource('user',UserController::class, ['only' => ['index','show']]);
       Route::resource('secteur',SecteurController::class, ['only' => ['store','update','destroy']]);
       Route::resource('annonce',AnnonceController::class, ['only' => ['store','update','destroy']]);
@@ -53,6 +55,6 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
       Route::resource('ancandidat',AnnoncecandidatController::class,['only' => ['store','update','destroy']]);
       Route::resource('anrecruteur',AnnoncerecruteurController::class,['only' => ['store','update','destroy']]);
       Route::get('getAnnonceByuserId/{id}',[UserController::class,'getAnnonceByuserId']);
-
+      
 });
 
