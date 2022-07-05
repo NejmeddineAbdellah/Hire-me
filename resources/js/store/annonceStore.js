@@ -87,19 +87,7 @@ export default function useAnnonces() {
         axios.delete('http://127.0.0.1:8000/api/annonce/' + id,config)
     } 
     const getAnnoncebyConnectedUser = async () => {
-        if(localStorage.currentUser)
-        {
-            if(JSON.parse(localStorage.currentUser).role =='candidat')
-            {
                 await getAnnoncesRecruteur()
-    
-            }else if(JSON.parse(localStorage.currentUser).role =='recruteur'){
-               await getAnnoncesCandidat()
-               
-            }
-        }else{
-            await getAnnonces()
-        }
         
     }
     const getLatestAnnonceCandidat = async () => {

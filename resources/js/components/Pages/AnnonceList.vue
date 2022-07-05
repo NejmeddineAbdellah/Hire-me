@@ -6,6 +6,9 @@
         <div class="row mt-20">
             <div class="col-xl-8">
                 <!-- form -->
+                <div class="alert alert-info fade show" role="alert" v-if="Message">
+                          vous devez connectez pour postuler pour l'annonce !!
+                            </div>
                 <form action="#" class="search-box">
                     <div class="input-form">
                         <input type="text" placeholder="Choisir le secteur d'activite">
@@ -76,6 +79,7 @@
         setup() {
             const titre_secteur_selecter = ref('')
             const router = useRouter()
+            let Message = ref(false)
             let connectedUser = ref()
             const {
                 Annonces,
@@ -96,7 +100,8 @@
                 let connectedUser = localStorage.currentUser
                 if (!connectedUser) {
 
-                    router.push('/login')
+                    Message.value=true      
+                    //router.push('/login')
                 } else {
 
                     router.push('/Postuler/' + annonce_id)
@@ -109,34 +114,12 @@
                 if (!localStorage.currentUser) {
 
                     if (titre == "All") {
-                        getAnnonces();
+                        getAnnoncesRecruteur();
 
                     } else {
-                        getAnnoncesBySecteur(titre);
+                        getAnnoncesRecruteurByTitre(titre);
 
                     }
-
-                } else {
-                    let connectedUser = JSON.parse(localStorage.currentUser)
-
-                    if (connectedUser.role == 'recruteur') {
-                        if (titre == "All") {
-                            getAnnoncesCandidat();
-
-                        } else {
-                            getAnnoncesCandidatByTitre(titre);
-
-                        }
-                    } else if (connectedUser.role == 'candidat') {
-                        if (titre == "All") {
-                            getAnnoncesRecruteur();
-
-                        } else {
-                            getAnnoncesRecruteurByTitre(titre);
-
-                        }
-                    }
-
                 }
 
             }
@@ -146,6 +129,7 @@
             return {
                 connectedUser,
                 Annonces,
+                Message,
                 Secteurs,
                 getAnnoncesByTitre,
                 titre_secteur_selecter,

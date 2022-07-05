@@ -20494,6 +20494,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup() {
     var titre_secteur_selecter = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
+    var Message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var connectedUser = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)();
 
     var _useAnnonces = (0,_store_annonceStore_js__WEBPACK_IMPORTED_MODULE_0__["default"])(),
@@ -20514,7 +20515,7 @@ __webpack_require__.r(__webpack_exports__);
       var connectedUser = localStorage.currentUser;
 
       if (!connectedUser) {
-        router.push('/login');
+        Message.value = true; //router.push('/login')
       } else {
         router.push('/Postuler/' + annonce_id);
       }
@@ -20523,25 +20524,9 @@ __webpack_require__.r(__webpack_exports__);
     function getAnnoncesByTitre(titre) {
       if (!localStorage.currentUser) {
         if (titre == "All") {
-          getAnnonces();
+          getAnnoncesRecruteur();
         } else {
-          getAnnoncesBySecteur(titre);
-        }
-      } else {
-        var _connectedUser = JSON.parse(localStorage.currentUser);
-
-        if (_connectedUser.role == 'recruteur') {
-          if (titre == "All") {
-            getAnnoncesCandidat();
-          } else {
-            getAnnoncesCandidatByTitre(titre);
-          }
-        } else if (_connectedUser.role == 'candidat') {
-          if (titre == "All") {
-            getAnnoncesRecruteur();
-          } else {
-            getAnnoncesRecruteurByTitre(titre);
-          }
+          getAnnoncesRecruteurByTitre(titre);
         }
       }
     }
@@ -20551,6 +20536,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       connectedUser: connectedUser,
       Annonces: Annonces,
+      Message: Message,
       Secteurs: Secteurs,
       getAnnoncesByTitre: getAnnoncesByTitre,
       titre_secteur_selecter: titre_secteur_selecter,
@@ -22887,11 +22873,16 @@ var _hoisted_3 = {
   "class": "col-xl-8"
 };
 var _hoisted_4 = {
+  key: 0,
+  "class": "alert alert-info fade show",
+  role: "alert"
+};
+var _hoisted_5 = {
   action: "#",
   "class": "search-box"
 };
 
-var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "input-form"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -22902,98 +22893,98 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_6 = {
+var _hoisted_7 = {
   "class": "select-form"
 };
 
-var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", null, "All", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_8 = ["value"];
-var _hoisted_9 = {
+var _hoisted_9 = ["value"];
+var _hoisted_10 = {
   "class": "search-form"
 };
-var _hoisted_10 = {
+var _hoisted_11 = {
   "class": "list-group mt-5 row"
 };
 
-var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Total d'annonce est :", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_12 = {
+var _hoisted_13 = {
   "class": "col-md"
 };
-var _hoisted_13 = {
-  "class": "d-flex w-100 justify-content-between"
-};
 var _hoisted_14 = {
-  "class": "mb-1"
+  "class": "d-flex w-100 justify-content-between"
 };
 var _hoisted_15 = {
   "class": "mb-1"
 };
+var _hoisted_16 = {
+  "class": "mb-1"
+};
 
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_17 = {
+var _hoisted_18 = {
   "class": "col-md mt-20"
 };
-var _hoisted_18 = ["onClick"];
+var _hoisted_19 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_TheSlider = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TheSlider");
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheSlider), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search Box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheSlider), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Search Box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" form "), $setup.Message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, " vous devez connectez pour postuler pour l'annonce !! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.titre_secteur_selecter = $event;
     }),
     "class": "form-select",
     id: "floatingSelect",
     "aria-label": "Floating label select example"
-  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.Secteurs, function (secteur) {
+  }, [_hoisted_8, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.Secteurs, function (secteur) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: secteur.id,
       value: secteur.titre_secteur
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(secteur.titre_secteur), 9
     /* TEXT, PROPS */
-    , _hoisted_8);
+    , _hoisted_9);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.titre_secteur_selecter]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.titre_secteur_selecter]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "javascript:void(0)",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $setup.getAnnoncesByTitre($setup.titre_secteur_selecter);
     })
-  }, "Trouver un emploi")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End search form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.Annonces.length), 1
+  }, "Trouver un emploi")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End search form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.Annonces.length), 1
   /* TEXT */
   )]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.Annonces, function (annonce) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       key: annonce.id,
       "class": "list-group-item list-group-item-action flex-column align-items-start"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.titre_annonce), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.titre_annonce), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.secteur_activite), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.description_annonce), 1
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.description_annonce), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Contrat :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.contrat), 1
     /* TEXT */
-    ), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Salaire :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.salaire), 1
+    ), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, "Salaire :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(annonce.salaire), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: /Postuler/ + annonce.annonce_id
     }, null, 8
     /* PROPS */
@@ -23005,7 +22996,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "btn btn-sm"
     }, "Postuler", 8
     /* PROPS */
-    , _hoisted_18)])]);
+    , _hoisted_19)])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])], 64
@@ -26772,41 +26763,10 @@ function useAnnonces() {
         while (1) {
           switch (_context13.prev = _context13.next) {
             case 0:
-              if (!localStorage.currentUser) {
-                _context13.next = 11;
-                break;
-              }
-
-              if (!(JSON.parse(localStorage.currentUser).role == 'candidat')) {
-                _context13.next = 6;
-                break;
-              }
-
-              _context13.next = 4;
+              _context13.next = 2;
               return getAnnoncesRecruteur();
 
-            case 4:
-              _context13.next = 9;
-              break;
-
-            case 6:
-              if (!(JSON.parse(localStorage.currentUser).role == 'recruteur')) {
-                _context13.next = 9;
-                break;
-              }
-
-              _context13.next = 9;
-              return getAnnoncesCandidat();
-
-            case 9:
-              _context13.next = 13;
-              break;
-
-            case 11:
-              _context13.next = 13;
-              return getAnnonces();
-
-            case 13:
+            case 2:
             case "end":
               return _context13.stop();
           }
