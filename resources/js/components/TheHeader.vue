@@ -96,7 +96,7 @@
             const router = useRouter()
 
             const islogged = ref(localStorage.isloggedIn)
-            if (localStorage.getItem("isloggedIn") === null) {
+            if (localStorage.getItem('isloggedIn')) {
                 islogged.value = false
                 
                 connectedUser.value = null
@@ -107,9 +107,7 @@
 
             }
 
-            watchEffect(() =>{
-                islogged.value = localStorage.isloggedIn
-            })
+          
 
             const {
                 User,
@@ -122,6 +120,20 @@
                 logoutUser()
                
             }
+
+
+            onMounted(
+                 async function(){
+                    if (localStorage.getItem('isloggedIn')) {
+                        // The page was just reloaded. Clear the value from local storage
+                        // so that it will reload the next time this page is visited.
+                        localStorage.removeItem('isloggedIn');
+                    } else {
+                        // Set a flag so that we know not to reload the page twice.
+                        localStorage.setItem('isloggedIn', '1');
+                        location.reload();
+                    }
+                 })
 
             return {
                 User,

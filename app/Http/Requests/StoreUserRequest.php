@@ -29,7 +29,6 @@ class StoreUserRequest extends FormRequest
             'password_confirmation' => 'required_with:password|same:password|min:6',
             'username'=>'required|unique:users',
             'tele'=>'required|unique:users',
-            'secteur_activite'=>'required',
             'ville'=>'required',
             'role'=>'required'
         ];

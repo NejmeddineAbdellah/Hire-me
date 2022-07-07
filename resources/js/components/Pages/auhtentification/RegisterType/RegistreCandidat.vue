@@ -40,13 +40,13 @@
             <div class="form-group">
                 <div class="col-sm-12">
                     <p> Votre image :</p>
-                    <input type="file" id="image" class="form-control">
+                    <input type="file" @change="avatarupload" id="avatare" name="avatare" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
                     <p> Votre Cv :</p>
-                    <input type="file" id="cv" class="form-control">
+                    <input type="file" id="cv" name="cv" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -55,18 +55,7 @@
                         class="form-control">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <div class="select-form">
-                        <p>Choisir votre secteur d'activite</p>
-                        <select class="selectpicker" v-model="User.secteur_activite">
-                            <option value="All" selected>All</option>
-                            <option v-for="secteur in Secteurs" :key="secteur.id" v-bind:value="secteur.titre_secteur">
-                                {{secteur.titre_secteur}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+          
             <div class="form-group">
                 <div class="col-sm-12">
                     <input type="text" id="Telephone" v-model="User.tele" placeholder="Telephone" class="form-control"
@@ -91,13 +80,27 @@
         ref,
         reactive
     } from 'vue'
+import { FullCalendar } from '../../../../../../public/assets/modules/fullcalendar/fullcalendar.js'
     import useSecteurs from '../../../../store/secteurStore.js'
     import useUsers from '../../../../store/userStore.js'
     export default {
 
+//   <div class="form-group">
+//                 <div class="col-sm-12">
+//                     <div class="select-form">
+//                         <p>Choisir votre secteur d'activite</p>
+//                         <select class="selectpicker" v-model="User.secteur_activite">
+//                             <option value="All" selected>All</option>
+//                             <option v-for="secteur in Secteurs" :key="secteur.id" v-bind:value="secteur.titre_secteur">
+//                                 {{secteur.titre_secteur}}</option>
+//                         </select>
+//                     </div>
+//                 </div>
+//             </div>
         setup() {
             const User = ref({
-                role: "candidat"
+                role: "candidat",
+                image_candidat:''
             })
             const {
                 Secteurs,
@@ -110,13 +113,30 @@
             function createUser(User) {
                 storeUser(User)
             }
+
+            function avatarupload(event) {
+            
+        
+            let file = event.target.files[0];
+            let reader = new FileReader();
+           
+            
+            reader.onloadend = (file) => {
+               User.value.image_candidat = reader.result;
+               
+            }
+                 reader.readAsDataURL(file);
+              
+               
+            }
             onMounted(getSecteurs)
 
 
             return {
                 Secteurs,
-                createUser,
                 User,
+                createUser,
+                avatarupload
             }
         },
 

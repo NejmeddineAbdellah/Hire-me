@@ -28,7 +28,6 @@ class UpdateUserRequest extends FormRequest
             'password'=>['required|password|min:8|confirmed'],
             'username'=>['required|unique:users'],
             'tele'=>['required|unique:users'],
-            'secteur_activite'=>['required'],
             'ville'=>['required'],
             'role'=>['required']
         ];

@@ -24,7 +24,6 @@ class User extends Authenticatable
         'username',
         'password',
         'tele',
-        'secteur_activite',
         'ville',
         'role'
     ];
