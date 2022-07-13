@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">titre secteur</label>
                             <input type="text" v-model="Secteur.titre_secteur" class="form-control" id="titre_secteur"
-                                aria-describedby="text" placeholder="Entrer Votre le titre secteur">
+                                aria-describedby="text" placeholder="Entrer le titre du secteur">
                         </div>
                     </form>
                 </div>
@@ -24,7 +24,7 @@
                     <button type="button" v-else @click="modifierSecteur(Secteur.id),updating=true"
                         class="btn btn-warning" data-dismiss="modal">Modifier</button>
                     <button type="button" @click="cleardata" class="btn btn-secondary"
-                        data-dismiss="modal">Close</button>
+                        data-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
     setCurrentPage: 2,
     nextLabel: 'next',
     prevLabel: 'prev',
-    rowsPerPageLabel: 'Rows per page',
+    rowsPerPageLabel: 'Lignes par page',
     ofLabel: 'of',
     pageLabel: 'page', // for 'pages' mode
     allLabel: 'All',
@@ -53,7 +53,7 @@
   }">
             <template #table-actions>
                 <button type="button" class="btn-success !important" data-toggle="modal" @click="clear"
-                    data-target="#addSecteurModal">Add New Secteur d'activite</button>
+                    data-target="#addSecteurModal">Ajouter un Secteur d'activités</button>
             </template>
             <template #table-row="props">
 

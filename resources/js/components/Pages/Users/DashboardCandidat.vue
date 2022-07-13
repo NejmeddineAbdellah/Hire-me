@@ -24,7 +24,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="zmdi zmdi-view-dashboard" @click="logout">Logout</i>
+                            <i class="zmdi zmdi-view-dashboard" @click="logout">Deconnecter</i>
                         </a>
                     </li>
 
@@ -32,11 +32,7 @@
             </div>
             <!-- Content -->
             <div id="content">
-
-                <div class="container">
-
                     <component :is="actform"></component>
-                </div>
             </div>
         </div>
     </div>
@@ -139,8 +135,6 @@
     #sidebar header a:hover {
         color: #fff;
     }
-
-    #sidebar .nav {}
 
     #sidebar .nav a {
         background: none;

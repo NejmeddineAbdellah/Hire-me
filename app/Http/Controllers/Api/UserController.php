@@ -1,14 +1,18 @@
 <?php
 
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Candidat;
 use App\Models\Recruteur;
+use Intervention\Image\Facades\Image as Image;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -59,15 +63,32 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     { 
+        
         $us = User::create($request->all());
 
         if ($request->role == 'candidat') {
           
 
         $candidat = new Candidat();
+
+        $currentPhoto = $candidat->image_candidat;
+        
+        if($request->image_candidat != $currentPhoto){
+            $name = time().'.' . explode('/', explode(':', substr($request->image_candidat, 0, strpos($request->image_candidat, ';')))[1])[1];
+           
+            Image::make($request->image_candidat)->save(public_path('img/users/').$name);
+           // $request->merge(['photo' => $name]);
+
+            // $userPhoto = public_path('img/profile/').$currentPhoto;
+            // if(file_exists($userPhoto)){
+            //     @unlink($userPhoto);
+            // }
+
+        }
+
         $candidat->nom_candidat = $request->nom_candidat;
         $candidat->prenom_candidat = $request->prenom_candidat;
-        $candidat->image_candidat = $request->image_candidat;
+       // $candidat->image_candidat = $request->image_candidat;
         $candidat->niveau_etude = $request->niveau_etude;
         $candidat->cv_candidat = $request->cv_candidat;
         $candidat->user_id = $us->id;

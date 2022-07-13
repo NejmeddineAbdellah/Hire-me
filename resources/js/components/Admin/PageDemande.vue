@@ -14,7 +14,7 @@
     setCurrentPage: 2,
     nextLabel: 'next',
     prevLabel: 'prev',
-    rowsPerPageLabel: 'Rows per page',
+    rowsPerPageLabel: 'Lignes par page',
     ofLabel: 'of',
     pageLabel: 'page', // for 'pages' mode
     allLabel: 'All',

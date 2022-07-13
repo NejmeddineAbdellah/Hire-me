@@ -24,7 +24,7 @@
                                 <h4>Contact Info</h4>
                                 <ul>
                                     <li><p>Address : UPM </p></li>
-                                    <li><a><p>Phone : +8880 44338899</p></a></li>
+                                    <li><a><p>Téléphone : +8880 44338899</p></a></li>
                                     <li><a><p>Email : info@colorlib.com</p></a></li>
                                 </ul>
                             </div>
@@ -36,9 +36,9 @@
                             <div class="footer-tittle">
                                 <h4>Lien rapide</h4>
                                 <ul>
-                                    <router-link to="/"><p><li><a>Home</a></li></p></router-link>
+                                    <router-link to="/"><p><li><a>Accueil</a></li></p></router-link>
                                     <router-link to="/contact"><p><li><a>Contact</a></li></p></router-link>
-                                    <router-link to="/Apropos"><p><li><a>About</a></li></p></router-link>
+                                    <router-link to="/Apropos"><p><li><a>A propos</a></li></p></router-link>
                                     <router-link to="/AnnonceList"><p><li><a>Trouver Annonce</a></li></p></router-link>
                                 </ul>
                             </div>

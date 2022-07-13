@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Username</p>
+                                        <p class="mb-0">Nom d'utilisateur</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{userConnecter.username}}</p>
@@ -43,7 +43,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Phone</p>
+                                        <p class="mb-0">Téléphone</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{userConnecter.tele}}</p>

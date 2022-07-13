@@ -1,5 +1,5 @@
 <template>
-    <TheHeader/>
+    <TheHeader  :key="componentKey"/>
     <router-view/>
     <TheFooter/>
 </template>
@@ -21,6 +21,7 @@
     import DashboardRecruteur from './components/Pages/Users/DashboardRecruteur.vue'
 
 
+    import {ref} from 'vue';
 
 var headers = {
   'Accept':'application/json',
@@ -47,8 +48,19 @@ var headers = {
         },
 
         data() {
+           
+        },
+        setup() {
+            const componentKey = ref()
+
+             
             return {
+            componentKey,
+            
+            
+
             }
+            
         }
     }
 

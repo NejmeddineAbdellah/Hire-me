@@ -14,7 +14,7 @@
                    <li class="dropdown"><a href="#" data-toggle="dropdown"
                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                           <div class="d-sm-none d-lg-inline-block">Hi, Admin</div>
+                           <div class="d-sm-none d-lg-inline-block">Bienvenu</div>
                        </a>
                        <div class="dropdown-menu dropdown-menu-right">
                            <a href="features-profile.html" class="dropdown-item has-icon">
@@ -23,7 +23,7 @@
 
                            <div class="dropdown-divider"></div>
                            <a href="#" class="dropdown-item has-icon text-danger">
-                               <i class="fas fa-sign-out-alt"></i> Logout
+                               <i class="fas fa-sign-out-alt"></i> Deconnecter
                            </a>
                        </div>
                    </li>
@@ -44,7 +44,7 @@
                                <span>Dashboard</span></a>
                        </li>
                        <li class="dropdown">
-                           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Users</span></a>
+                           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Utilisateur</span></a>
                            <ul class="dropdown-menu">
                                <li><a href="javascript:void(0)" @click="dataform = 'UserCandidat'">Candidats</a></li>
                                <li><a href="javascript:void(0)" @click="dataform = 'UserRecruteur'">Recruteurs </a></li>
@@ -67,7 +67,7 @@
                        <li class="dropdown">
                            <a href="javascript:void(0)" @click="dataform = 'PageSecteur'"><i class="fa fa-graduation-cap"></i>
                                <span>Secteurs
-                                   d'activite</span></a>
+                                   d'activités</span></a>
                        </li>
                    </ul>
 

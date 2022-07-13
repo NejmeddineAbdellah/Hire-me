@@ -9,14 +9,14 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="password" id="password" v-model="User.password" name="password" placeholder="Password"
+                    <input type="password" id="password" v-model="User.password" name="password" placeholder="Mot de passe"
                         class="form-control" autocomplete="on" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
                     <input type="password" id="password_confirmation" v-model="User.password_confirmation"
-                        placeholder="confirmation Password" class="form-control" autocomplete="on"
+                        placeholder="Confirmation du Mot de passe" class="form-control" autocomplete="on"
                         name="password_confirmation" required>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" id="username" placeholder="Username" v-model="User.username"
+                    <input type="text" id="username" placeholder="Nom d'utilisateur" v-model="User.username"
                         class="form-control">
                 </div>
             </div>

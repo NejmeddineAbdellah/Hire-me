@@ -84,7 +84,7 @@
     setCurrentPage: 2,
     nextLabel: 'next',
     prevLabel: 'prev',
-    rowsPerPageLabel: 'Rows per page',
+    rowsPerPageLabel: 'Lignes par page',
     ofLabel: 'of',
     pageLabel: 'page', 
     allLabel: 'All',
@@ -93,12 +93,12 @@
   }">
 
             <template #table-actions>
-                <button type="button" class="btn-success mr-3 !important" @click="clear" data-toggle="modal"
-                    data-target="#AnnonceRecruteurModal">Add New Annonce</button>
+                <button type="button" class="btn-success mr-3 !important btn-lg" @click="clear" data-toggle="modal"
+                    data-target="#AnnonceRecruteurModal">Publier Annonce</button>
             </template>
 
             <template #table-row="props">
-                <span v-if="props.column.field == 'action'">
+                <span v-if="props.column.field == 'action'" class="d-flex">
                     <button type="button" data-toggle="modal" data-target="#AnnonceRecruteurModal"
                             @click="getSelectedAnnonce(props.row.id)" class="btn-warning mr-3 !important"><i
                             class="fa fa-pencil-square" aria-hidden="true"></i>
@@ -126,22 +126,10 @@
         setup() {
             const userConnecter = JSON.parse(localStorage.currentUser)
             let updating = ref(false);
-            // let Annonce=reactive({
-            //         titre_annonce: '',
-            //         description_annonce: '',
-            //         niveau_etude: '',
-            //         secteur_activite: '',
-            //         type_annonce: 'recruteur',
-            //         user_id: userConnecter.user_id,
-            //         contrat: '',
-            //         salaire: ''
-                
-            // })
 
             const {
                 Annonces,
                 Annonce,
-                AnnonceRecruteur,
                 Message,
                 getAnnonces,
                 getAnnoncesBySecteur,

@@ -24,7 +24,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0)">
-                            <i class="zmdi zmdi-view-dashboard" @click="logout">Logout</i>
+                            <i class="zmdi zmdi-view-dashboard" @click="logout">Deconnecter</i>
                         </a>
                     </li>
 

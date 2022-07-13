@@ -55,15 +55,15 @@
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
                         <div class="media-body">
-                            <h3>+1 253 565 2365</h3>
+                            <h3>+212 000 000 000</h3>
                             <p>Mon to Fri 9am to 6pm</p>
                         </div>
                     </div>
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
                         <div class="media-body">
-                            <h3>support@colorlib.com</h3>
-                            <p>Send us your query anytime!</p>
+                            <h3>support@hireme.com</h3>
+                            <p>Envoyez-nous votre demande à tout moment !</p>
                         </div>
                     </div>
                 </div>

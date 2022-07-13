@@ -32,7 +32,7 @@
             <div class="widget-small danger coloured-icon"><a href="javascript:void(0)"><i
                         class="icon fa fa-bullhorn fa-3x"></i></a>
                 <div class="info">
-                    <h5>Total annonces Recruteur</h5>
+                    <h5>Total annonces Recrutement</h5>
                     <p><b>{{AnnonceRecruteur.length}}</b></p>
                 </div>
             </div>

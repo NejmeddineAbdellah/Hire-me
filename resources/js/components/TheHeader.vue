@@ -1,7 +1,7 @@
 <template>
     <header>
         <!-- Header Start -->
-        <div class="header-area header-transparrent">
+        <div class="header-area header-transparrent" >
             <div class="headder-top header-sticky">
                 <div class="row align-items-center col-lg-12">
                     <div class="col-lg-2 col-md-2">
@@ -19,7 +19,7 @@
                                     <nav class="d-none d-lg-inline">
                                         <ul id="navigation">
                                             <router-link to="/">
-                                                <li><a>Home</a></li>
+                                                <li><a>Accueil</a></li>
                                             </router-link>
                                             <router-link to="/AnnonceList">
                                                 <li><a>Trouver Emploi</a></li>
@@ -28,7 +28,7 @@
                                                 <li><a>Trouver Candidat</a></li>
                                             </router-link>
                                             <router-link to="/Apropos">
-                                                <li><a>About</a></li>
+                                                <li><a>A propos</a></li>
                                             </router-link>
                                             <router-link to="/contact">
                                                 <li><a>Contact</a></li>
@@ -51,14 +51,14 @@
                                 <div class="header-btn d-none f-right d-lg-flex">
 
                                     <router-link to="/Registre" v-if="!islogged"><a class="btn head-btn1"
-                                            style="color:#FFF;background-color:#DA2461 !important;">Register</a>
+                                            style="color:#FFF;background-color:#DA2461 !important;">S'inscrire</a>
                                     </router-link>
 
                                     <router-link to="/Login" v-if="!islogged"><a class="btn head-btn2"
-                                            style="color:#FB246A !important;">Login</a></router-link>
+                                            style="color:#FB246A !important;">Connecter</a></router-link>
 
                                     <router-link to="/login" v-else><a @click="Logout" class="btn head-btn2"
-                                            style="color:#FB246A !important;">Logout</a></router-link>
+                                            style="color:#FB246A !important;">Deconnecter</a></router-link>
 
                                 </div>
                             </div>
@@ -92,21 +92,30 @@
 
     export default {
         setup() {
+            const componentKey = ref()
             const connectedUser = ref()
             const router = useRouter()
 
             const islogged = ref(localStorage.isloggedIn)
-            if (localStorage.getItem('isloggedIn')) {
-                islogged.value = false
-                
-                connectedUser.value = null
+           function forceRerender() {
+            componentKey.value += 1
+            }
+
+            if (localStorage.isloggedIn) {
+                islogged.value = true
+                if(localStorage.currentUser)
+                {
+                    
+                    connectedUser.value = JSON.parse(localStorage.currentUser)
+                }
+
 
             } else {
-                connectedUser.value = JSON.parse(localStorage.currentUser)
-                islogged.value = true
+                islogged.value = false
 
             }
 
+            console.log(islogged);
           
 
             const {
@@ -116,30 +125,19 @@
             } = useUsers()
 
             function Logout() {
-                islogged.value = ref(false)
+                islogged.value = false
                 logoutUser()
                
             }
 
 
-            onMounted(
-                 async function(){
-                    if (localStorage.getItem('isloggedIn')) {
-                        // The page was just reloaded. Clear the value from local storage
-                        // so that it will reload the next time this page is visited.
-                        localStorage.removeItem('isloggedIn');
-                    } else {
-                        // Set a flag so that we know not to reload the page twice.
-                        localStorage.setItem('isloggedIn', '1');
-                        location.reload();
-                    }
-                 })
-
             return {
+                componentKey,
                 User,
                 islogged,
                 connectedUser,
                 Logout,
+                forceRerender,
 
             }
         },

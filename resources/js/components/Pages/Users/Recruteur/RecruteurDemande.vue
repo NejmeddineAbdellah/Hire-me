@@ -94,10 +94,20 @@
                         type: 'text',
                     },
                     {
+                        label: 'Ville',
+                        field: 'ville',
+                        type: 'text',
+                    },{
+                        label: 'Telephone',
+                        field: 'tele',
+                        type: 'text',
+                    },
+                    {
                         label: 'Action',
                         field: 'action',
                         type: 'input'
                     }
+                    
                 ],
             }
         },

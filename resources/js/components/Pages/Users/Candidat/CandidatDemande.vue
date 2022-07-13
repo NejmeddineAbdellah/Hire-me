@@ -88,7 +88,12 @@
                     },
                     {
                         label: "Titre d'annonce",
-                        field: 'id_annonce',
+                        field: 'titre_annonce',
+                        type: 'text',
+                    },
+                    {
+                        label: "Secteur d'activite",
+                        field: 'secteur_activite',
                         type: 'text',
                     },
                     {

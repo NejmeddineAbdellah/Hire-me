@@ -3,13 +3,13 @@
         <form class="login_form ">
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example1">Email address</label>
+                <label class="form-label" for="form2Example1">Email </label>
                 <input type="email" v-model="User.email" id="email" name="email" class="form-control" required />
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example2">Password</label>
+                <label class="form-label" for="form2Example2">Mot de passe</label>
                 <input :type="visibility" name="password" v-model="User.password" id="form2Example2"
                     class="form-control" autocomplete="on" required />
 
@@ -18,7 +18,7 @@
             <label class="switch"><input type="checkbox" @click="isVisible" />
                 <div></div>
             </label>
-            <p>Show password</p>
+            <p>Afficher Mot de passe</p>
             <!-- 2 column grid layout for inline styling -->
             <div class="row mb-4">
                 <div class="col d-flex justify-content-center">
@@ -32,12 +32,12 @@
             </div>
 
             <!-- Submit button -->
-            <button type="button" @click="login(User)" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button type="button" @click="login(User)" class="btn btn-primary btn-block mb-4">Connecter</button>
 
             <!-- Register buttons -->
             <div class="text-center">
                 <router-link to='/Registre'>
-                    <p>Not a member? <a>Register</a></p>
+                    <p>Pas un membre? <a>S'inscrire</a></p>
                 </router-link>
             </div>
             <div v-if="Message!==''" class="alert alert-secondary" role="alert">

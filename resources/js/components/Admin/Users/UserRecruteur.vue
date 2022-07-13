@@ -15,7 +15,7 @@
     setCurrentPage: 2,
     nextLabel: 'next',
     prevLabel: 'prev',
-    rowsPerPageLabel: 'Rows per page',
+    rowsPerPageLabel: 'Lignes par page',
     ofLabel: 'of',
     pageLabel: 'page', 
     allLabel: 'All',
@@ -24,7 +24,7 @@
   }">
             <template #table-actions>
                 <button type="button" class="btn-success !important" @click="cleardata"
-                    data-toggle="modal" data-target="#addrecruteurModal">Add New Recruteur</button>
+                    data-toggle="modal" data-target="#addrecruteurModal">Ajouter un Recruteur</button>
 
 
             </template>

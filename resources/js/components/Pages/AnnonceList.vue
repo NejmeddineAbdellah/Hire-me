@@ -24,8 +24,7 @@
                     </div>
                     <div class="search-form">
 
-                        <a href="javascript:void(0)" @click="getAnnoncesByTitre(titre_secteur_selecter)">Trouver un
-                            emploi</a>
+                        <a href="javascript:void(0)" @click="getAnnoncesByTitre(titre_secteur_selecter)">Chercher</a>
                     </div>
                 </form>
             </div>
