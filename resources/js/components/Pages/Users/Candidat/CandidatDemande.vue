@@ -37,8 +37,6 @@
 <script>
     import {
         onMounted,
-        ref,
-        reactive
     } from 'vue'
     import useDemandes from '../../../../store/demandeStore.js'
     import 'vue-good-table-next/dist/vue-good-table-next.css'

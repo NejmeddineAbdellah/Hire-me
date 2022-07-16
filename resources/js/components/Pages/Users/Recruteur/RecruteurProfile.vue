@@ -107,10 +107,10 @@
             } = useAnnonces()
             const {
                 Demandes,
-                getDemandesByUser
+                getDemandesByAnnonceOfRecruteur
             } = useDemandes()
 
-            onMounted(getAnnoncesByIdUser(userConnecter.id), getDemandesByUser(userConnecter.id))
+            onMounted(getAnnoncesByIdUser(userConnecter.id), getDemandesByAnnonceOfRecruteur(userConnecter.id))
 
             return {
                 Annonces,

@@ -14,7 +14,6 @@ export default function useUsers() {
     const CurrentUsers = ref([])
     const Message = ref("")
     const islog = ref(localStorage.isloggedIn)
-    const token = ref()
     let config = {
         headers: { 
             'Authorization': `Bearer ${localStorage.token}`,
@@ -28,6 +27,7 @@ export default function useUsers() {
     }
 
     const loginUser = async (user) => {
+
        let response = await axios.post('http://127.0.0.1:8000/api/login', user,config)
         Message.value = response.data.message;
     
@@ -36,19 +36,19 @@ export default function useUsers() {
             localStorage.token = response.data.Token;
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
-            await router.push('/DashboardRecruteur')
-            
+           window.location.href = '/DashboardRecruteur'
+
         }else if (response.data[0].role == "candidat") {
 
             localStorage.token = response.data.Token;
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
-            await router.push('/DashboardCandidat')
+            window.location.href = '/DashboardCandidat'
+           
         }else {
             localStorage.token = response.data.Token;
             localStorage.currentUser = JSON.stringify(response.data[0]);
             localStorage.isloggedIn = true;
-         
             window.location.href = '/admin'
         }
     }
@@ -72,8 +72,20 @@ export default function useUsers() {
 
     const storeUser = async (user) => {
 
-        await axios.post('http://127.0.0.1:8000/api/user/', user,config)
-        await router.push('/login')
+        try {
+            let response = await axios.post('http://127.0.0.1:8000/api/user/', user, config)
+            await router.push('/login')
+           Message.value = response.data.message;
+
+        } catch (error) {
+            for (const key in error.response.data.errors) {
+                
+            Message.value += error.response.data.errors[key][0]+ "  |  " ;
+
+            }
+           
+        }
+        
 
     }
 
@@ -97,7 +109,6 @@ export default function useUsers() {
         getUsersCandidat,
         loginUser,
         logoutUser,
-
 
     }
 }

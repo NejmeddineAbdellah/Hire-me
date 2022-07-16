@@ -6,24 +6,26 @@
                     <div class="card shadow-lg card-1">
                         <div class="card-body inner-card">
                             <div class="row justify-content-center">
-                            <div v-if="Message!==''" class="alert alert-secondary" role="alert">
-                            {{Message}}
-                            </div>
+                                <div v-if="Message!==''" class="alert alert-secondary" role="alert">
+                                    {{Message}}
+                                </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12">
-                                
-                                    <div class="form-group"><label for="first-name">Nom et prénom</label><input v-model="nomprenom" type="text"
-                                            class="form-control" id="first-name" placeholder=""> </div>
+
+                                    <div class="form-group"><label for="first-name">Nom et prénom</label><input
+                                            v-model="nomprenom" type="text" class="form-control" id="first-name"
+                                            placeholder=""> </div>
 
                                     <div class="form-group"> <label for="exampleFormControlTextarea2">Demande</label>
-                                        <textarea class="demande" v-model="demande.lettre_motivation" id="demande" name="demande"
-                                            rows="5" required></textarea></div>
+                                        <textarea class="demande" v-model="demande.lettre_motivation" id="demande"
+                                            name="demande" rows="5" required></textarea></div>
                                 </div>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-12 col-lg-10 col-12">
                                     <div class="mb-2 mt-4">
                                         <div class="text-right">
-                                            <button type="button" @click="createDemande" class="btn btn-primary btn-block"><small
+                                            <button type="button" @click="createDemande"
+                                                class="btn btn-primary btn-block"><small
                                                     class="font-weight-bold">Postuler</small></button>
                                         </div>
                                     </div>
@@ -37,43 +39,44 @@
     </div>
 </template>
 <script>
-import useDemanndes from '../../store/demandeStore.js'
- import {
-        onMounted,
-        ref,
+    import useDemanndes from '../../store/demandeStore.js'
+    import {
         reactive
     } from 'vue'
-    import {useRoute} from 'vue-router'
+    import {
+        useRoute
+    } from 'vue-router'
 
     export default {
-    setup() {
-        const route = useRoute()
-        const connectedUser = JSON.parse(localStorage.currentUser)
-   
-        const demande = reactive({
-            'lettre_motivation':'',
-            'user_id':connectedUser.user_id,
-            'id_annonce':route.params.id,
-         
-        })
-        
-        const {
-            Demandes,
-            Message,
-            storeDemande
-        }=useDemanndes()
+        setup() {
+            const route = useRoute()
+            const connectedUser = JSON.parse(localStorage.currentUser)
 
-       const createDemande = async() => {
-        await storeDemande({...demande})
-       }
+            const demande = reactive({
+                'lettre_motivation': '',
+                'user_id': connectedUser.id,
+                'id_annonce': route.params.id,
 
-        return{
-            demande,
-            Message,
-            createDemande,
+            })
+
+            const {
+                Message,
+                storeDemande
+            } = useDemanndes()
+
+            const createDemande = async () => {
+                await storeDemande({
+                    ...demande
+                })
+            }
+
+            return {
+                demande,
+                Message,
+                createDemande,
+            }
+
         }
-
-    }
 
     }
 </script>

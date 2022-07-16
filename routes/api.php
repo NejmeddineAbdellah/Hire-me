@@ -55,6 +55,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
       Route::resource('ancandidat',AnnoncecandidatController::class,['only' => ['store','update','destroy']]);
       Route::resource('anrecruteur',AnnoncerecruteurController::class,['only' => ['store','update','destroy']]);
       Route::get('getAnnonceByuserId/{id}',[UserController::class,'getAnnonceByuserId']);
-      
+      Route::get('/admin', function(){return view('admin');}); 
+        
 });
 

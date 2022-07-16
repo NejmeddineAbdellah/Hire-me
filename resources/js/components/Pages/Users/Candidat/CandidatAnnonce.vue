@@ -108,10 +108,8 @@
     import {
         onMounted,
         ref,
-        reactive
     } from 'vue'
     import useAnnonces from '../../../../store/annonceStore.js'
-    import useDemandes from '../../../../store/demandeStore.js'
     import useSecteurs from '../../../../store/secteurStore.js'
     import useUsers from '../../../../store/userStore.js'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
@@ -130,10 +128,7 @@
                 Annonces,
                 Annonce,
                 Message,
-                getAnnonces,
-                getAnnoncesBySecteur,
                 getAnnoncesByIdUser,
-                getAnnonceById,
                 getAnnonceCandidat,
                 storeAnnonce,
                 destroyAnnonce,

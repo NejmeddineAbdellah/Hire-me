@@ -62,6 +62,9 @@
             </div>
             <!-- /.form-group -->
             <button type="button" @click="createUser(User)" class="btn btn-primary">Register</button>
+            <div v-if="Message!==''" class="alert alert-secondary" role="alert">
+                {{Message}}
+            </div>
         </form>
         <!-- /form -->
     </div>
@@ -71,7 +74,6 @@
     import {
         onMounted,
         ref,
-        reactive
     } from 'vue'
     import useSecteurs from '../../../../store/secteurStore.js'
     import useUsers from '../../../../store/userStore.js'
@@ -86,6 +88,7 @@
                 getSecteurs
             } = useSecteurs()
             const {
+                Message,
                 storeUser
             } = useUsers()
 
@@ -96,6 +99,7 @@
 
 
             return {
+                Message,
                 Secteurs,
                 createUser,
                 User,

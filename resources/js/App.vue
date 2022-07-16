@@ -1,5 +1,5 @@
 <template>
-    <TheHeader  :key="componentKey"/>
+    <TheHeader  :key="headerkey"/>
     <router-view/>
     <TheFooter/>
 </template>
@@ -51,11 +51,13 @@ var headers = {
            
         },
         setup() {
-            const componentKey = ref()
+
+            localStorage.keyheader = 0;
+            const headerkey = localStorage.keyheader;
 
              
             return {
-            componentKey,
+            headerkey,
             
             
 

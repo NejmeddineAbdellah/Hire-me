@@ -4,8 +4,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" v-if="!updating">Ajouter Candidat</h5>
-                    <h5 class="modal-title" v-else>Modifier Candidat</h5>
+                    <h5 class="modal-title" v-if="!updating">Publier Annonce</h5>
+                    <h5 class="modal-title" v-else>Modifier Annonce</h5>
                     <button type="button" @click="cleardata" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -131,11 +131,8 @@
                 Annonces,
                 Annonce,
                 Message,
-                getAnnonces,
-                getAnnoncesBySecteur,
                 getAnnoncesByIdUser,
                 getAnnonceById,
-                getAnnoncesRecruteur,
                 storeAnnonce,
                 destroyAnnonce,
                 updateAnnonce} = useAnnonces()
@@ -169,6 +166,7 @@
             function createAnnonce(){
 
                 storeAnnonce({...Annonce.value});
+                console.log({...Annonce.value});
                 getAnnoncesByIdUser(userConnecter.id)
                 clear()
             }

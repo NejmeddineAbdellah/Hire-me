@@ -63,22 +63,18 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     { 
-        
+        try {
         $us = User::create($request->all());
 
         if ($request->role == 'candidat') {
-          
 
         $candidat = new Candidat();
-
         $currentPhoto = $candidat->image_candidat;
         
         if($request->image_candidat != $currentPhoto){
             $name = time().'.' . explode('/', explode(':', substr($request->image_candidat, 0, strpos($request->image_candidat, ';')))[1])[1];
-           
             Image::make($request->image_candidat)->save(public_path('img/users/').$name);
            // $request->merge(['photo' => $name]);
-
             // $userPhoto = public_path('img/profile/').$currentPhoto;
             // if(file_exists($userPhoto)){
             //     @unlink($userPhoto);
@@ -88,11 +84,9 @@ class UserController extends Controller
 
         $candidat->nom_candidat = $request->nom_candidat;
         $candidat->prenom_candidat = $request->prenom_candidat;
-       // $candidat->image_candidat = $request->image_candidat;
         $candidat->niveau_etude = $request->niveau_etude;
         $candidat->cv_candidat = $request->cv_candidat;
         $candidat->user_id = $us->id;
-
         $candidat->save();
           
         } 
@@ -102,7 +96,6 @@ class UserController extends Controller
         $recruteur->logo = $request->logo;
         $recruteur->name = $request->name;
         $recruteur->user_id = $us->id;
-    
         $recruteur->save();
           
         }
@@ -110,6 +103,9 @@ class UserController extends Controller
         return response()->json([
             'message'=>'Utilisateur a été Ajouté'
         ]);
+        } catch (\Throwable $th) {
+            throw "errrrroooorr";
+        }
     }
 
     public function login(Request $request){

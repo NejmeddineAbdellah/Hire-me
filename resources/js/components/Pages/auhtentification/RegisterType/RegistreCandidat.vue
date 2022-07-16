@@ -9,8 +9,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="password" id="password" v-model="User.password" name="password" placeholder="Mot de passe"
-                        class="form-control" autocomplete="on" required>
+                    <input type="password" id="password" v-model="User.password" name="password"
+                        placeholder="Mot de passe" class="form-control" autocomplete="on" required>
                 </div>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
                         class="form-control">
                 </div>
             </div>
-          
+
             <div class="form-group">
                 <div class="col-sm-12">
                     <input type="text" id="Telephone" v-model="User.tele" placeholder="Telephone" class="form-control"
@@ -70,6 +70,9 @@
 
             <!-- /.form-group -->
             <button type="button" @click="createUser(User)" class="btn btn-primary btn-block">Register</button>
+            <div v-if="Message!==''" class="alert alert-secondary" role="alert">
+                {{Message}}
+            </div>
         </form><!-- /form -->
     </div>
 </template>
@@ -78,62 +81,61 @@
     import {
         onMounted,
         ref,
-        reactive
     } from 'vue'
-import { FullCalendar } from '../../../../../../public/assets/modules/fullcalendar/fullcalendar.js'
+
     import useSecteurs from '../../../../store/secteurStore.js'
     import useUsers from '../../../../store/userStore.js'
     export default {
 
-//   <div class="form-group">
-//                 <div class="col-sm-12">
-//                     <div class="select-form">
-//                         <p>Choisir votre secteur d'activite</p>
-//                         <select class="selectpicker" v-model="User.secteur_activite">
-//                             <option value="All" selected>All</option>
-//                             <option v-for="secteur in Secteurs" :key="secteur.id" v-bind:value="secteur.titre_secteur">
-//                                 {{secteur.titre_secteur}}</option>
-//                         </select>
-//                     </div>
-//                 </div>
-//             </div>
         setup() {
+            
             const User = ref({
                 role: "candidat",
-                image_candidat:''
+                image_candidat: ''
             })
+
             const {
                 Secteurs,
                 getSecteurs
             } = useSecteurs()
             const {
-                storeUser
+                Message,
+                storeUser,
             } = useUsers()
 
             function createUser(User) {
-                storeUser(User)
+                storeUser(User)  
+                            
             }
 
+
             function avatarupload(event) {
-            
-        
-            let file = event.target.files[0];
-            let reader = new FileReader();
-           
-            
-            reader.onloadend = (file) => {
-               User.value.image_candidat = reader.result;
-               
-            }
-                 reader.readAsDataURL(file);
-              
-               
+
+                let file = event.target.files[0];
+                let reader = new FileReader();
+
+                if (file['size'] < 4194304) {
+                    reader.onloadend = (file) => {
+                        User.value.image_candidat = reader.result;
+
+                    }
+                    reader.readAsDataURL(file);
+
+                } else {
+
+                    alert(
+                        "ce fichier est trop volumineux pour être téléchargé, la taille de fichier maximale prise en charge est de 4 Mo");
+
+                }
+
+
             }
             onMounted(getSecteurs)
 
 
             return {
                 Secteurs,
+                Message,
                 User,
                 createUser,
                 avatarupload
@@ -142,7 +144,6 @@ import { FullCalendar } from '../../../../../../public/assets/modules/fullcalend
 
         name: 'candidat'
     }
-
 </script>
 
 <style scoped>
@@ -158,5 +159,4 @@ import { FullCalendar } from '../../../../../../public/assets/modules/fullcalend
         margin: auto;
 
     }
-
 </style>

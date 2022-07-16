@@ -65,7 +65,6 @@
                 logout,
                 connectedUser
             }
-            onMounted()
 
         },
         name: 'Dashboard',

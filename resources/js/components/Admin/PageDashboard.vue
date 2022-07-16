@@ -85,7 +85,6 @@
                 Annonces,
                 AnnonceCandidat,
                 AnnonceRecruteur,
-                getAnnonces,
                 getAnnoncesRecruteur,
                 getAnnoncesCandidat
             } = useAnnonces()

@@ -91,8 +91,6 @@
 <script>
     import {
         onMounted,
-        ref,
-        reactive
     } from 'vue'
     import useAnnonces from '../../../../store/annonceStore.js'
     import useDemandes from '../../../../store/demandeStore.js'

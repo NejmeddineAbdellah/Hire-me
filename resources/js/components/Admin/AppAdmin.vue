@@ -17,14 +17,11 @@
                            <div class="d-sm-none d-lg-inline-block">Bienvenu</div>
                        </a>
                        <div class="dropdown-menu dropdown-menu-right">
-                           <a href="features-profile.html" class="dropdown-item has-icon">
-                               <i class="far fa-user"></i> Profile
-                           </a>
-
                            <div class="dropdown-divider"></div>
-                           <a href="#" class="dropdown-item has-icon text-danger">
-                               <i class="fas fa-sign-out-alt"></i> Deconnecter
-                           </a>
+                           <a @click="Logout" class="dropdown-item has-icon text-danger">
+                                   <i class="fas fa-sign-out-alt"></i> Deconnecter
+                               </a>
+                           
                        </div>
                    </li>
                </ul>
@@ -40,11 +37,13 @@
                    <ul class="sidebar-menu">
                        <li class="menu-header">Pages</li>
                        <li class="dropdown">
-                           <a href="javascript:void(0)" @click="dataform = 'PageDashboard'"><i class="fa fa-tachometer"></i>
+                           <a href="javascript:void(0)" @click="dataform = 'PageDashboard'"><i
+                                   class="fa fa-tachometer"></i>
                                <span>Dashboard</span></a>
                        </li>
                        <li class="dropdown">
-                           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Utilisateur</span></a>
+                           <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i>
+                               <span>Utilisateur</span></a>
                            <ul class="dropdown-menu">
                                <li><a href="javascript:void(0)" @click="dataform = 'UserCandidat'">Candidats</a></li>
                                <li><a href="javascript:void(0)" @click="dataform = 'UserRecruteur'">Recruteurs </a></li>
@@ -54,9 +53,11 @@
                            <a href="#" class="nav-link has-dropdown"><i class="fa fa-bullhorn"></i>
                                <span>Annonces</span></a>
                            <ul class="dropdown-menu">
-                               <li><a href="javascript:void(0)" @click="dataform = 'AnnonceCandidat'">Annonces Candidat</a>
+                               <li><a href="javascript:void(0)" @click="dataform = 'AnnonceCandidat'">Annonces
+                                       Candidat</a>
                                </li>
-                               <li><a href="javascript:void(0)" @click="dataform = 'AnnonceRecruteur'">Annonces Recruteur</a>
+                               <li><a href="javascript:void(0)" @click="dataform = 'AnnonceRecruteur'">Annonces
+                                       Recruteur</a>
                                </li>
                            </ul>
                        </li>
@@ -65,7 +66,8 @@
                                <span>Demandes</span></a>
                        </li>
                        <li class="dropdown">
-                           <a href="javascript:void(0)" @click="dataform = 'PageSecteur'"><i class="fa fa-graduation-cap"></i>
+                           <a href="javascript:void(0)" @click="dataform = 'PageSecteur'"><i
+                                   class="fa fa-graduation-cap"></i>
                                <span>Secteurs
                                    d'activités</span></a>
                        </li>
@@ -105,20 +107,52 @@
 
    <script>
        import UserCandidat from './Users/UserCandidat.vue'
-       import router from '../../router'
        import UserRecruteur from './Users/UserRecruteur.vue'
        import AnnonceCandidat from './Annonces/AnnonceCandidat.vue'
        import AnnonceRecruteur from './Annonces/AnnonceRecruteur.vue'
        import PageDemande from './PageDemande.vue'
        import PageSecteur from './PageSecteur.vue'
        import PageDashboard from './PageDashboard.vue'
-
-       var headers = {
-           'Accept': 'application/json',
-           'Authorization': 'string'
-       };
+       import {
+           ref
+       } from "vue";
+       import useUsers from '../../store/userStore'
+import router from '../../router'
        export default {
+           setup() {
+               const islogged = ref(localStorage.isloggedIn)
+               const connectedUser = ref()
+               if (localStorage.isloggedIn) {
+                   islogged.value = true
+                   if (localStorage.currentUser) {
 
+                       connectedUser.value = JSON.parse(localStorage.currentUser)
+                   }
+
+
+               } else {
+                   islogged.value = false
+
+               }
+               const {
+                   User,
+                   logoutUser,
+               } = useUsers()
+
+               function Logout() {
+                   islogged.value = false
+                   logoutUser()
+                   window.location.href = '/'
+
+               }
+               return {
+                   User,
+                   islogged,
+                   connectedUser,
+                   Logout,
+
+               }
+           },
            name: 'AppAdmin',
            components: {
                UserCandidat,

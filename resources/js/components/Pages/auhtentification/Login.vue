@@ -40,8 +40,12 @@
                     <p>Pas un membre? <a>S'inscrire</a></p>
                 </router-link>
             </div>
-            <div v-if="Message!==''" class="alert alert-secondary" role="alert">
+            <div v-if="Message!=='' && Message !=='bienvenue'" class="alert alert-warning alert-dismissible fadeout"
+                role="alert">
                 {{Message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </form>
     </div>
@@ -50,27 +54,23 @@
 <script>
     import {
         ref,
-        reactive
     } from 'vue'
     import useUsers from '../../../store/userStore.js'
     export default {
         setup() {
+           
             const User = ref({})
             let visibility = ref("password");
-            const passwordField = document.querySelector('#password')
 
             const {
-                CurrentUsers,
                 loginUser,
                 Message
             } = useUsers()
 
             function login(User) {
-                if(localStorage){
+                if (localStorage) {
                     loginUser(User)
-                  
                 }
-                
             }
 
             function show() {
@@ -90,16 +90,12 @@
             }
 
 
-
-
             return {
-                
                 User,
                 login,
                 Message,
                 isVisible,
                 visibility
-
 
             }
         },
@@ -113,8 +109,6 @@
         padding: 30px;
         justify-content: space-evenly;
         width: 40%;
-
-
     }
 
     .text-center a {
@@ -133,10 +127,6 @@
         position: absolute;
         opacity: 0;
     }
-
-    /**
- * 1. Adjust this to size
- */
 
     .switch {
         display: inline-block;

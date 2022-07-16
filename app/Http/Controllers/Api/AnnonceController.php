@@ -99,10 +99,10 @@ class AnnonceController extends Controller
 
             if($type == 'candidat')
             {
-                $annonce=Annonce::leftJoin('annoncecandidats','annonces.id',"annoncecandidats.annonce_id")->leftjoin('users','users.id',"annoncecandidats.user_id")->where('type_annonce','=',$type)->get();
+                $annonce=Annonce::leftJoin('annoncecandidats','annonces.id',"annoncecandidats.annonce_id")->leftJoin('users','users.id',"annoncecandidats.user_id")->where('type_annonce','=',$type)->get();
             }
             elseif ($type == 'recruteur') {
-                $annonce=Annonce::leftJoin('annoncerecruteurs','annonces.id',"annoncerecruteurs.annonce_id")->leftjoin('users','users.id',"annoncerecruteurs.user_id")->where('type_annonce','=',$type)->get();
+                $annonce=Annonce::leftJoin('annoncerecruteurs','annonces.id',"annoncerecruteurs.annonce_id")->leftJoin('users','users.id',"annoncerecruteurs.user_id")->where('type_annonce','=',$type)->get();
             }
         return $annonce;
 
@@ -110,6 +110,7 @@ class AnnonceController extends Controller
 
     public function getAnnonceCandidatBySecteur($titre)
     {
+        
         $annonce = Annonce::where('type_annonce','=',"candidat")->where('secteur_activite','LIKE',$titre)->get();
         return $annonce;
     }

@@ -32,8 +32,7 @@
 </script>
 
 <style>
-    .form-horizontal {
-        ;
+    .form-horizontal {       
         padding: 10px;
         width: 50%;
         margin: auto;
@@ -41,13 +40,11 @@
     }
 
     .form-horizontal button {
-        ;
         margin: auto;
         width: min-content;
     }
 
     .Radiocheck {
-
         margin-left: 200px;
         font-size: 20px;
     }

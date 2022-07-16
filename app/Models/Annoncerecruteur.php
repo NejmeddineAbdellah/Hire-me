@@ -22,6 +22,6 @@ class Annoncerecruteur extends Model
     ]);
     
     public function annonces(){
-        return $this->belongsTo(Annonce::class);
+        return $this->belongsTo(Annonce::class,'annonce_id','id');
     }
 }

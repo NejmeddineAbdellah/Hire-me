@@ -21,7 +21,7 @@
                                             <router-link to="/">
                                                 <li><a>Accueil</a></li>
                                             </router-link>
-                                            <router-link to="/AnnonceList">
+                                            <router-link to="/AnnonceList" v-if="!connectedUser || connectedUser.role=='candidat'">
                                                 <li><a>Trouver Emploi</a></li>
                                             </router-link>
                                              <router-link to="/CandidatList" v-if="connectedUser && connectedUser.role=='recruteur'">
@@ -78,14 +78,11 @@
 
 <script>
     import {
-        onMounted,
         ref,
-        watchEffect,
-        reactive
     } from 'vue'
 
     import useUsers from '../store/userStore.js'
-    import { useRouter } from 'vue-router'
+
 
 
 
@@ -94,7 +91,6 @@
         setup() {
             const componentKey = ref()
             const connectedUser = ref()
-            const router = useRouter()
 
             const islogged = ref(localStorage.isloggedIn)
            function forceRerender() {
@@ -105,29 +101,22 @@
                 islogged.value = true
                 if(localStorage.currentUser)
                 {
-                    
                     connectedUser.value = JSON.parse(localStorage.currentUser)
                 }
 
 
             } else {
                 islogged.value = false
-
-            }
-
-            console.log(islogged);
-          
+            }          
 
             const {
                 User,
-                loginUser,
                 logoutUser,
             } = useUsers()
 
             function Logout() {
                 islogged.value = false
-                logoutUser()
-               
+                logoutUser()  
             }
 
 

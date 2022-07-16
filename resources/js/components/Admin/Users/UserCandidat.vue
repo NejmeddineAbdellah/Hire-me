@@ -44,8 +44,7 @@
 <script>
     import useUsers from '../../../store/userStore.js'
     import {
-        onMounted,
-        ref
+        onMounted
     } from 'vue'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     import {

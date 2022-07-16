@@ -6,9 +6,6 @@
         <div class="row mt-20">
             <div class="col-xl-8">
                 <!-- form -->
-                <div class="alert alert-info fade show" role="alert" v-if="Message">
-                          vous devez connectez pour postuler pour l'annonce !!
-                            </div>
                 <form action="#" class="search-box">
                     <div class="input-form">
                         <input type="text" placeholder="Choisir le secteur d'activite">
@@ -30,6 +27,7 @@
             </div>
         </div>
 
+            
         <!-- End search form -->
         <div class="list-group mt-5 row">
             <p><span>Total d'annonce est :</span>{{Annonces.length}}</p>
@@ -78,17 +76,13 @@
         setup() {
             const titre_secteur_selecter = ref('')
             const router = useRouter()
-            let Message = ref(false)
+            let Message = ref("")
             let connectedUser = ref()
             const {
                 Annonces,
-                getAnnonces,
-                getAnnoncesBySecteur,
                 getAnnoncebyConnectedUser,
-                getAnnoncesCandidat,
                 getAnnoncesRecruteur,
                 getAnnoncesRecruteurByTitre,
-                getAnnoncesCandidatByTitre
             } = useAnnonces()
             const {
                 Secteurs,
@@ -98,9 +92,9 @@
             function postuler_annonce(annonce_id) {
                 let connectedUser = localStorage.currentUser
                 if (!connectedUser) {
-
-                    Message.value=true      
-                    //router.push('/login')
+                    alert("vous devez connectez pour postuler a cette l'annonce !!")
+                   
+                    
                 } else {
 
                     router.push('/Postuler/' + annonce_id)
@@ -110,7 +104,7 @@
 
             function getAnnoncesByTitre(titre) {
 
-                if (!localStorage.currentUser) {
+                if (localStorage.currentUser) {
 
                     if (titre == "All") {
                         getAnnoncesRecruteur();

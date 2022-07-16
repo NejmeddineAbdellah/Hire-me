@@ -44,7 +44,7 @@
 <script>
     import useUsers from '../../../store/userStore.js'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
-    import { onMounted, ref } from 'vue'
+    import { onMounted } from 'vue'
     import { VueGoodTable } from 'vue-good-table-next';
     export default {
         setup() {
