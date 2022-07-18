@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-20">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" enctype="multipart/form-data">
             <h2>Candidat</h2>
             <div class="form-group">
                 <div class="col-sm-12">
@@ -45,8 +45,8 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <p> Votre Cv :</p>
-                    <input type="file" id="cv" name="cv" class="form-control">
+                    <p> Votre Cv : </p><b> * CV doit être au format d'image</b>
+                    <input type="file" id="cv" @change="cvupload" name="cv" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -91,7 +91,8 @@
             
             const User = ref({
                 role: "candidat",
-                image_candidat: ''
+                cv_candidat:'',
+                image_candidat: '',
             })
 
             const {
@@ -113,22 +114,32 @@
 
                 let file = event.target.files[0];
                 let reader = new FileReader();
-
                 if (file['size'] < 4194304) {
                     reader.onloadend = (file) => {
                         User.value.image_candidat = reader.result;
-
                     }
                     reader.readAsDataURL(file);
 
                 } else {
-
                     alert(
                         "ce fichier est trop volumineux pour être téléchargé, la taille de fichier maximale prise en charge est de 4 Mo");
-
                 }
+            }
+             function cvupload(event) {
 
+                 let cvfile = event.target.files[0];
+                 let reader = new FileReader();
+                 if (cvfile['size'] < 4194304) {
+                     reader.onloadend = (e) => {
+                         User.value.cv_candidat = e.target.result;
+                         //console.log(User.value.cv_candidat);
+                     }
+                     reader.readAsDataURL(cvfile);
 
+                 } else {
+                     alert(
+                         "ce fichier est trop volumineux pour être téléchargé, la taille de fichier maximale prise en charge est de 4 Mo");
+                 }
             }
             onMounted(getSecteurs)
 
@@ -138,7 +149,8 @@
                 Message,
                 User,
                 createUser,
-                avatarupload
+                avatarupload,
+                cvupload,
             }
         },
 

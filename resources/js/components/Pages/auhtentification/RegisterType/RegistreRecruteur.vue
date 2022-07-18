@@ -21,7 +21,7 @@
             <div class="form-group">
                 <div class="col-sm-12">
                     <p>Choisir votre Logo</p>
-                    <input type="file" id="logo" placeholder="logo" class="form-control">
+                    <input type="file" id="logo" @change="avatarupload" placeholder="logo" class="form-control">
                 </div>
             </div>
             <div class="form-group">
@@ -81,7 +81,9 @@
 
         setup() {
             const User = ref({
-                role: "recruteur"
+                role: "recruteur",
+                logo: ''
+
             })
             const {
                 Secteurs,
@@ -95,14 +97,38 @@
             function createUser(User) {
                 storeUser(User)
             }
+
+             function avatarupload(event) {
+
+                let file = event.target.files[0];
+                let reader = new FileReader();
+
+                if (file['size'] < 4194304) {
+                    reader.onloadend = (file) => {
+                        User.value.logo = reader.result;
+
+                    }
+                    reader.readAsDataURL(file);
+
+                } else {
+
+                    alert(
+                        "ce fichier est trop volumineux pour être téléchargé, la taille de fichier maximale prise en charge est de 4 Mo");
+
+                }
+
+
+            }
+
             onMounted(getSecteurs)
 
 
             return {
                 Message,
                 Secteurs,
-                createUser,
                 User,
+                createUser,
+                avatarupload,
             }
         },
         name: 'recruteur'

@@ -36,7 +36,8 @@
                 <div class="col-md"> {{annonce.secteur_activite}}
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{annonce.titre_annonce}} <small>{{annonce.username}}</small></h5>
-                        <span>{{annonce.secteur_activite}}</span> <br><br><br>
+                        <span>{{annonce.secteur_activite}}</span><br><br><br>
+                        <span><button type="button" class="btn btn-info"><a :href="AfficherCv(annonce.cv_candidat)" target="_blank" rel="noopener noreferrer" class="showcv">Afficher le CV</a></button></span>
                     </div>
                   
                     <p class="mb-1">{{annonce.description_annonce}}</p>
@@ -69,6 +70,7 @@
 
         setup() {
           const titre_secteur_selecter = ref('')
+           const userConnecter = JSON.parse(localStorage.currentUser)
             const {
                 Annonces,
                 getAnnoncesCandidat,
@@ -93,6 +95,10 @@
                 }
 
             }
+            function AfficherCv(cv){
+                
+                return 'img/users/cv/'+cv;
+             }
 
 
 
@@ -103,7 +109,8 @@
               Secteurs,
               Annonces,
               titre_secteur_selecter,
-              getAnnoncesByTitre
+              getAnnoncesByTitre,
+              AfficherCv,
 
             }
         },
@@ -128,5 +135,9 @@
 
     small {
         font-size: 15px;
+    }
+    showcv{
+        font-size: 15px;
+        color:brown !important;
     }
 </style>

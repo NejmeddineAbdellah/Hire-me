@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserController extends Controller
@@ -63,49 +64,59 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     { 
-        try {
+       
         $us = User::create($request->all());
 
         if ($request->role == 'candidat') {
 
-        $candidat = new Candidat();
-        $currentPhoto = $candidat->image_candidat;
-        
-        if($request->image_candidat != $currentPhoto){
-            $name = time().'.' . explode('/', explode(':', substr($request->image_candidat, 0, strpos($request->image_candidat, ';')))[1])[1];
-            Image::make($request->image_candidat)->save(public_path('img/users/').$name);
-           // $request->merge(['photo' => $name]);
-            // $userPhoto = public_path('img/profile/').$currentPhoto;
-            // if(file_exists($userPhoto)){
-            //     @unlink($userPhoto);
-            // }
+            $candidat = new Candidat();
+            $currentPhoto = $candidat->image_candidat;
+            $currentCv = $candidat->cv_candidat;
+            
+            if($request->image_candidat != $currentPhoto){
+                $name = time().'.' . explode('/', explode(':', substr($request->image_candidat, 0, strpos($request->image_candidat, ';')))[1])[1];
+                Image::make($request->image_candidat)->save(public_path('img/users/avatar/').$name);
+                $candidat->image_candidat = $name;
+            
+                }
 
-        }
-
-        $candidat->nom_candidat = $request->nom_candidat;
-        $candidat->prenom_candidat = $request->prenom_candidat;
-        $candidat->niveau_etude = $request->niveau_etude;
-        $candidat->cv_candidat = $request->cv_candidat;
-        $candidat->user_id = $us->id;
-        $candidat->save();
           
-        } 
+            if($request->cv_candidat != $currentCv){
+                $name = time().'.' . explode('/', explode(':', substr($request->cv_candidat, 0, strpos($request->cv_candidat, ';')))[1])[1];
+                Image::make($request->cv_candidat)->save(public_path('img/users/cv/').$name);
+                $candidat->cv_candidat = $name;
+                    
+                }
+
+                $candidat->nom_candidat = $request->nom_candidat;
+                $candidat->prenom_candidat = $request->prenom_candidat;
+                $candidat->niveau_etude = $request->niveau_etude;
+                $candidat->user_id = $us->id;
+                $candidat->save();
+            
+            } 
         elseif ($request->role == 'recruteur') {
-          
             $recruteur = new Recruteur();
-        $recruteur->logo = $request->logo;
-        $recruteur->name = $request->name;
-        $recruteur->user_id = $us->id;
-        $recruteur->save();
-          
+            $currentPhoto = $recruteur->logo;
+
+            if($request->logo != $currentPhoto){
+                $name = time().'.' . explode('/', explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
+                Image::make($request->logo)->save(public_path('img/users/Logo').$name);
+                $recruteur->logo = $name;
+            }
+            
+                     
+            $recruteur->logo = $name;
+            $recruteur->name = $request->name;
+            $recruteur->user_id = $us->id;
+            $recruteur->save();
+            
         }
 
         return response()->json([
-            'message'=>'Utilisateur a été Ajouté'
+            'message'=>'Utilisateur a été Ajouté',
         ]);
-        } catch (\Throwable $th) {
-            throw "errrrroooorr";
-        }
+        
     }
 
     public function login(Request $request){
@@ -113,16 +124,17 @@ class UserController extends Controller
         $user = User::whereEmail($request->email)->first();
         
 
-        // if($user->role == 'candidat')
-        // {
-        //    $userlogged=User::rightJoin('candidats','users.id',"candidats.user_id")->whereEmail($request->email)->first();
+        if($user->role == 'candidat')
+        {
+           $userlogged=User::rightJoin('candidats','users.id',"candidats.user_id")->whereEmail($request->email)->first();
 
-        // }elseif($user->role == 'recruteur'){
+        }elseif($user->role == 'recruteur'){
 
-        //     $userlogged=User::rightJoin('recruteurs','users.id',"recruteurs.user_id")->whereEmail($request->email)->first();
-        // }else{
-        //     $userlogged=$user;
-        // }
+            $userlogged=User::rightJoin('recruteurs','users.id',"recruteurs.user_id")->whereEmail($request->email)->first();
+        }else{
+            $userlogged=$user;
+        }
+        
 
         if (isset($user->id)) {
             if (Hash::check($request->password,$user->password)) {
@@ -130,7 +142,7 @@ class UserController extends Controller
                 
                 return response()->json([
                     'message' => 'bienvenue',
-                    $user,
+                    $userlogged,
                     'Token' => $token
                 ]);
             } else {

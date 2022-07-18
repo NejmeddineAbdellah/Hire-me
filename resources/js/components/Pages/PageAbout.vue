@@ -12,13 +12,12 @@
                                 <h2>Hire Me</h2>
                             </div>
                             <div class="support-caption">
-                                <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum
-                                    dolore
-                                    eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
-                                <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu
-                                    quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt
-                                    mollit
-                                    aboru. temnthp incididbnt ut labore mollit anim laborum suis aute.</p>
+                                <p class="pera-top"> Hireme, a commencé son parcours avec les jeunes diplômée  pour créer plus d'opportunités 
+                                et des meilleurs offerts d'emplois et de stage pfe . et la mission de « nome de site..., Et de facilité la recherche d’emploi pour l
+                                es jeunes diplômés pour commencer leurs carrière professionnelle et même pour les entreprises de trouver sa main d’œuvre.
+                                l'objectif de Hireme, est de connecter les professionnels du monde entier pour les rendre plus productifs et plus performants.
+                                et révolutionner la recherche d’emploi grâce a notre technologie innovante .
+                                rapidement</p>
                                 <a href="about.html" class="btn post-btn">Post a job</a>
                             </div>
                         </div>

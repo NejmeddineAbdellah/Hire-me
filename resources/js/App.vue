@@ -15,24 +15,22 @@
     import Contact from './components/Pages/PageContact.vue'
     import FormAnnonce from './components/Pages/AnnonceForm.vue'
     import About from './components/Pages/PageAbout.vue'
+    import Cv from './components/Pages/PageCv.vue'
     import Page404 from './components/Pages/Page404.vue'
     import AnnonceList from './components/Pages/AnnonceList.vue'
     import DashboardCandidat from './components/Pages/Users/DashboardCandidat.vue'
     import DashboardRecruteur from './components/Pages/Users/DashboardRecruteur.vue'
 
 
-    import {ref} from 'vue';
 
-var headers = {
-  'Accept':'application/json',
-  'Authorization':'string'
-};
+
     export default {
 
         name: 'App',
         components: {
             TheHeader,
             Login,
+            Cv,
             Page404,
             Register,
             Home,
@@ -46,24 +44,6 @@ var headers = {
             DashboardRecruteur,
 
         },
-
-        data() {
-           
-        },
-        setup() {
-
-            localStorage.keyheader = 0;
-            const headerkey = localStorage.keyheader;
-
-             
-            return {
-            headerkey,
-            
-            
-
-            }
-            
-        }
     }
 
 </script>

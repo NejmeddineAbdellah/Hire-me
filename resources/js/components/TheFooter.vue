@@ -23,9 +23,15 @@
                             <div class="footer-tittle">
                                 <h4>Contact Info</h4>
                                 <ul>
-                                    <li><p>Address : UPM </p></li>
-                                    <li><a><p>Téléphone : +8880 44338899</p></a></li>
-                                    <li><a><p>Email : info@colorlib.com</p></a></li>
+                                    <li>
+                                        <p>Address : UPM </p>
+                                    </li>
+                                    <li><a>
+                                            <p>Téléphone : +8880 44338899</p>
+                                        </a></li>
+                                    <li><a>
+                                            <p>Email : info@colorlib.com</p>
+                                        </a></li>
                                 </ul>
                             </div>
 
@@ -36,10 +42,33 @@
                             <div class="footer-tittle">
                                 <h4>Lien rapide</h4>
                                 <ul>
-                                    <router-link to="/"><p><li><a>Accueil</a></li></p></router-link>
-                                    <router-link to="/contact"><p><li><a>Contact</a></li></p></router-link>
-                                    <router-link to="/Apropos"><p><li><a>A propos</a></li></p></router-link>
-                                    <router-link to="/AnnonceList"><p><li><a>Trouver Annonce</a></li></p></router-link>
+                                    <router-link to="/">
+                                        <p>
+                                            <li><a>Accueil</a></li>
+                                        </p>
+                                    </router-link>
+                                    <router-link to="/contact">
+                                        <p>
+                                            <li><a>Contact</a></li>
+                                        </p>
+                                    </router-link>
+                                    <router-link to="/Apropos">
+                                        <p>
+                                            <li><a>A propos</a></li>
+                                        </p>
+                                    </router-link>
+                                    <router-link to="/AnnonceList"
+                                        v-if="!connectedUser || connectedUser.role=='candidat'">
+                                        <p>
+                                            <li><a>Trouver Emploi</a></li>
+                                        </p>
+                                    </router-link>
+                                    <router-link to="/CandidatList"
+                                        v-if="connectedUser && connectedUser.role=='recruteur'">
+                                        <p>
+                                            <li><a>Trouver Candidat</a></li>
+                                        </p>
+                                    </router-link>
                                 </ul>
                             </div>
                         </div>
@@ -75,7 +104,7 @@
                     </div>
                 </div>
                 <!--  -->
-               
+
             </div>
         </div>
         <!-- footer-bottom area -->
@@ -87,7 +116,7 @@
                             <div class="footer-copy-right">
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
@@ -97,19 +126,31 @@
 </template>
 
 <script>
-    
+    import {
+        ref
+    } from 'vue'
+
     export default {
+        setup() {
+            const connectedUser = ref()
+            if (localStorage.currentUser) {
+                connectedUser.value = JSON.parse(localStorage.currentUser)
+            }
 
+            return {
+                connectedUser,
+            }
+        }
     }
-
 </script>
 
 <style>
-footer{
-    padding-top:10%;
-}
-.footer-padding {
-    padding-top: 30px;
-    padding-bottom: 20px;
-}
+    footer {
+        padding-top: 10%;
+    }
+
+    .footer-padding {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
 </style>

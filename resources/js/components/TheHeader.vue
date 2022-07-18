@@ -89,13 +89,11 @@
 
     export default {
         setup() {
-            const componentKey = ref()
+            
             const connectedUser = ref()
 
             const islogged = ref(localStorage.isloggedIn)
-           function forceRerender() {
-            componentKey.value += 1
-            }
+         
 
             if (localStorage.isloggedIn) {
                 islogged.value = true
@@ -121,13 +119,11 @@
 
 
             return {
-                componentKey,
+
                 User,
                 islogged,
                 connectedUser,
                 Logout,
-                forceRerender,
-
             }
         },
 

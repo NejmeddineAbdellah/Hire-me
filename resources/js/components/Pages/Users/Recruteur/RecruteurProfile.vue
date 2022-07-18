@@ -11,8 +11,7 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                    alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                <img :src="getLogo()" class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3">{{userConnecter.nom_candidat}}</h5>
                                 <p class="text-muted mb-4">{{userConnecter.us}}</p>
                                 <p class="text-muted mb-1">{{userConnecter.secteur_activite}}</p>
@@ -90,9 +89,7 @@
 
 <script>
     import {
-        onMounted,
-        ref,
-        reactive
+        onMounted
     } from 'vue'
     import useAnnonces from '../../../../store/annonceStore.js'
     import useDemandes from '../../../../store/demandeStore.js'
@@ -110,6 +107,11 @@
                 getDemandesByAnnonceOfRecruteur
             } = useDemandes()
 
+              function getLogo(){
+                
+                return 'img/users/'+userConnecter.logo;
+             }
+
             onMounted(getAnnoncesByIdUser(userConnecter.id), getDemandesByAnnonceOfRecruteur(userConnecter.id))
 
             return {
@@ -117,6 +119,7 @@
                 Demandes,
                 userConnecter,
                 getAnnoncesByIdUser,
+                getLogo,
 
             }
 

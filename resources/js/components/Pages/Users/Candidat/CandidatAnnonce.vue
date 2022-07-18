@@ -150,10 +150,11 @@
                 Annonce.value = {
                     titre_annonce: "",
                     description_annonce: "",
+                    cv_candidat:userConnecter.cv_candidat,
                     niveau_etude: "",
                     secteur_activite: "",
                     type_annonce: "candidat",
-                    user_id: userConnecter.id,
+                    user_id: userConnecter.user_id,
                     type_annonce_candidat: ""
                 }
             }
@@ -162,32 +163,32 @@
             function getSelectedAnnonce(id) {
                 updating.value = true;
                getAnnonceCandidat(id)
-               getAnnoncesByIdUser(userConnecter.id)
+               getAnnoncesByIdUser(userConnecter.user_id)
 
             }
 
             function createAnnonce() {
                 storeAnnonce({...Annonce.value});
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
                 clear()
 
             }
 
             function modifierAnnonce(id) {
                 updateAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
                 clear()
             }
 
             function deleteAnnonce(id) {
                 destroyAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
                 clear()
 
             }
 
 
-            onMounted(getAnnoncesByIdUser(userConnecter.id))
+            onMounted(getAnnoncesByIdUser(userConnecter.user_id))
             onMounted(getSecteurs)
 
 
