@@ -48,8 +48,8 @@
                     <div class="media contact-info">
                         <span class="contact-info__icon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
                         <div class="media-body">
-                            <h3>Buttonwood, California.</h3>
-                            <p>Rosemead, CA 91770</p>
+                            <h3>Marrakech, .</h3>
+                            <p>UPM, </p>
                         </div>
                     </div>
                     <div class="media contact-info">

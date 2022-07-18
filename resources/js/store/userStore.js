@@ -57,7 +57,7 @@ export default function useUsers() {
 
             await axios.post('http://127.0.0.1:8000/api/logout')
             localStorage.clear()
-            await router.push('/login')
+            window.location.href = '/login'
     }
 
     const getUsersCandidat = async () => {

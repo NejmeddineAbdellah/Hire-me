@@ -103,11 +103,6 @@
                         type: 'text'
                     },
                     {
-                        label: "Secteur d'activite",
-                        field: 'secteur_activite',
-                        type: 'text'
-                    },
-                    {
                         label: 'Action',
                         field: 'action',
                         type: 'input'

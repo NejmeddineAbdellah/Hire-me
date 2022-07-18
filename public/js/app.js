@@ -20312,10 +20312,6 @@ __webpack_require__.r(__webpack_exports__);
         field: 'ville',
         type: 'text'
       }, {
-        label: "Secteur d'activite",
-        field: 'secteur_activite',
-        type: 'text'
-      }, {
         label: 'Action',
         field: 'action',
         type: 'input'
@@ -20915,7 +20911,7 @@ __webpack_require__.r(__webpack_exports__);
         getDemandesByUser = _useDemandes.getDemandesByUser;
 
     function getAvatar() {
-      return 'img/users/' + userConnecter.image_candidat;
+      return 'img/users/avatar/' + userConnecter.image_candidat;
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getAnnoncesByIdUser(userConnecter.user_id), getDemandesByUser(userConnecter.user_id));
@@ -23501,7 +23497,7 @@ var _hoisted_1 = {
   "class": "container"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"support-company-area section-padding2\" data-v-514b0c78><div class=\"container\" data-v-514b0c78><div class=\"row align-items-center\" data-v-514b0c78><div class=\"col-xl-6 col-lg-6\" data-v-514b0c78><div class=\"right-caption\" data-v-514b0c78><!-- Section Tittle --><div class=\"section-tittle section-tittle2\" data-v-514b0c78><span data-v-514b0c78>CE QUE NOUS FAISONS</span><h2 data-v-514b0c78>Hire Me</h2></div><div class=\"support-caption\" data-v-514b0c78><p class=\"pera-top\" data-v-514b0c78> Hireme, a commencé son parcours avec les jeunes diplômée pour créer plus d&#39;opportunités et des meilleurs offerts d&#39;emplois et de stage pfe . et la mission de « nome de site..., Et de facilité la recherche d’emploi pour l es jeunes diplômés pour commencer leurs carrière professionnelle et même pour les entreprises de trouver sa main d’œuvre. l&#39;objectif de Hireme, est de connecter les professionnels du monde entier pour les rendre plus productifs et plus performants. et révolutionner la recherche d’emploi grâce a notre technologie innovante . rapidement</p><a href=\"about.html\" class=\"btn post-btn\" data-v-514b0c78>Post a job</a></div></div></div><div class=\"col-xl-6 col-lg-6\" data-v-514b0c78><div class=\"support-location-img\" data-v-514b0c78><img src=\"/img/service/support-img.jpg\" alt=\"\" data-v-514b0c78><div class=\"support-img-cap text-center\" data-v-514b0c78><p data-v-514b0c78>Depuis</p><span data-v-514b0c78>2022</span></div></div></div></div></div></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"support-company-area section-padding2\" data-v-514b0c78><div class=\"container\" data-v-514b0c78><div class=\"row align-items-center\" data-v-514b0c78><div class=\"col-xl-6 col-lg-6\" data-v-514b0c78><div class=\"right-caption\" data-v-514b0c78><!-- Section Tittle --><div class=\"section-tittle section-tittle2\" data-v-514b0c78><span data-v-514b0c78>CE QUE NOUS FAISONS</span><h2 data-v-514b0c78>Hire Me</h2></div><div class=\"support-caption\" data-v-514b0c78><p class=\"pera-top\" data-v-514b0c78> Hireme, a commencé son parcours avec les jeunes diplômée pour créer plus d&#39;opportunités et des meilleurs offerts d&#39;emplois et de stage pfe . et la mission de « nome de site..., Et de facilité la recherche d’emploi pour l es jeunes diplômés pour commencer leurs carrière professionnelle et même pour les entreprises de trouver sa main d’œuvre. l&#39;objectif de Hireme, est de connecter les professionnels du monde entier pour les rendre plus productifs et plus performants. et révolutionner la recherche d’emploi grâce a notre technologie innovante . rapidement</p><a href=\"/login\" class=\"btn post-btn\" data-v-514b0c78>publier annonce</a></div></div></div><div class=\"col-xl-6 col-lg-6\" data-v-514b0c78><div class=\"support-location-img\" data-v-514b0c78><img src=\"/img/service/support-img.jpg\" alt=\"\" data-v-514b0c78><div class=\"support-img-cap text-center\" data-v-514b0c78><p data-v-514b0c78>Depuis</p><span data-v-514b0c78>2022</span></div></div></div></div></div></div>", 1);
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"apply-process-area apply-bg pt-150 pb-150\" data-background=\"/img/gallery/how-applybg.png\" data-v-514b0c78><div class=\"container\" data-v-514b0c78><!-- Section Tittle --><div class=\"row\" data-v-514b0c78><div class=\"col-lg-12\" data-v-514b0c78><div class=\"section-tittle white-text text-center\" data-v-514b0c78><span data-v-514b0c78>Processus de candidature</span><h2 data-v-514b0c78>Comment ça march</h2></div></div></div><!-- Apply Process Caption --><div class=\"row\" data-v-514b0c78><div class=\"col-lg-4 col-md-6\" data-v-514b0c78><div class=\"single-process text-center mb-30\" data-v-514b0c78><div class=\"process-ion\" data-v-514b0c78><span class=\"flaticon-search\" data-v-514b0c78></span></div><div class=\"process-cap\" data-v-514b0c78><h5 data-v-514b0c78>1. Rechercher une annonce</h5><p data-v-514b0c78>Vouez devez chercher une annonce dans votre specifique secteur d&#39;activité</p></div></div></div><div class=\"col-lg-4 col-md-6\" data-v-514b0c78><div class=\"single-process text-center mb-30\" data-v-514b0c78><div class=\"process-ion\" data-v-514b0c78><span class=\"flaticon-curriculum-vitae\" data-v-514b0c78></span></div><div class=\"process-cap\" data-v-514b0c78><h5 data-v-514b0c78>2. Postuler une annonce</h5><p data-v-514b0c78>Si vous avez trouvé une annonce qui vous intéresse, vous devez postuler . </p></div></div></div><div class=\"col-lg-4 col-md-6\" data-v-514b0c78><div class=\"single-process text-center mb-30\" data-v-514b0c78><div class=\"process-ion\" data-v-514b0c78><span class=\"flaticon-tour\" data-v-514b0c78></span></div><div class=\"process-cap\" data-v-514b0c78><h5 data-v-514b0c78>3. Obtenez votre travail</h5><p data-v-514b0c78>Et voila </p></div></div></div></div></div></div>", 1);
 
@@ -23617,7 +23613,7 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
     "aria-hidden": "true"
   })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "media-body"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Buttonwood, California."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Rosemead, CA 91770")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Marrakech, ."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "UPM, ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "media contact-info"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "contact-info__icon"
@@ -23740,7 +23736,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"online-cv cv-bg section-overly pt-90 pb-120\" data-background=\"/img/gallery/cv_bg.jpg\"><div class=\"container\"><div class=\"row justify-content-center\"><div class=\"col-xl-10\"><div class=\"cv-caption text-center\"><p class=\"pera1\"></p><p class=\"pera2\">Faites la différence avec votre CV en ligne !</p><a href=\"#\" class=\"border-btn2 border-btn4\">Upload votre cv</a></div></div></div></div></div>", 1);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"online-cv cv-bg section-overly pt-90 pb-120\" data-background=\"/img/gallery/cv_bg.jpg\"><div class=\"container\"><div class=\"row justify-content-center\"><div class=\"col-xl-10\"><div class=\"cv-caption text-center\"><p class=\"pera1\"></p><p class=\"pera2\">Faites la différence avec votre CV en ligne !</p></div></div></div></div></div>", 1);
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"apply-process-area apply-bg pt-150 pb-150\" data-background=\"/img/gallery/how-applybg.png\"><div class=\"container\"><!-- Section Tittle --><div class=\"row\"><div class=\"col-lg-12\"><div class=\"section-tittle white-text text-center\"><span>Processus de candidature</span><h2>Comment ça march</h2></div></div></div><!-- Apply Process Caption --><div class=\"row\"><div class=\"col-lg-4 col-md-6\"><div class=\"single-process text-center mb-30\"><div class=\"process-ion\"><span class=\"flaticon-search\"></span></div><div class=\"process-cap\"><h5>1. Rechercher une annonce</h5><p>Vouez devez chercher une annonce dans votre specifique secteur d&#39;activité</p></div></div></div><div class=\"col-lg-4 col-md-6\"><div class=\"single-process text-center mb-30\"><div class=\"process-ion\"><span class=\"flaticon-curriculum-vitae\"></span></div><div class=\"process-cap\"><h5>2. Postuler une annonce</h5><p>Si vous avez trouvé une annonce qui vous intéresse, vous devez postuler . </p></div></div></div><div class=\"col-lg-4 col-md-6\"><div class=\"single-process text-center mb-30\"><div class=\"process-ion\"><span class=\"flaticon-tour\"></span></div><div class=\"process-cap\"><h5>3. Obtenez votre travail</h5><p>Et voila </p></div></div></div></div></div></div>", 1);
 
@@ -27577,10 +27573,9 @@ function useUsers() {
 
             case 2:
               localStorage.clear();
-              _context3.next = 5;
-              return router.push('/login');
+              window.location.href = '/login';
 
-            case 5:
+            case 4:
             case "end":
               return _context3.stop();
           }

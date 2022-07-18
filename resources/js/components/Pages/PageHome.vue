@@ -48,7 +48,7 @@
                     <div class="cv-caption text-center">
                         <p class="pera1"></p>
                         <p class="pera2">Faites la différence avec votre CV en ligne !</p>
-                        <a href="#" class="border-btn2 border-btn4">Upload votre cv</a>
+                  
                     </div>
                 </div>
             </div>

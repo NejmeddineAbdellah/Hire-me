@@ -18,7 +18,7 @@
                                 l'objectif de Hireme, est de connecter les professionnels du monde entier pour les rendre plus productifs et plus performants.
                                 et révolutionner la recherche d’emploi grâce a notre technologie innovante .
                                 rapidement</p>
-                                <a href="about.html" class="btn post-btn">Post a job</a>
+                                <a href="/login" class="btn post-btn">publier annonce</a>
                             </div>
                         </div>
                     </div>
