@@ -101,7 +101,7 @@ class UserController extends Controller
 
             if($request->logo != $currentPhoto){
                 $name = time().'.' . explode('/', explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
-                Image::make($request->logo)->save(public_path('img/users/Logo').$name);
+                Image::make($request->logo)->save(public_path('img/users/Logo/').$name);
                 $recruteur->logo = $name;
             }
             

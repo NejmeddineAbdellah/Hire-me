@@ -46,7 +46,6 @@
 
     export default {
 
-
         setup() {
 
             const {
@@ -59,14 +58,15 @@
 
             function deleteDemande(id) {
                 destroyDemande(id);
-                getDemandesByUser(userConnecter.id)
+                getDemandesByUser(userConnecter.user_id)
             }
 
-            onMounted(getDemandesByUser(userConnecter.id))
+            onMounted(getDemandesByUser(userConnecter.user_id))
+  
 
             return {
-                getDemandes,
                 Demandes,
+                getDemandes,
                 getDemandesByUser,
                 deleteDemande,
             }

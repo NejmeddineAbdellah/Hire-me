@@ -151,7 +151,7 @@
                     contrat:'',
                     salaire: '',
                     type_annonce: 'recruteur',
-                    user_id: userConnecter.id,
+                    user_id: userConnecter.user_id,
                     }  
                     Message.value="" 
             }
@@ -160,30 +160,30 @@
                 updating.value = true;
             
                getAnnonceById(id) 
-               getAnnoncesByIdUser(userConnecter.id)
+               getAnnoncesByIdUser(userConnecter.user_id)
             }
 
             function createAnnonce(){
 
                 storeAnnonce({...Annonce.value});
                 console.log({...Annonce.value});
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
                 clear()
             }
 
             function modifierAnnonce(id) {
                 updateAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
                 
             }
 
             function deleteAnnonce(id) {
                 destroyAnnonce(id);
-                getAnnoncesByIdUser(userConnecter.id)
+                getAnnoncesByIdUser(userConnecter.user_id)
                 
 
             }           
-            onMounted(getAnnoncesByIdUser(userConnecter.id))
+            onMounted(getAnnoncesByIdUser(userConnecter.user_id))
             onMounted(getSecteurs)
  
 

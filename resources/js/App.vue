@@ -1,5 +1,5 @@
 <template>
-    <TheHeader  :key="headerkey"/>
+    <TheHeader/>
     <router-view/>
     <TheFooter/>
 </template>

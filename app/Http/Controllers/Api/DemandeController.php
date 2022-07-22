@@ -55,8 +55,8 @@ class DemandeController extends Controller
      */
     public function show($id)
     {
-       
-        return Demande::leftJoin('annonces','demandes.id_annonce','annonces.id')->where('demandes.user_id','=',$id)->get();
+        return Annonce::leftJoin('demandes','annonces.id','demandes.id_annonce')->where('demandes.user_id','=',$id)->get();
+        
     }
 
 

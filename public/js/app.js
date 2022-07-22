@@ -20450,7 +20450,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var connectedUser = JSON.parse(localStorage.currentUser);
     var demande = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
       'lettre_motivation': '',
-      'user_id': connectedUser.id,
+      'user_id': connectedUser.user_id,
       'id_annonce': route.params.id
     });
 
@@ -20958,13 +20958,13 @@ __webpack_require__.r(__webpack_exports__);
 
     function deleteDemande(id) {
       destroyDemande(id);
-      getDemandesByUser(userConnecter.id);
+      getDemandesByUser(userConnecter.user_id);
     }
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getDemandesByUser(userConnecter.id));
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getDemandesByUser(userConnecter.user_id));
     return {
-      getDemandes: getDemandes,
       Demandes: Demandes,
+      getDemandes: getDemandes,
       getDemandesByUser: getDemandesByUser,
       deleteDemande: deleteDemande
     };
@@ -21165,7 +21165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         contrat: '',
         salaire: '',
         type_annonce: 'recruteur',
-        user_id: userConnecter.id
+        user_id: userConnecter.user_id
       };
       Message.value = "";
     }
@@ -21173,27 +21173,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function getSelectedAnnonce(id) {
       updating.value = true;
       getAnnonceById(id);
-      getAnnoncesByIdUser(userConnecter.id);
+      getAnnoncesByIdUser(userConnecter.user_id);
     }
 
     function createAnnonce() {
       storeAnnonce(_objectSpread({}, Annonce.value));
       console.log(_objectSpread({}, Annonce.value));
-      getAnnoncesByIdUser(userConnecter.id);
+      getAnnoncesByIdUser(userConnecter.user_id);
       clear();
     }
 
     function modifierAnnonce(id) {
       updateAnnonce(id);
-      getAnnoncesByIdUser(userConnecter.id);
+      getAnnoncesByIdUser(userConnecter.user_id);
     }
 
     function deleteAnnonce(id) {
       destroyAnnonce(id);
-      getAnnoncesByIdUser(userConnecter.id);
+      getAnnoncesByIdUser(userConnecter.user_id);
     }
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getAnnoncesByIdUser(userConnecter.id));
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getAnnoncesByIdUser(userConnecter.user_id));
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getSecteurs);
     return {
       Annonces: Annonces,
@@ -21276,10 +21276,10 @@ __webpack_require__.r(__webpack_exports__);
 
     function deleteDemande(id) {
       destroyDemande(id);
-      getDemandesByUser(userConnecter.id);
+      getDemandesByUser(userConnecter.user_id);
     }
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getDemandesByAnnonceOfRecruteur(userConnecter.id));
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getDemandesByAnnonceOfRecruteur(userConnecter.user_id));
     return {
       getDemandes: getDemandes,
       Demandes: Demandes,
@@ -21351,10 +21351,10 @@ __webpack_require__.r(__webpack_exports__);
         getDemandesByAnnonceOfRecruteur = _useDemandes.getDemandesByAnnonceOfRecruteur;
 
     function getLogo() {
-      return 'img/users/' + userConnecter.logo;
+      return 'img/users/Logo/' + userConnecter.logo;
     }
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getAnnoncesByIdUser(userConnecter.id), getDemandesByAnnonceOfRecruteur(userConnecter.id));
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(getAnnoncesByIdUser(userConnecter.user_id), getDemandesByAnnonceOfRecruteur(userConnecter.user_id));
     return {
       Annonces: Annonces,
       Demandes: Demandes,
@@ -21718,9 +21718,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_TheFooter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TheFooter");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_TheHeader, {
-    key: _ctx.headerkey
-  })), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheFooter)], 64
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheHeader), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheFooter)], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -26446,7 +26444,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 2,
-    to: "/login"
+    to: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {

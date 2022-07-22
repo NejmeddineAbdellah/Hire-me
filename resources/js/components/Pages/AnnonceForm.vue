@@ -54,7 +54,7 @@
 
             const demande = reactive({
                 'lettre_motivation': '',
-                'user_id': connectedUser.id,
+                'user_id': connectedUser.user_id,
                 'id_annonce': route.params.id,
 
             })

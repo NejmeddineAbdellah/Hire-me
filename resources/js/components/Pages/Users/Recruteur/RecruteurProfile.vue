@@ -109,10 +109,10 @@
 
               function getLogo(){
                 
-                return 'img/users/'+userConnecter.logo;
+                return 'img/users/Logo/'+userConnecter.logo;
              }
 
-            onMounted(getAnnoncesByIdUser(userConnecter.id), getDemandesByAnnonceOfRecruteur(userConnecter.id))
+            onMounted(getAnnoncesByIdUser(userConnecter.user_id), getDemandesByAnnonceOfRecruteur(userConnecter.user_id))
 
             return {
                 Annonces,

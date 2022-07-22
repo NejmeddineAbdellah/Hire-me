@@ -57,7 +57,7 @@
                                     <router-link to="/Login" v-if="!islogged"><a class="btn head-btn2"
                                             style="color:#FB246A !important;">Connecter</a></router-link>
 
-                                    <router-link to="/login" v-else><a @click="Logout" class="btn head-btn2"
+                                    <router-link to="" v-else><a @click="Logout" class="btn head-btn2"
                                             style="color:#FB246A !important;">Deconnecter</a></router-link>
 
                                 </div>
